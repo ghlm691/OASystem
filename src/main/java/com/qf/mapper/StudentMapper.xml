@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.mapper.StudentMapper">
 
-    <update id="updateStudent" parameterType="studentVO">
+    <update id="updateStudent" parameterType="userVO">
 
         update users set uname = #{uname},password = #{password},age = #{age},sex = #{sex} where uid = #{uid}
 
     </update>
 
-    <select id="getStudent" parameterType="int" resultType="studentVO">
+    <select id="getStudent" parameterType="int" resultType="userVO">
 
         select * from users where uid = #{uid}
 

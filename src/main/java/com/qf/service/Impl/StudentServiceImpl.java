@@ -4,7 +4,7 @@ import com.qf.mapper.StudentMapper;
 import com.qf.mapper.WeeklyMapper;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
-import com.qf.pojo.vo.StudentVO;
+import com.qf.pojo.vo.UserVO;
 import com.qf.pojo.vo.WeeklyVO;
 import com.qf.service.StudentService;
 import com.qf.utils.MD5Utils;
@@ -30,18 +30,18 @@ public class StudentServiceImpl implements StudentService {
 
     //修改学生信息
     public int updateStudent(Student student) {
-        StudentVO studentVO = new StudentVO();
-        studentVO.setUid(student.getSid());
-        studentVO.setUname(student.getUsername());
+        UserVO userVO = new UserVO();
+        userVO.setUid(student.getSid());
+        userVO.setUname(student.getUsername());
         try {
-            studentVO.setPassword(MD5Utils.getMD5Str(student.getPassword()));
+            userVO.setPassword(MD5Utils.getMD5Str(student.getPassword()));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        studentVO.setName(student.getSname());
-        studentVO.setAge(student.getAge());
-        studentVO.setSex(student.getSex());
-        return studentMapper.updateStudent(studentVO);
+        userVO.setName(student.getSname());
+        userVO.setAge(student.getAge());
+        userVO.setSex(student.getSex());
+        return studentMapper.updateStudent(userVO);
     }
 
     //学生请假

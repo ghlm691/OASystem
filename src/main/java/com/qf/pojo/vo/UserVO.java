@@ -3,11 +3,11 @@ package com.qf.pojo.vo;
 /**
  * author:赖文熙
  * date:2019/7/15 16:02
- * description:
+ * description:用户数据库表，对应学生pojo和user的pojo
  */
 
 
-public class StudentVO {
+public class UserVO {
 
     private int uid;//用户ID
     private String uname;//账号
@@ -16,10 +16,10 @@ public class StudentVO {
     private String age;//年龄
     private String sex;//性别
 
-    public StudentVO() {
+    public UserVO() {
     }
 
-    public StudentVO(int uid, String uname, String password, String name, String age, String sex) {
+    public UserVO(int uid, String uname, String password, String name, String age, String sex) {
         this.uid = uid;
         this.uname = uname;
         this.password = password;
@@ -78,7 +78,7 @@ public class StudentVO {
 
     @Override
     public String toString() {
-        return "StudentVO{" +
+        return "UserVO{" +
                 "uid=" + uid +
                 ", uname='" + uname + '\'' +
                 ", password='" + password + '\'' +
