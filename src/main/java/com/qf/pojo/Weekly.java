@@ -11,21 +11,21 @@ public class Weekly {
 
     private int wid;//周报ID
     private String uname;//作者姓名
-    private String title;//周报标题
-    private String time;//周报发布时间
-    private String content;//周报内容
-    private int score;//周报分数
+    private String wtitle;//周报标题
+    private String wtime;//周报发布时间
+    private String wcontent;//周报内容
+    private int wscore;//周报分数
 
     public Weekly() {
     }
 
-    public Weekly(int wid, String uname, String title, String time, String content, int score) {
+    public Weekly(int wid, String uname, String wtitle, String wtime, String wcontent, int wscore) {
         this.wid = wid;
         this.uname = uname;
-        this.title = title;
-        this.time = time;
-        this.content = content;
-        this.score = score;
+        this.wtitle = wtitle;
+        this.wtime = wtime;
+        this.wcontent = wcontent;
+        this.wscore = wscore;
     }
 
     public int getWid() {
@@ -44,47 +44,47 @@ public class Weekly {
         this.uname = uname;
     }
 
-    public String getTitle() {
-        return title;
+    public String getWtitle() {
+        return wtitle;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setWtitle(String wtitle) {
+        this.wtitle = wtitle;
     }
 
-    public String getTime() {
-        return time;
+    public String getWtime() {
+        return wtime;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setWtime(String wtime) {
+        this.wtime = wtime;
     }
 
-    public String getContent() {
-        return content;
+    public String getWcontent() {
+        return wcontent;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setWcontent(String wcontent) {
+        this.wcontent = wcontent;
     }
 
-    public int getScore() {
-        return score;
+    public int getWscore() {
+        return wscore;
     }
 
-    public void setScore(int score) {
-        this.score = score;
+    public void setWscore(int wscore) {
+        this.wscore = wscore;
     }
 
     @Override
     public String toString() {
         return "Weekly{" +
                 "wid=" + wid +
-                ", uname=" + uname +
-                ", title='" + title + '\'' +
-                ", time='" + time + '\'' +
-                ", content='" + content + '\'' +
-                ", score=" + score +
+                ", uname='" + uname + '\'' +
+                ", wtitle='" + wtitle + '\'' +
+                ", wtime='" + wtime + '\'' +
+                ", wcontent='" + wcontent + '\'' +
+                ", wscore=" + wscore +
                 '}';
     }
 }

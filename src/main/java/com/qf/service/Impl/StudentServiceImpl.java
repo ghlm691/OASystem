@@ -13,11 +13,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * author:赖文熙
- * date:2019/7/15 15:38
- * description:
- */
+
+
 
 @Service
 public class StudentServiceImpl implements StudentService {
@@ -51,9 +48,9 @@ public class StudentServiceImpl implements StudentService {
         WeeklyVO weeklyVO = new WeeklyVO();
         weeklyVO.setWid(weekly.getWid());
         weeklyVO.setUid(uid);
-        weeklyVO.setWtitle(weekly.getTitle());
-        weeklyVO.setWtime(weekly.getTime());
-        weeklyVO.setWcontent(weekly.getContent());
+        weeklyVO.setWtitle(weekly.getWtitle());
+        weeklyVO.setWtime(weekly.getWtime());
+        weeklyVO.setWcontent(weekly.getWcontent());
         return studentMapper.addWeekly(weeklyVO);
     }
 
@@ -70,10 +67,10 @@ public class StudentServiceImpl implements StudentService {
             Weekly weekly = new Weekly();
             weekly.setWid(w.getWid());
             weekly.setUname(studentMapper.getStudent(w.getUid()).getUname());
-            weekly.setTitle(w.getWtitle());
-            weekly.setTime(w.getWtime());
-            weekly.setContent(w.getWcontent());
-            weekly.setScore(w.getWscore());
+            weekly.setWtitle(w.getWtitle());
+            weekly.setWtime(w.getWtime());
+            weekly.setWcontent(w.getWcontent());
+            weekly.setWscore(w.getWscore());
             weeklyList.add(weekly);
         }
         return weeklyList;
