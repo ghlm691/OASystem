@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.WeeklyMapper">
+
+    <insert id="addWeekly" parameterType="weeklyVO">
+
+        insert into weekly (wid,uid,wtitle,wtime,wcontent) values (#{wid},#{uid},#{wtitle},#{wtime},#{wcontent})
+
+    </insert>
+
+    <delete id="delWeekly" parameterType="int">
+
+        delete from weekly where wid = #{wid} and wscore is null
+
+    </delete>
+
+    <select id="queryWeeklyForStudent" parameterType="int" resultType="weeklyVO">
+
+        select * from weekly where uid = #{uid}
+
+    </select>
+
+    <update id="addScore">
+
+        update weekly set wscore = #{wscore} where wid = #{wid}
+
+    </update>
+
+</mapper>
