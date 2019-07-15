@@ -2,6 +2,9 @@ package com.qf.mapper;
 
 import com.qf.pojo.Student;
 import com.qf.pojo.vo.UserVO;
+import com.qf.pojo.vo.WeeklyVO;
+
+import java.util.List;
 
 public interface StudentMapper {
 
@@ -9,6 +12,15 @@ public interface StudentMapper {
     int updateStudent(UserVO userVO);
 
     //查询学生
-    Student getStudent(int uid);
+    UserVO getStudent(int uid);
+
+    //新增周报
+    int addWeekly(WeeklyVO weeklyVO);
+
+    //删除周报(已打分无法删除)
+    int delWeekly(int wid);
+
+    //展示周报
+    List<WeeklyVO> queryWeeklyForStudent(int sid);
 
 }

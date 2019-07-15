@@ -1,7 +1,6 @@
 package com.qf.service.Impl;
 
 import com.qf.mapper.StudentMapper;
-import com.qf.mapper.WeeklyMapper;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 import com.qf.pojo.vo.UserVO;
@@ -25,8 +24,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentMapper studentMapper;
-    @Autowired
-    private WeeklyMapper weeklyMapper;
 
     //修改学生信息
     public int updateStudent(Student student) {
@@ -57,22 +54,22 @@ public class StudentServiceImpl implements StudentService {
         weeklyVO.setWtitle(weekly.getTitle());
         weeklyVO.setWtime(weekly.getTime());
         weeklyVO.setWcontent(weekly.getContent());
-        return weeklyMapper.addWeekly(weeklyVO);
+        return studentMapper.addWeekly(weeklyVO);
     }
 
     //删除周报
     public int delWeekly(int wid) {
-        return weeklyMapper.delWeekly(wid);
+        return studentMapper.delWeekly(wid);
     }
 
     //查询周报
     public List<Weekly> queryWeeklyForStudent(int sid) {
-        List<WeeklyVO> weeklyVOList = weeklyMapper.queryWeeklyForStudent(sid);
+        List<WeeklyVO> weeklyVOList = studentMapper.queryWeeklyForStudent(sid);
         List<Weekly> weeklyList = new ArrayList<Weekly>();
         for (WeeklyVO w : weeklyVOList){
             Weekly weekly = new Weekly();
             weekly.setWid(w.getWid());
-            weekly.setUname(studentMapper.getStudent(w.getUid()).getUsername());
+            weekly.setUname(studentMapper.getStudent(w.getUid()).getUname());
             weekly.setTitle(w.getWtitle());
             weekly.setTime(w.getWtime());
             weekly.setContent(w.getWcontent());

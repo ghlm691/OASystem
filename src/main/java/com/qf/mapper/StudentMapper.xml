@@ -16,6 +16,24 @@
 
     </select>
 
+    <insert id="addWeekly" parameterType="weeklyVO">
+
+        insert into weekly (wid,uid,wtitle,wtime,wcontent) values (#{wid},#{uid},#{wtitle},#{wtime},#{wcontent})
+
+    </insert>
+
+    <delete id="delWeekly" parameterType="int">
+
+        delete from weekly where wid = #{wid} and wscore is null
+
+    </delete>
+
+    <select id="queryWeeklyForStudent" parameterType="int" resultType="weeklyVO">
+
+        select * from weekly where uid = #{uid}
+
+    </select>
+
 
 
 </mapper>

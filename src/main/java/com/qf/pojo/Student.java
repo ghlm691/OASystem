@@ -15,17 +15,19 @@ public class Student {
     private String sname;//学生姓名
     private String age;//年龄
     private String sex;//性别
+    private String cname;//班级名
 
     public Student() {
     }
 
-    public Student(int sid, String username, String password, String sname, String age, String sex) {
+    public Student(int sid, String username, String password, String sname, String age, String sex, String cname) {
         this.sid = sid;
         this.username = username;
         this.password = password;
         this.sname = sname;
         this.age = age;
         this.sex = sex;
+        this.cname = cname;
     }
 
     public int getSid() {
@@ -76,6 +78,14 @@ public class Student {
         this.sex = sex;
     }
 
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -85,6 +95,7 @@ public class Student {
                 ", sname='" + sname + '\'' +
                 ", age='" + age + '\'' +
                 ", sex='" + sex + '\'' +
+                ", cname='" + cname + '\'' +
                 '}';
     }
 }
