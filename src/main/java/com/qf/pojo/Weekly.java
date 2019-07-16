@@ -14,7 +14,7 @@ public class Weekly {
     private String wtitle;//周报标题
     private String wtime;//周报发布时间
     private String wcontent;//周报内容
-    private int wscore;//周报分数
+    private Integer wscore;//周报分数
 
     public Weekly() {
     }
@@ -68,11 +68,11 @@ public class Weekly {
         this.wcontent = wcontent;
     }
 
-    public int getWscore() {
+    public Integer getWscore() {
         return wscore;
     }
 
-    public void setWscore(int wscore) {
+    public void setWscore(Integer wscore) {
         this.wscore = wscore;
     }
 
