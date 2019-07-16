@@ -1,5 +1,6 @@
 package com.qf.service;
 
+import com.qf.pojo.Leave;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 
@@ -27,5 +28,9 @@ public interface StudentService {
 
     //查询学生
     Student getStudentBySid(int sid);
+
+    /*请假*/
+    //添加请假信息
+    int addStudentLeave(Leave leave);
 
 }

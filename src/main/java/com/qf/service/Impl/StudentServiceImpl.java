@@ -2,19 +2,26 @@ package com.qf.service.Impl;
 
 import com.qf.mapper.AdminMapper;
 import com.qf.mapper.StudentMapper;
+import com.qf.pojo.Leave;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 import com.qf.pojo.vo.UserVO;
 import com.qf.pojo.vo.WeeklyVO;
 import com.qf.service.StudentService;
 import com.qf.utils.MD5Utils;
+import org.activiti.engine.RepositoryService;
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.TaskService;
+import org.activiti.engine.runtime.ProcessInstance;
+import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-
-
+import java.util.Map;
 
 
 @Service
@@ -25,6 +32,12 @@ public class StudentServiceImpl implements StudentService {
     private StudentMapper studentMapper;
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private RepositoryService repositoryService;
+    @Autowired
+    private RuntimeService runtimeService;
+    @Autowired
+    private TaskService taskService;
 
     //修改学生信息(除密码，姓名)
     public int updateStudent(Student student) {
@@ -36,10 +49,11 @@ public class StudentServiceImpl implements StudentService {
         return studentMapper.updateStudent(userVO);
     }
 
-    //学生请假
+    @Override
     public void studentLeave(int sid) {
 
     }
+
 
     //新增周报
     public int addWeekly(Weekly weekly,int uid) {
@@ -104,5 +118,32 @@ public class StudentServiceImpl implements StudentService {
         student.setAge(userVO.getAge());
         student.setSex(userVO.getSex());
         return student;
+    }
+
+    @Override
+    public int addStudentLeave(Leave leave) {
+        int i = studentMapper.addLeave(leave);
+        long starttime = leave.getStartdate().getTime();
+        long endtime = leave.getEnddate().getTime();
+
+        long l = starttime - endtime;
+
+        Date day = new Date(l);
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("role", "student");
+        map.put("student", leave.getUser().getUsername());
+        map.put("teacher", studentMapper.queryTeacher(studentMapper.queryClass(leave.getUser().getId())));
+        map.put("leader", studentMapper.queryLeader(studentMapper.queryClass(leave.getUser().getId())));
+        map.put("boss", studentMapper.queryBoss());
+        map.put("day", day);
+
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave", leave.getLid() + "", map);
+
+        Task task = taskService.createTaskQuery().taskAssignee(leave.getUser().getUsername()).singleResult();
+
+        taskService.complete(task.getId());
+
+        return i;
     }
 }
