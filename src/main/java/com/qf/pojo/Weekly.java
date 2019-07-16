@@ -9,24 +9,25 @@ package com.qf.pojo;
 
 public class Weekly {
 
-
     private int wid;//周报ID
     private String uname;//作者姓名
     private String wtitle;//周报标题
     private String wtime;//周报发布时间
     private String wcontent;//周报内容
     private Integer wscore;//周报分数
+    private String stageName;
 
     public Weekly() {
     }
 
-    public Weekly(int wid, String uname, String wtitle, String wtime, String wcontent, int wscore) {
+    public Weekly(int wid, String uname, String wtitle, String wtime, String wcontent, Integer wscore, String stageName) {
         this.wid = wid;
         this.uname = uname;
         this.wtitle = wtitle;
         this.wtime = wtime;
         this.wcontent = wcontent;
         this.wscore = wscore;
+        this.stageName = stageName;
     }
 
     public int getWid() {
@@ -77,6 +78,14 @@ public class Weekly {
         this.wscore = wscore;
     }
 
+    public String getStageName() {
+        return stageName;
+    }
+
+    public void setStageName(String stageName) {
+        this.stageName = stageName;
+    }
+
     @Override
     public String toString() {
         return "Weekly{" +
@@ -86,6 +95,7 @@ public class Weekly {
                 ", wtime='" + wtime + '\'' +
                 ", wcontent='" + wcontent + '\'' +
                 ", wscore=" + wscore +
+                ", stageName='" + stageName + '\'' +
                 '}';
     }
 }

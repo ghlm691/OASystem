@@ -43,6 +43,4 @@ public interface AdminMapper {
     int delWeekly(int uid);
 
 
-
-
 }

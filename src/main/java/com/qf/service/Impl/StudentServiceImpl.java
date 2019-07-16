@@ -56,13 +56,7 @@ public class StudentServiceImpl implements StudentService {
 
 
     //新增周报
-    public int addWeekly(Weekly weekly,int uid) {
-        WeeklyVO weeklyVO = new WeeklyVO();
-        weeklyVO.setWid(weekly.getWid());
-        weeklyVO.setUid(uid);
-        weeklyVO.setWtitle(weekly.getWtitle());
-        weeklyVO.setWtime(weekly.getWtime());
-        weeklyVO.setWcontent(weekly.getWcontent());
+    public int addWeekly(WeeklyVO weeklyVO) {
         return studentMapper.addWeekly(weeklyVO);
     }
 
@@ -83,6 +77,7 @@ public class StudentServiceImpl implements StudentService {
             weekly.setWtime(w.getWtime());
             weekly.setWcontent(w.getWcontent());
             weekly.setWscore(w.getWscore());
+            weekly.setStageName(studentMapper.getStage(w.getStage()));
             weeklyList.add(weekly);
         }
         return weeklyList;
@@ -90,6 +85,7 @@ public class StudentServiceImpl implements StudentService {
 
     //学生登录后获取资料
     public Student getStudentByUnamePwd(String username, String password) {
+        System.out.println(username);
         Student student = new Student();
         try {
             UserVO userVO = studentMapper.getStudentByUnamePwd(username, MD5Utils.getMD5Str(password));

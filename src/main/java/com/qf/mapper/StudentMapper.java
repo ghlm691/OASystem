@@ -25,7 +25,10 @@ public interface StudentMapper {
     //展示周报
     List<WeeklyVO> queryWeeklyForStudent(int sid);
 
-    UserVO getStudentByUnamePwd(@Param(value = "uname") String uname,@Param(value = "password") String password);
+    UserVO getStudentByUnamePwd(@Param(value = "uname") String username,@Param(value = "password") String password);
+
+    //查询阶段
+    String getStage(int stage);
 
     /*请假相关*/
     //添加请假信息
