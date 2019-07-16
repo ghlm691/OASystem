@@ -9,6 +9,7 @@ package com.qf.pojo;
 
 public class Weekly {
 
+
     private int wid;//周报ID
     private String uname;//作者姓名
     private String wtitle;//周报标题
