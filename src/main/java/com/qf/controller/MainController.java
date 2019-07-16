@@ -25,7 +25,6 @@ public class MainController {
         return "login";
     }
 
-
     /**
      * 登录
      */
