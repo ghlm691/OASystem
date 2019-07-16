@@ -24,4 +24,17 @@ public class StaffServiceImpl implements StaffService {
         return staffMapper.queryAll();
     }
 
+    public List<Weekly> queryAlreadyMark() {
+        return
+                staffMapper.queryAlreadyMark();
+    }
+
+    public Weekly queryDetail(Integer wid) {
+        return staffMapper.queryDetail(wid);
+    }
+
+    public int updateWscore(Integer wid,Integer wscore) {
+        return staffMapper.updateWscore(wid,wscore);
+    }
+
 }

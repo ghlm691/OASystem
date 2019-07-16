@@ -17,6 +17,7 @@
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="btn btn-primary" >周报查看</a>|
+        <a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&method=mark">查看已打分周报</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/Staff">返回</a>
@@ -28,24 +29,23 @@
         <tr>
             <th>序号</th>
             <th>周报题目</th>
-            <th>发布时间</th>
             <th>周报内容</th>
             <th>周报分数</th>
             <th>发布人</th>
+            <th>发布时间</th>
             <th>操作</th>
         </tr>
         <c:forEach items="${pageInfo.list}" var="list" varStatus="i">
             <tr id="tr${list.wid}">
                 <th>${i.count}</th>
                 <td>${list.wtitle}</td>
-                <td>${list.wtime}</td>
                 <td>${list.wcontent}</td>
                 <td>${list.wscore}</td>
                 <td>${list.uname}</td>
+                <td>${list.wtime}</td>
                 <td>
-                    <a href="/detail?qid=${list.wid}&pageNum=${pageInfo.pageNum}&method=detail">明细</a>|
-                    <a href="/detail?qid=${list.wid}&method=update">修改</a>|
-                    <a href="javascript:void(0)" class="delete" id="${list.wid}">删除</a>
+                    <a href="/detail?wid=${list.wid}&pageNum=${pageInfo.pageNum}" class="btn btn-primary">明细</a>
+                    <a href="javascript:void(0)" class="delete btn btn-primary" wid="${list.wid}">删除</a>
                 </td>
             </tr>
         </c:forEach>
@@ -57,7 +57,7 @@
             首页|上一页
         </c:if>
         <c:if test="${pageInfo.hasPreviousPage eq true}">
-            <a href="/AllWeekly">首页</a>|<a href="/AllWeekly=${pageInfo.prePage}">上一页</a>|
+            <a href="/AllWeekly">首页</a>|<a href="/AllWeekly?pageNum=${pageInfo.prePage}">上一页</a>|
         </c:if>
         <c:forEach begin="1" end="${pageInfo.pages}" var="i">
             <c:if test="${i == pageInfo.pageNum }">
