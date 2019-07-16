@@ -28,4 +28,7 @@ public interface StudentMapper {
     //查询阶段
     String getStage(int stage);
 
+    //修改密码
+    int updatePassword(@Param(value = "uid") int uid,@Param(value = "password") String password);
+
 }

@@ -37,5 +37,6 @@
             </tr>
         </c:forEach>
     </table>
+    <a href="/student?sid=${sid}">点此返回</a>
 </body>
 </html>

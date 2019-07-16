@@ -20,7 +20,14 @@
             <option value="0">女</option>
             <option value="1">男</option>
         </select>
-        <input type="submit" value="提交">
+        <input type="submit" value="修改">
     </form>
+    ------------------------------------------------------
+    <form action="/stu_password" method="post">
+        <input type="hidden" name="sid" value="${student.sid}">
+        修改密码:<input type="text" name="password">
+        <input type="submit" value="修改">
+    </form>
+    <a href="/student?sid=${student.sid}">点此返回</a>
 </body>
 </html>

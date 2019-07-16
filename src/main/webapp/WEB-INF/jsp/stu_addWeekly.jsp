@@ -25,5 +25,6 @@
         </select>
         <input type="submit" value="提交">
     </form>
+    <a href="/student?sid=${sid}">点此返回</a>
 </body>
 </html>
