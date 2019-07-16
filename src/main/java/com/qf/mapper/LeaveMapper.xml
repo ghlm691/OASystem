@@ -28,4 +28,12 @@
     <select id="getPasswordByUname" parameterType="string" resultType="string">
         select password from users where uname=#{uname}
     </select>
+
+    <select id="getRoleList" parameterType="string" resultType="string">
+        select rname from role r,users u,user_role ur where u.uid=ur.uid and r.rid=ur.rid and u.uname=#{uname}
+    </select>
+
+    <select id="getPermissionList" parameterType="string" resultType="string">
+        select pname from role r,role_permission rp,permission p where r.rid=rp.rid and p.pid=rp.pid and r.rname=#{rname}
+    </select>
 </mapper>

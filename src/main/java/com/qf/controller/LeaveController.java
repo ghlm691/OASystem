@@ -2,6 +2,7 @@ package com.qf.controller;
 
 import com.qf.pojo.Leave;
 import com.qf.pojo.Student;
+import com.qf.service.LeaveService;
 import com.qf.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ public class LeaveController {
 
     @Autowired
     private StudentService studentService;
+    @Autowired
+    private LeaveService leaveService;
 
     @RequestMapping("goAdd")
     public String goAdd(){
@@ -39,6 +42,34 @@ public class LeaveController {
         return "stu_index";
 
     }
+
+    /**
+     * 查看待办假条
+     */
+    @RequestMapping("getLeaves")
+    public String getLeaves(HttpSession session){
+
+        Object user = session.getAttribute("user");
+
+        //leaveService.queryLeaveList()
+
+        return null;
+
+    }
+
+
+    /**
+     * 审批假条
+     * @return
+     */
+    @RequestMapping("updateLeave")
+    public String update(){
+
+        return null;
+
+    }
+
+
 
 
 

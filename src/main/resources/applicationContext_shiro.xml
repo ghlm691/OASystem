@@ -6,9 +6,9 @@
 
 
     <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
-        <property name="loginUrl" value="/loginPage"></property>
-        <property name="successUrl" value="/index"></property>
-        <property name="unauthorizedUrl" value="/unauthorize"></property>
+        <property name="loginUrl" value="/login/login"></property>
+        <!--<property name="successUrl" value="/index"></property>-->
+        <property name="unauthorizedUrl" value="/login/login"></property>
         <property name="securityManager" ref="securityManager"></property>
         <!--配置过滤器链，不同的验证使用不同的过滤器，由工厂bean创建 -->
         <property name="filterChainDefinitions">
@@ -16,7 +16,7 @@
             <!-- authc过滤器表示访问时需进行登录验证的过滤 -->
             <!--perms过滤器表示访问时需要权限验证的过滤 -->
             <value>
-                /loginPage=anon
+                /login/login=anon
                 /login=anon
                 /leave=perms[user:add]
                 /**=authc

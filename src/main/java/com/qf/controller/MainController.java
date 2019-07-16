@@ -30,8 +30,12 @@ public class MainController {
      */
     @RequestMapping("login")
     public ModelAndView student(String username,String password){
+
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
+
+
         //认证身份
         //1.超级管理员
         //2.学生

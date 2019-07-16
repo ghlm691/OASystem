@@ -98,4 +98,14 @@ public class LeaveServiceImpl implements LeaveService {
 
         return password;
     }
+
+    @Override
+    public List<String> getRoleList(String uname) {
+        return leaveMapper.getRoleList(uname);
+    }
+
+    @Override
+    public List<String> getPermissionList(String rname) {
+        return leaveMapper.getPermissionList(rname);
+    }
 }

@@ -1,5 +1,6 @@
 package com.qf.mapper;
 
+import com.qf.pojo.Leave;
 import com.qf.pojo.vo.UserVO;
 import com.qf.pojo.vo.WeeklyVO;
 import org.apache.ibatis.annotations.Param;
