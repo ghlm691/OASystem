@@ -1,5 +1,6 @@
 package com.qf.mapper;
 
+import com.qf.pojo.Leave;
 import com.qf.pojo.Student;
 import com.qf.pojo.vo.UserVO;
 import com.qf.pojo.vo.WeeklyVO;
@@ -25,5 +26,21 @@ public interface StudentMapper {
     List<WeeklyVO> queryWeeklyForStudent(int sid);
 
     UserVO getStudentByUnamePwd(@Param(value = "uname") String uname,@Param(value = "password") String password);
+
+    /*请假相关*/
+    //添加请假信息
+    int addLeave(Leave leave);
+
+    //查询学生所在的班级
+    Integer queryClass(Integer uid);
+
+    //查询对应班级的教师
+    String queryTeacher(Integer cid);
+
+    //查询对应班级的班主任
+    String queryLeader(Integer cid);
+
+    //就一个校长
+    String queryBoss();
 
 }
