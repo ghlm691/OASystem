@@ -15,17 +15,19 @@ public class WeeklyVO {
     private String wtime;//发布时间
     private String wcontent;//内容
     private int wscore;//成绩
+    private int stage;//阶段
 
     public WeeklyVO() {
     }
 
-    public WeeklyVO(int wid, int uid, String wtitle, String wtime, String wcontent, int wscore) {
+    public WeeklyVO(int wid, int uid, String wtitle, String wtime, String wcontent, int wscore, int stage) {
         this.wid = wid;
         this.uid = uid;
         this.wtitle = wtitle;
         this.wtime = wtime;
         this.wcontent = wcontent;
         this.wscore = wscore;
+        this.stage = stage;
     }
 
     public int getWid() {
@@ -76,6 +78,14 @@ public class WeeklyVO {
         this.wscore = wscore;
     }
 
+    public int getStage() {
+        return stage;
+    }
+
+    public void setStage(int stage) {
+        this.stage = stage;
+    }
+
     @Override
     public String toString() {
         return "WeeklyVO{" +
@@ -85,6 +95,7 @@ public class WeeklyVO {
                 ", wtime='" + wtime + '\'' +
                 ", wcontent='" + wcontent + '\'' +
                 ", wscore=" + wscore +
+                ", stage=" + stage +
                 '}';
     }
 }

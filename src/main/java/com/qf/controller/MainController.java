@@ -36,6 +36,7 @@ public class MainController {
         //1.超级管理员
         //2.学生
         //set值
+        System.out.println(username);
         Student student = studentService.getStudentByUnamePwd(username, password);
         modelAndView.addObject("student",student);
         modelAndView.setViewName("student");

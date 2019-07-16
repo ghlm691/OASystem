@@ -18,7 +18,7 @@
 
     <insert id="addWeekly" parameterType="weeklyVO">
 
-        insert into weekly (wid,uid,wtitle,wtime,wcontent) values (#{wid},#{uid},#{wtitle},#{wtime},#{wcontent})
+        insert into weekly (uid,wtitle,wtime,wcontent,stage) values (#{uid},#{wtitle},#{wtime},#{wcontent},#{stage})
 
     </insert>
 
@@ -37,6 +37,12 @@
     <select id="getStudentByUnamePwd" resultType="userVO">
 
         select * from users where uname = #{uname} and password = #{password}
+
+    </select>
+
+    <select id="getStage" parameterType="int" resultType="string">
+
+        select stagename from stage where id = #{stage}
 
     </select>
 

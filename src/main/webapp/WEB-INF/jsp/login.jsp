@@ -19,8 +19,8 @@
     <h1 class="h3 mb-3 font-weight-normal">滴答教学OA办公平台</h1>
     <table cellpadding="10" align="center">
         <tr>
-            <td algin="right">用户id：</td>
-            <td><input type="text" name="id" id="id" class="form-control" placeholder="Userid" required autofocus></td>
+            <td algin="right">用户名：</td>
+            <td><input type="text" name="username" id="id" class="form-control" placeholder="Userid" required autofocus></td>
         </tr>
         <tr><td algin="right">密码：</td>
             <td><input type="password" name="password" id="password" class="form-control" placeholder="Password" required></td>
