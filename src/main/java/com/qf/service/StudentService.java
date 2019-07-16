@@ -22,4 +22,10 @@ public interface StudentService {
     //展示周报
     List<Weekly> queryWeeklyForStudent(int sid);
 
+    //学生登录
+    Student getStudentByUnamePwd(String username,String password);
+
+    //查询学生
+    Student getStudentBySid(int sid);
+
 }

@@ -1,5 +1,6 @@
 package com.qf.service.Impl;
 
+import com.qf.mapper.AdminMapper;
 import com.qf.mapper.StudentMapper;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
@@ -21,18 +22,14 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private StudentMapper studentMapper;
+    @Autowired
+    private AdminMapper adminMapper;
 
-    //修改学生信息
+    //修改学生信息(除密码，姓名)
     public int updateStudent(Student student) {
         UserVO userVO = new UserVO();
         userVO.setUid(student.getSid());
         userVO.setUname(student.getUsername());
-        try {
-            userVO.setPassword(MD5Utils.getMD5Str(student.getPassword()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        userVO.setName(student.getSname());
         userVO.setAge(student.getAge());
         userVO.setSex(student.getSex());
         return studentMapper.updateStudent(userVO);
@@ -74,5 +71,37 @@ public class StudentServiceImpl implements StudentService {
             weeklyList.add(weekly);
         }
         return weeklyList;
+    }
+
+    //学生登录后获取资料
+    public Student getStudentByUnamePwd(String username, String password) {
+        Student student = new Student();
+        try {
+            UserVO userVO = studentMapper.getStudentByUnamePwd(username, MD5Utils.getMD5Str(password));
+            String cname = adminMapper.getCname(userVO.getUid());
+            student.setSid(userVO.getUid());
+            student.setUsername(userVO.getUname());
+            student.setPassword(userVO.getPassword());
+            student.setSname(userVO.getName());
+            student.setAge(userVO.getAge());
+            student.setSex(userVO.getSex());
+            student.setCname(cname);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return student;
+    }
+
+    public Student getStudentBySid(int sid) {
+        Student student = new Student();
+        UserVO userVO = studentMapper.getStudent(sid);
+        String cname = adminMapper.getCname(sid);
+        student.setCname(cname);
+        student.setSid(userVO.getUid());
+        student.setUsername(userVO.getUname());
+        student.setSname(userVO.getName());
+        student.setAge(userVO.getAge());
+        student.setSex(userVO.getSex());
+        return student;
     }
 }

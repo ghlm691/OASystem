@@ -6,7 +6,7 @@
 
     <update id="updateStudent" parameterType="userVO">
 
-        update users set uname = #{uname},password = #{password},age = #{age},sex = #{sex} where uid = #{uid}
+        update users set uname = #{uname},age = #{age},sex = #{sex} where uid = #{uid}
 
     </update>
 
@@ -31,6 +31,12 @@
     <select id="queryWeeklyForStudent" parameterType="int" resultType="weeklyVO">
 
         select * from weekly where uid = #{uid}
+
+    </select>
+
+    <select id="getStudentByUnamePwd" resultType="userVO">
+
+        select * from users where uname = #{uname} and password = #{password}
 
     </select>
 
