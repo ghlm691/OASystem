@@ -66,9 +66,9 @@ public class StudentServiceImpl implements StudentService {
         WeeklyVO weeklyVO = new WeeklyVO();
         weeklyVO.setWid(weekly.getWid());
         weeklyVO.setUid(uid);
-        weeklyVO.setWtitle(weekly.getTitle());
-        weeklyVO.setWtime(weekly.getTime());
-        weeklyVO.setWcontent(weekly.getContent());
+        weeklyVO.setWtitle(weekly.getWtitle());
+        weeklyVO.setWtime(weekly.getWtime());
+        weeklyVO.setWcontent(weekly.getWcontent());
         return weeklyMapper.addWeekly(weeklyVO);
     }
 
@@ -84,11 +84,11 @@ public class StudentServiceImpl implements StudentService {
         for (WeeklyVO w : weeklyVOList){
             Weekly weekly = new Weekly();
             weekly.setWid(w.getWid());
-            weekly.setUname(studentMapper.getStudent(w.getUid()).getUsername());
-            weekly.setTitle(w.getWtitle());
-            weekly.setTime(w.getWtime());
-            weekly.setContent(w.getWcontent());
-            weekly.setScore(w.getWscore());
+            weekly.setUname(studentMapper.getStudent(w.getUid()).getUname());
+            weekly.setWtitle(w.getWtitle());
+            weekly.setWtime(w.getWtime());
+            weekly.setWcontent(w.getWcontent());
+            weekly.setWscore(w.getWscore());
             weeklyList.add(weekly);
         }
         return weeklyList;
@@ -108,7 +108,7 @@ public class StudentServiceImpl implements StudentService {
         Map<String, Object> map = new HashMap<>();
         map.put("role", "student");
         map.put("student", leave.getUser().getUsername());
-        map.put("teacher", studentMapper.queryTeacher(leave.getUser().getId()));
+        map.put("teacher", studentMapper.queryTeacher(studentMapper.queryClass(leave.getUser().getId())));
         map.put("leader", studentMapper.queryLeader(studentMapper.queryClass(leave.getUser().getId())));
         map.put("boss", studentMapper.queryBoss());
         map.put("day", day);
