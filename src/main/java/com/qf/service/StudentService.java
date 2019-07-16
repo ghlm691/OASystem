@@ -29,4 +29,7 @@ public interface StudentService {
     //查询学生
     Student getStudentBySid(int sid);
 
+    //修改密码
+    int updatePassword(int sid,String password);
+
 }

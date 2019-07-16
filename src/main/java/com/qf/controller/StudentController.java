@@ -51,6 +51,17 @@ public class StudentController {
         return modelAndView;
     }
 
+    //修改密码
+    @RequestMapping("stu_password")
+    public ModelAndView updatePassword(Student student){
+        ModelAndView modelAndView = new ModelAndView();
+        studentService.updatePassword(student.getSid(),student.getPassword());
+        modelAndView.setViewName("stu_success");
+        modelAndView.addObject("student",student);
+        modelAndView.addObject("message","个人信息修改成功");
+        return modelAndView;
+    }
+
     //修改并跳转成功页面
     @RequestMapping("stu_update")
     public ModelAndView updateStudent(Student student){
@@ -68,6 +79,7 @@ public class StudentController {
     public ModelAndView addWeekly(int sid){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("stu_addWeekly");
+        System.out.println(sid);
         modelAndView.addObject("sid",sid);
         return modelAndView;
     }
