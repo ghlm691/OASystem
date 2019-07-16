@@ -20,7 +20,7 @@
         <a class="btn btn-primary" href="">请假审批</a>|
         <a class="btn btn-primary" href="">学生成绩管理</a>|
         <a class="btn btn-primary" href="">学生信息查看</a>|
-        <a class="btn btn-primary" href="">个人请假</a>|
+        <a class="btn btn-primary" href="/LeaveRequest">个人请假</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/index">退出</a>

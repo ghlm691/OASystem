@@ -18,7 +18,7 @@
         <a class="btn btn-primary">请假申请</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="btn btn-primary" href="/index">退出</a>
+                <a class="btn btn-primary" href="/Staff">返回</a>
             </div>
         </div>
     </nav>
