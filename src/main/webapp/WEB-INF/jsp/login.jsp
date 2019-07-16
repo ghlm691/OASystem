@@ -14,13 +14,13 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
 </head>
 <body class="text-center">
-<form action="/login" method="post" class="form-signin">
+<form action="/login/login" method="post" class="form-signin">
 
     <h1 class="h3 mb-3 font-weight-normal">滴答教学OA办公平台</h1>
     <table cellpadding="10" align="center">
         <tr>
             <td algin="right">用户名：</td>
-            <td><input type="text" name="username" id="id" class="form-control" placeholder="Userid" required autofocus></td>
+            <td><input type="text" name="uname" id="id" class="form-control" placeholder="Userid" required autofocus></td>
         </tr>
         <tr><td algin="right">密码：</td>
             <td><input type="password" name="password" id="password" class="form-control" placeholder="Password" required></td>
