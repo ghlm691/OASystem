@@ -1,7 +1,5 @@
 package com.qf.mapper;
 
-import com.qf.pojo.Leave;
-import com.qf.pojo.Student;
 import com.qf.pojo.vo.UserVO;
 import com.qf.pojo.vo.WeeklyVO;
 import org.apache.ibatis.annotations.Param;
@@ -45,5 +43,8 @@ public interface StudentMapper {
 
     //就一个校长
     String queryBoss();
+
+    //修改密码
+    int updatePassword(@Param(value = "uid") int uid,@Param(value = "password") String password);
 
 }

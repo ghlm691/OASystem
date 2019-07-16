@@ -33,6 +33,21 @@ public class StaffController {
         return "update_password";
     }
 
+    @RequestMapping("WscoreManager")
+    public String wscoreManager(){
+        return "wscore_manager";
+    }
+
+    @RequestMapping("LeaveRequest")
+    public String leaveRequest(){
+        return "leave_request";
+    }
+
+    @RequestMapping("Error")
+    public String goError() {
+        return "error";
+    }
+
     @RequestMapping("AllWeekly")
     public ModelAndView getAll(@RequestParam(value = "pageNum",defaultValue = "1")int pageNum,String method){
         ModelAndView modelAndView = new ModelAndView();

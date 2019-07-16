@@ -142,4 +142,14 @@ public class StudentServiceImpl implements StudentService {
 
         return i;
     }
+
+    public int updatePassword(int sid, String password) {
+        int i = 0;
+        try {
+            i = studentMapper.updatePassword(sid, MD5Utils.getMD5Str(password));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
+    }
 }

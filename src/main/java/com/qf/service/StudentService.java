@@ -34,4 +34,7 @@ public interface StudentService {
     //添加请假信息
     int addStudentLeave(Leave leave);
 
+    //修改密码
+    int updatePassword(int sid,String password);
+
 }
