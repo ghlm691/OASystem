@@ -36,6 +36,11 @@ public interface AdminMapper {
     //查询班级名
     String getCname(int uid);
 
+    //删除账号
+    int delUser(String name);
+
+    //删除账号相关周报
+    int delWeekly(int uid);
 
 
 }

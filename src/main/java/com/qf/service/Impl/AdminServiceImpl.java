@@ -7,6 +7,7 @@ import com.qf.pojo.User;
 import com.qf.pojo.vo.CourseVO;
 import com.qf.pojo.vo.UserVO;
 import com.qf.service.AdminService;
+import com.qf.utils.HanyuPinyinHelp;
 import com.qf.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,7 +60,7 @@ public class AdminServiceImpl implements AdminService {
             //存在同名
             return false;
         }
-        //userVO.setUname(HanyuPinyinHelp.getPinyinString(name));
+        userVO.setUname(HanyuPinyinHelp.getPinyinString(name));
         try {
             userVO.setPassword(MD5Utils.getMD5Str("123456"));
         } catch (Exception e) {
@@ -71,19 +72,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     public User getUserByName(String name) {
-        return null;
-    }
-
-    public Student getStudentByName(String name) {
-        return null;
-    }
-
-    public User getUser(String name) {
         User user = adminMapper.getUserByName(name);
         return user;
     }
 
-    public Student getStudent(String name) {
+    public Student getStudentByName(String name) {
         Student student = adminMapper.getStudentByName(name);
         String cname = adminMapper.getCname(student.getSid());
         student.setCname(cname);

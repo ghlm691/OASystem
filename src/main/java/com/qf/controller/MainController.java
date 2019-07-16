@@ -1,6 +1,8 @@
 package com.qf.controller;
 
 import com.qf.pojo.Student;
+import com.qf.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,11 +17,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MainController {
 
+    @Autowired
+    private StudentService studentService;
+
     @RequestMapping("index")
     public String goIndex() {
         return "login";
     }
-
 
     /**
      * 登录
@@ -31,8 +35,9 @@ public class MainController {
         //认证身份
         //1.超级管理员
         //2.学生
-        Student student = new Student();
         //set值
+        System.out.println(username);
+        Student student = studentService.getStudentByUnamePwd(username, password);
         modelAndView.addObject("student",student);
         modelAndView.setViewName("student");
         //3.讲师
