@@ -21,9 +21,9 @@
 --%>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary" href="/student_change?sid=${student.sid}">个人资料管理</a>|
-        <a class="btn btn-primary" href="/student_weekly?sid=${student.sid}">查看周报</a>|
-        <a class="btn btn-primary" href="/student_leave?sid=${student.sid}">请假详情</a>|
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/student_change?sid=${student.sid}">个人资料管理</a>|
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/student_weekly?sid=${student.sid}">查看周报</a>|
+        <a class="btn btn-primary" href="${pageContext.request.contextPath}/student_leave?sid=${student.sid}">请假详情</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary">欢迎你！${student.cname}的${student.sname}！</a>

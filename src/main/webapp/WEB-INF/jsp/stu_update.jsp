@@ -18,7 +18,7 @@
         <a class="navbar-brand">学生个人信息管理</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="btn btn-primary" href="">返回</a>
+                <a class="btn btn-primary" href="/student?sid=${student.sid}">返回</a>
             </div>
         </div>
     </nav>
@@ -39,6 +39,5 @@
         修改密码:<input type="text" name="password">
         <input type="submit" value="修改">
     </form>
-    <a href="/student?sid=${student.sid}">点此返回</a>
 </body>
 </html>
