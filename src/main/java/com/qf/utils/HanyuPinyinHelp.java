@@ -17,6 +17,7 @@ public class HanyuPinyinHelp {
      * @param ChineseLanguage 要转成拼音的中文
      */
     public static String toHanyuPinyin(String ChineseLanguage) {
+
         char[] cl_chars = ChineseLanguage.trim().toCharArray();
         String hanyupinyin = "";
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();

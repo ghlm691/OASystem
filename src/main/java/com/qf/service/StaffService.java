@@ -1,5 +1,6 @@
 package com.qf.service;
 
+import com.qf.pojo.Leave;
 import com.qf.pojo.Weekly;
 
 import java.util.List;
@@ -17,5 +18,9 @@ public interface StaffService {
 
     //打分
     int updateWscore(Integer wid,Integer wscore);
+
+    //获取需要审批的假条
+    List<Leave> queryLeaveList(String name);
+
 
 }

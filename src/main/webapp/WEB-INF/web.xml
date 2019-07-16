@@ -11,7 +11,7 @@
     <!--spring ioc root容器-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext_service.xml,classpath:applicationContext_dao.xml</param-value>
+        <param-value>classpath:applicationContext_service.xml,classpath:applicationContext_dao.xml,classpath:applicationContext_shiro.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
@@ -49,6 +49,25 @@
         <servlet-name>ds</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
+    <!--配置过滤器代理对象，通过配置其属性，由spring容器产生shiro或其他过滤器对象-->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <!--设置目标过滤器的生命周期交给spring容器维护 -->
+        <init-param>
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <!--<init-param>
+          <param-name>targetBeanName</param-name>
+          <param-value>shiroFilter</param-value>
+        </init-param>-->
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 
 </web-app>

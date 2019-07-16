@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.LeaveMapper">
+
+    <select id="queryLeaveList" parameterType="string" resultType="leave">
+        select * from uleave where lid in
+        <foreach collection="list" item="value" open="(" separator="," close=")">
+            #{value}
+        </foreach>
+    </select>
+
+    <update id="updateLeave" parameterType="int">
+        update uleave set state=1 where lid=#{lid}
+    </update>
+
+    <insert id="addLeave" parameterType="leave">
+        insert into uleave (uid,startdate,enddate,reason,state) values (#{user.uid},#{startdate},#{enddate},#{reason},#{reason},0);
+    </insert>
+
+    <select id="queryBoss" resultType="string">
+        select u.name from users u,role r,user_role ur where rname='校长' and r.rid=ur.rid and ur.uid=u.uid
+    </select>
+
+
+    <!--realm相关-->
+    <select id="getPasswordByUname" parameterType="string" resultType="string">
+        select password from users where uname=#{uname}
+    </select>
+</mapper>

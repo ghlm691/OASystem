@@ -1,6 +1,7 @@
 package com.qf.service.Impl;
 
 import com.qf.mapper.StaffMapper;
+import com.qf.pojo.Leave;
 import com.qf.pojo.Weekly;
 import com.qf.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,7 @@ public class StaffServiceImpl implements StaffService {
     }
 
     public List<Weekly> queryAlreadyMark() {
-        return
-                staffMapper.queryAlreadyMark();
+        return staffMapper.queryAlreadyMark();
     }
 
     public Weekly queryDetail(Integer wid) {
@@ -35,6 +35,14 @@ public class StaffServiceImpl implements StaffService {
 
     public int updateWscore(Integer wid,Integer wscore) {
         return staffMapper.updateWscore(wid,wscore);
+    }
+
+    @Override
+    public List<Leave> queryLeaveList(String name) {
+
+
+
+        return null;
     }
 
 }
