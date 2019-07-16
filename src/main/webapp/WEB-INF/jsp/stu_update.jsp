@@ -22,7 +22,6 @@
             </div>
         </div>
     </nav>
-
     <form action="/stu_update" method="post">
         <input type="hidden" name="sid" value="${student.sid}">
         账号：<input type="text" name="username">

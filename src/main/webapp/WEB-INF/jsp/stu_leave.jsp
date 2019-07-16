@@ -16,7 +16,6 @@
     <title>学生请假页面</title>
 </head>
 <body class="text-center">
-
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="btn btn-primary">请假申请</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

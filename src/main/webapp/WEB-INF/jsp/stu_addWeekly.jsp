@@ -25,7 +25,6 @@
         </div>
     </nav>
 
-
     <form action="/addWeekly" method="post">
         <table class="table table-hover">
             <tr><td> <input type="hidden" name="uid" value="${sid}"></td></tr>

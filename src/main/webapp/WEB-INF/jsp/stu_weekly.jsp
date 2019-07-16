@@ -24,7 +24,6 @@
             </div>
         </div>
     </nav>
-
     <table class="table table-hover">
         <tr>
             <td>标题</td>
