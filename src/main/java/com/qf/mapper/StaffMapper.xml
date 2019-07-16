@@ -6,7 +6,18 @@
 <mapper namespace="com.qf.mapper.StaffMapper">
 
     <select id="queryAll" resultType="Weekly">
-        select w.wtitle,w.wtime,w.wcontent,w.wscore,u.uname from weekly w,users u where w.uid = u.uid
+        select w.*,u.uname from weekly w,users u where w.uid = u.uid
     </select>
 
+    <select id="queryAlreadyMark" resultType="weekly">
+        select w.*,u.uname from weekly w,users u where w.uid = u.uid and w.wscore is not null
+    </select>
+
+    <select id="queryDetail" parameterType="int" resultType="weekly">
+        select w.*,u.uname from weekly w,users u where w.uid = u.uid and wid=#{wid}
+    </select>
+
+    <update id="updateWscore">
+        update weekly set wscore=#{wscore} where wid=#{wid}
+    </update>
 </mapper>

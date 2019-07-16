@@ -34,14 +34,43 @@ public class StaffController {
     }
 
     @RequestMapping("AllWeekly")
-    public ModelAndView getAll(@RequestParam(value = "pageNum",defaultValue = "1")int pageNum){
+    public ModelAndView getAll(@RequestParam(value = "pageNum",defaultValue = "1")int pageNum,String method){
         ModelAndView modelAndView = new ModelAndView();
         PageHelper.startPage(pageNum,5);
-        List<Weekly> weeklyList = staffService.queryAll();
-        System.out.println(weeklyList.get(1));
-        PageInfo pageInfo = new PageInfo(weeklyList);
-        modelAndView.setViewName("all_weekly");
-        modelAndView.addObject("pageInfo",pageInfo);
+        if(method.equals("All")){
+            List<Weekly> weeklyList = staffService.queryAll();
+            PageInfo pageInfo = new PageInfo(weeklyList);
+            modelAndView.setViewName("all_weekly");
+            modelAndView.addObject("pageInfo",pageInfo);
+            return modelAndView;
+        }else{
+            List<Weekly> weeklyList = staffService.queryAlreadyMark();
+            PageInfo pageInfo = new PageInfo(weeklyList);
+            modelAndView.setViewName("mark_weekly");
+            modelAndView.addObject("pageInfo",pageInfo);
+            return modelAndView;
+        }
+    }
+
+
+    @RequestMapping("detail")
+    public ModelAndView getDtail(Integer wid) {
+        Weekly weekly = staffService.queryDetail(wid);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("weekly", weekly);
+        modelAndView.setViewName("detail");
         return modelAndView;
+    }
+
+    @RequestMapping("UpdateWscore")
+    public String updateWscore(Integer wid,Integer wscore) {
+        System.out.println(wid);
+        System.out.println(wscore);
+        int i = staffService.updateWscore(wid, wscore);
+        if (i != -1) {
+            return "redirect:/detail";
+        }else{
+            return "redirect:/UpdateWscore";
+        }
     }
 }

@@ -16,7 +16,7 @@
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="btn btn-primary" href="/UpdatePassword">修改密码</a>|
-        <a class="btn btn-primary" href="/AllWeekly">周报查看</a>|
+        <a class="btn btn-primary" href="/AllWeekly?method=All">周报查看</a>|
         <a class="btn btn-primary" href="">请假审批</a>|
         <a class="btn btn-primary" href="">学生成绩管理</a>|
         <a class="btn btn-primary" href="">学生信息查看</a>|
