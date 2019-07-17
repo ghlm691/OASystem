@@ -15,12 +15,12 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary" href="">课程管理</a>|
-        <a class="btn btn-primary" href="">用户管理</a>|
-        <a class="btn btn-primary" href="">角色管理</a>|
-        <a class="btn btn-primary" href="">员工管理</a>|
-        <a class="btn btn-primary" href="">班级管理</a>|
-        <a class="btn btn-primary" href="">权限管理</a>|
+        <a class="btn btn-primary" href="/admin_course">课程管理</a>|
+        <a class="btn btn-primary" href="/admin_user">用户管理</a>|
+        <a class="btn btn-primary" href="/admin_role">角色管理</a>|
+        <a class="btn btn-primary" href="/admin_show">员工管理</a>|
+        <a class="btn btn-primary" href="/admin_class">班级管理</a>|
+        <a class="btn btn-primary" href="/admin_permission">权限管理</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/index">退出</a>

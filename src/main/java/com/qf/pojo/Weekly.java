@@ -15,7 +15,7 @@ public class Weekly {
     private String wtime;//周报发布时间
     private String wcontent;//周报内容
     private Integer wscore;//周报分数
-    private String stageName;
+    private String stageName;//阶段名
 
     public Weekly() {
     }

@@ -12,6 +12,8 @@ public interface AdminMapper {
     //增加课程
     int addCourse(CourseVO courseVO);
 
+    CourseVO isNullCourse(String courseName);
+
     //删除课程
     int delCourse(int cid);
 
@@ -42,5 +44,13 @@ public interface AdminMapper {
     //删除账号相关周报
     int delWeekly(int uid);
 
+    //查询讲师
+    List<UserVO> getTeacher();
+
+    //用户列表
+    List<UserVO> getUser();
+
+    //查询角色
+    String getRoleName(int uid);
 
 }

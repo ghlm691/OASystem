@@ -3,13 +3,19 @@ package com.qf.service;
 import com.qf.pojo.Course;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
+import com.qf.pojo.UserAndRole;
+import com.qf.pojo.vo.CourseVO;
+import com.qf.pojo.vo.UserVO;
 
 import java.util.List;
 
 public interface AdminService {
 
     //增加课程
-    int addCourse(Course course);
+    int addCourse(CourseVO courseVO);
+
+    //查询课程
+    boolean isNullCourse(String courseName);
 
     //删除课程
     int delCourse(int cid);
@@ -26,5 +32,10 @@ public interface AdminService {
     //查询学生
     Student getStudentByName(String name);
 
+    //查询教师
+    List<UserVO> getTeacher();
+
+    //用户列表
+    List<UserAndRole> getUser();
 
 }

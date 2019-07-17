@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -37,7 +35,6 @@ public class ScoreController {
         //展示第一个班级学生成绩
         List<Score> score = scoreService.getScoreByCid(classList.get(0).getCid());
         modelAndView.addObject("score",score);
-        System.out.println(score.toString());
         modelAndView.setViewName("score");
         return modelAndView;
     }
@@ -50,8 +47,6 @@ public class ScoreController {
         //展示所选班级
         List<Score> score = scoreService.getScoreByCid(cid);
         json.element("sList",score);
-        System.out.println(score.toString());
-        System.out.println(json);
         return json.toString();
     }
 

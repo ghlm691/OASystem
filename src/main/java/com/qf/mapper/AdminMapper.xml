@@ -10,6 +10,12 @@
 
     </insert>
 
+    <select id="isNullCourse" parameterType="String" resultType="courseVO">
+
+        select * from course where coursename = #{courseName}
+
+    </select>
+
     <delete id="delCourse" parameterType="int">
 
         delete from course where courseid = #{courseid}
@@ -60,6 +66,23 @@
 
     </select>
 
+    <select id="getTeacher" resultType="userVO">
+
+        select users.* from users,user_role where users.uid = user_role.uid and user_role.rid = 4
+
+    </select>
+
+    <select id="getUser" resultType="userVO">
+
+        select * from users
+
+    </select>
+
+    <select id="getRoleName" parameterType="int" resultType="string">
+
+        select r.rname from users as u , user_role as ur , role as r where u.uid = ur.uid and ur.rid = r.rid and u.uid = #{uid}
+
+    </select>
 
 
 </mapper>

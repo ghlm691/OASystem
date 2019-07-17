@@ -4,6 +4,7 @@ import com.qf.mapper.AdminMapper;
 import com.qf.pojo.Course;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
+import com.qf.pojo.UserAndRole;
 import com.qf.pojo.vo.CourseVO;
 import com.qf.pojo.vo.UserVO;
 import com.qf.service.AdminService;
@@ -28,13 +29,18 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
 
-    public int addCourse(Course course) {
-        CourseVO courseVO = new CourseVO();
-        courseVO.setCourseId(course.getId());
-        courseVO.setCourseName(course.getCourseName());
-        courseVO.setUid(adminMapper.checkUser(course.getTname()).getUid());
-        adminMapper.addCourse(courseVO);
-        return 0;
+    public int addCourse(CourseVO courseVO) {
+        int i = adminMapper.addCourse(courseVO);
+        return i;
+    }
+
+    @Override
+    public boolean isNullCourse(String courseName) {
+        CourseVO courseVO = adminMapper.isNullCourse(courseName);
+        if(courseVO != null){
+            return false;//存在
+        }
+        return true;//不存在
     }
 
     public int delCourse(int cid) {
@@ -83,8 +89,26 @@ public class AdminServiceImpl implements AdminService {
         return student;
     }
 
+    @Override
+    public List<UserVO> getTeacher() {
+        return adminMapper.getTeacher();
+    }
 
-
+    @Override
+    public List<UserAndRole> getUser() {
+        List<UserVO> userVOList = adminMapper.getUser();
+        List<UserAndRole> users = new ArrayList<>();
+        for (UserVO u:userVOList){
+            UserAndRole user = new UserAndRole();
+            user.setId(u.getUid());
+            user.setUsername(u.getUname());
+            user.setPassword(u.getPassword());
+            user.setName(u.getName());
+            user.setRname(adminMapper.getRoleName(u.getUid()));
+            users.add(user);
+        }
+        return users;
+    }
 
 
 }

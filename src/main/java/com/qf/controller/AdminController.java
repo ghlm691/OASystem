@@ -1,0 +1,134 @@
+package com.qf.controller;
+
+import com.qf.pojo.Course;
+import com.qf.pojo.UserAndRole;
+import com.qf.pojo.vo.CourseVO;
+import com.qf.pojo.vo.UserVO;
+import com.qf.service.AdminService;
+import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+
+/**
+ * author:赖文熙
+ * date:2019/7/17 17:39
+ * description:超级管理员
+ */
+
+@Controller
+public class AdminController {
+
+    @Autowired
+    private AdminService adminService;
+
+    //跳转课程管理
+    @RequestMapping("admin_course")
+    public ModelAndView toCourse(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Course> courses = adminService.queryCourse();
+        List<UserVO> teachers = adminService.getTeacher();
+        modelAndView.addObject("teachers",teachers);
+        modelAndView.addObject("courses",courses);
+        modelAndView.setViewName("ad_course");
+        return modelAndView;
+    }
+
+    //跳转用户管理
+    @RequestMapping("admin_user")
+    public ModelAndView toUser(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<UserAndRole> user = adminService.getUser();
+        return modelAndView;
+    }
+
+    //跳转角色管理
+    @RequestMapping("admin_role")
+    public ModelAndView toRole(){
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+    //跳转员工管理
+    @RequestMapping("admin_show")
+    public ModelAndView toShow(){
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+    //跳转班级管理
+    @RequestMapping("admin_Class")
+    public ModelAndView toClass(){
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+    //跳转权限管理
+    @RequestMapping("admin_permission")
+    public ModelAndView toPermission(){
+        ModelAndView modelAndView = new ModelAndView();
+        return modelAndView;
+    }
+
+
+
+
+
+
+    //返回超级管理员页面
+    @RequestMapping("backAdmin")
+    public String goBack(){
+        return "admin";
+    }
+
+
+
+
+
+
+
+    /*-----------------------------以下是Ajax方法-------------------------------*/
+    //添加课程
+    @RequestMapping(value = "addCourse",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String addCourse(int tid,String cname){
+        JSONObject json = new JSONObject();
+        //添加课程
+        if(adminService.isNullCourse(cname)){
+            //不存在
+            CourseVO courseVO = new CourseVO();
+            courseVO.setCourseName(cname);
+            courseVO.setUid(tid);
+            adminService.addCourse(courseVO);
+            json.element("message","添加成功");
+        }else{
+            //已存在
+            json.element("message","添加失败");
+        }
+        //查询课程列表
+        List<Course> cList = adminService.queryCourse();
+        json.element("cList",cList);
+        return json.toString();
+    }
+
+    //添加用户
+    @RequestMapping(value = "addUser",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String addUser(int role,String name){
+        JSONObject json = new JSONObject();
+
+
+
+        return json.toString();
+    }
+
+
+
+
+
+
+}

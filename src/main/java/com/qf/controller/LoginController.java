@@ -56,6 +56,12 @@ public class LoginController {
 
                     return "redirect:../Staff";
                 } else {
+                    if (subject.hasRole("admin")){
+                        User user = userService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
+                        session.setAttribute("user", user);
+                        session.setAttribute("oldPassword",userVO.getPassword());
+                        return "admin";
+                    }
                     Student student = studentService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
                     model.addAttribute("student", student);
                     session.setAttribute("student", student);

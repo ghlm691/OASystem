@@ -15,7 +15,7 @@ public class WeeklyVO {
     private String wtime;//发布时间
     private String wcontent;//内容
     private int wscore;//成绩
-    private int stage;//阶段
+    private int stage;//阶段ID
 
     public WeeklyVO() {
     }
