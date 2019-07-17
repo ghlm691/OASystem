@@ -28,7 +28,10 @@
             <tr><td>周报题目：</td><td>${weekly.wtitle}</td></tr>
             <tr><td>周报内容：</td><td><span>${weekly.wcontent}</span></td></tr>
             <tr><td>周报分数：</td><td>${weekly.wscore}</td></tr>
+            <tr><td>周报阶段：</td><td>${weekly.stageName}</td></tr>
             <tr><td>发布人：${weekly.uname}</td><td>发布时间：${weekly.wtime}</td></tr>
+            <tr><td width="50%"><input type="text" name="wscore" id="wscoure" onblur="checkScoure()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="wscoureError" style="color:red;"></span></td><td></td></tr>
+            <tr><td><input type="button" value="打分" class="btn btn-primary" onclick="subForm()"></td><td></td></tr>
             <shiro:lacksRole name="leader">
                 <tr><td><input type="text" name="wscore" id="wscoure"></td><td><span id="wscoureError"></span></td></tr>
                 <tr><td><input type="submit" value="打分" class="btn btn-primary" onblur="checkScoure()"></td><td></td></tr>

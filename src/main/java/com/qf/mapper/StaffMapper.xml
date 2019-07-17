@@ -5,16 +5,19 @@
 
 <mapper namespace="com.qf.mapper.StaffMapper">
 
-    <select id="queryAll" resultType="Weekly">
-        select w.*,u.uname from weekly w,users u where w.uid = u.uid
+    <select id="queryAll" resultType="Weekly" parameterType="int">
+         select w.*,u.uname,s.stagename from weekly w,users u,user_class uc,classes c,stage s
+         where w.uid=u.uid and u.uid=uc.uid and c.cid=uc.cid and w.stage=s.id and c.cid=#{cid}
     </select>
 
-    <select id="queryAlreadyMark" resultType="weekly">
-        select w.*,u.uname from weekly w,users u where w.uid = u.uid and w.wscore is not null
+    <select id="queryAlreadyMark" resultType="weekly" parameterType="int">
+        select w.*,u.uname,s.stagename from weekly w,users u,user_class uc,classes c,stage s
+         where w.uid=u.uid and u.uid=uc.uid and c.cid=uc.cid and w.stage=s.id and u.uid=#{uid} and w.wscore is not null
     </select>
 
     <select id="queryDetail" parameterType="int" resultType="weekly">
-        select w.*,u.uname from weekly w,users u where w.uid = u.uid and wid=#{wid}
+        select w.*,u.uname,s.stagename from weekly w,users u,user_class uc,classes c,stage s
+         where w.uid=u.uid and u.uid=uc.uid and c.cid=uc.cid and w.stage=s.id and wid=#{wid}
     </select>
 
     <update id="updateWscore">
@@ -24,4 +27,12 @@
     <delete id="deleteWeekly" parameterType="int">
         delete from weekly where wid=#{wid}
     </delete>
+
+    <select id="queryClassById" parameterType="int" resultType="Classes">
+        select c.* from classes c,user_class uc,users u where c.cid=uc.cid and u.uid=uc.uid and u.uid=#{uid}
+    </select>
+
+    <update id="updatePassword">
+        update users set password = #{password} where uid = #{uid}
+    </update>
 </mapper>

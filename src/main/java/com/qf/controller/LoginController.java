@@ -1,8 +1,10 @@
 package com.qf.controller;
 
+import com.qf.pojo.Classes;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import com.qf.pojo.vo.UserVO;
+import com.qf.service.StaffService;
 import com.qf.service.StudentService;
 import com.qf.service.UserService;
 import com.qf.utils.MD5Utils;
@@ -15,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,6 +30,8 @@ public class LoginController {
     private StudentService studentService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private StaffService staffService;
 
     @RequestMapping("login")
     public String login(UserVO userVO, Model model, HttpSession session){
@@ -50,7 +53,8 @@ public class LoginController {
                 if (subject.hasRole("teacher") || subject.hasRole("leader") || subject.hasRole("boss") || subject.hasRole("admin")){
 
                     User user = userService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
-
+                    Classes classes = staffService.queryClassById(user.getId());
+                    session.setAttribute("classes",classes);
                     session.setAttribute("user", user);
                     session.setAttribute("oldPassword",userVO.getPassword());
 
