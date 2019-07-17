@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jerry
@@ -28,8 +29,11 @@
             <tr><td>周报内容：</td><td><span>${weekly.wcontent}</span></td></tr>
             <tr><td>周报分数：</td><td>${weekly.wscore}</td></tr>
             <tr><td>发布人：${weekly.uname}</td><td>发布时间：${weekly.wtime}</td></tr>
-            <tr><td><input type="text" name="wscore" id="wscoure"></td><td><span id="wscoureError"></span></td></tr>
-            <tr><td><input type="submit" value="打分" class="btn btn-primary" onblur="checkScoure()"></td><td></td></tr>
+            <shiro:lacksRole name="leader">
+                <tr><td><input type="text" name="wscore" id="wscoure"></td><td><span id="wscoureError"></span></td></tr>
+                <tr><td><input type="submit" value="打分" class="btn btn-primary" onblur="checkScoure()"></td><td></td></tr>
+            </shiro:lacksRole>
+
         </table>
     </form>
 
