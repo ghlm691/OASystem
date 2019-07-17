@@ -1,3 +1,4 @@
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%--
   Created by IntelliJ IDEA.
   User: Jerry
@@ -15,12 +16,14 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary" href="/UpdatePassword">修改密码</a>|
+        <a class="btn btn-primary" href="/UpdatePwd">修改密码</a>|
         <a class="btn btn-primary" href="/AllWeekly?method=All">周报查看</a>|
         <a class="btn btn-primary" href="/leave/getLeaves">请假审批</a>|
         <a class="btn btn-primary" href="/toScore?uid=${sessionScope.user.id}">学生成绩管理</a>|
         <a class="btn btn-primary" href="">学生信息查看</a>|
-        <a class="btn btn-primary" href="/LeaveRequest">个人请假</a>|
+        <shiro:lacksRole name="boss">
+            <a class="btn btn-primary" href="/LeaveRequest">个人请假</a>|
+        </shiro:lacksRole>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/index">退出</a>

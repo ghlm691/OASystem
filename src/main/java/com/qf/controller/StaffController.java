@@ -2,13 +2,18 @@ package com.qf.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.qf.pojo.Classes;
+import com.qf.pojo.User;
 import com.qf.pojo.Weekly;
 import com.qf.service.StaffService;
+import com.qf.utils.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -27,7 +32,7 @@ public class StaffController {
         return "staff";
     }
 
-    @RequestMapping("UpdatePassword")
+    @RequestMapping("UpdatePwd")
     public String goUpdatePassword() {
         return "update_password";
     }
@@ -53,17 +58,20 @@ public class StaffController {
     }
 
     @RequestMapping("AllWeekly")
-    public ModelAndView getAll(@RequestParam(value = "pageNum",defaultValue = "1")int pageNum,String method){
+    public ModelAndView getAll(@RequestParam(value = "pageNum",defaultValue = "1")int pageNum, String method, HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession();
+        Classes classes = (Classes)session.getAttribute("classes");
+        modelAndView.addObject("classes ",classes );
         PageHelper.startPage(pageNum,5);
         if(method.equals("All")){
-            List<Weekly> weeklyList = staffService.queryAll();
+            List<Weekly> weeklyList = staffService.queryAll(classes.getCid());
             PageInfo pageInfo = new PageInfo(weeklyList);
             modelAndView.setViewName("all_weekly");
             modelAndView.addObject("pageInfo",pageInfo);
             return modelAndView;
         }else{
-            List<Weekly> weeklyList = staffService.queryAlreadyMark();
+            List<Weekly> weeklyList = staffService.queryAlreadyMark(classes.getCid());
             PageInfo pageInfo = new PageInfo(weeklyList);
             modelAndView.setViewName("mark_weekly");
             modelAndView.addObject("pageInfo",pageInfo);
@@ -104,4 +112,24 @@ public class StaffController {
         int i = staffService.deleteWeekly(wid);
         return i;
     }
-}
+
+    @RequestMapping("UpdatePassword")
+    public ModelAndView updatePassword(String newPassword1,HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        String password = null;
+        try {
+            password = MD5Utils.getMD5Str(newPassword1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        staffService.updatePassword(user.getId(),password);
+        modelAndView.setViewName("staff");
+        return modelAndView;
+    }
+
+
+
+    }
+

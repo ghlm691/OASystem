@@ -9,10 +9,11 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <title>成绩管理页面</title>
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
-    <title>成绩管理页面</title>
+
     <script>
         $(function(){
             $(".firstSelect").change(function(){
@@ -40,16 +41,33 @@
         });
     </script>
 </head>
-<body>
-    <a href="">添加学生成绩</a>
-    <form>
-        <select name="classes" class="firstSelect" id="firstSelect">
+<body class="text-center">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">成绩管理页面</a>|
+        <a class="btn btn-primary" href="">添加学生成绩</a>|
+        <a class="btn btn-primary" >
+            <select name="classes" class="firstSelect" id="firstSelect">
             <c:forEach items="${classList}" var="c">
                 <option value="${c.cid}">${c.cname}</option>
             </c:forEach>
-        </select>
-        <div>
-            <table id="table">
+            </select>
+        </a>|
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-primary" href="/Staff">返回</a>
+            </div>
+        </div>
+    </nav>
+
+    <%--<a href="">添加学生成绩</a>--%>
+    <form>
+        <%--<select name="classes" class="firstSelect" id="firstSelect">
+            <c:forEach items="${classList}" var="c">
+                <option value="${c.cid}">${c.cname}</option>
+            </c:forEach>
+        </select>--%>
+            <table id="table" class="table table-hover">
                 <tr>
                     <td>编号</td>
                     <td>学生姓名</td>
@@ -72,7 +90,6 @@
                     </tr>
                 </c:forEach>
             </table>
-        </div>
     </form>
 </body>
 </html>

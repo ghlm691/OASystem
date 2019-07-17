@@ -10,22 +10,33 @@
 <html>
 <head>
     <title>请假审批</title>
-    <script src="/js/jquery-3.4.1.js"></script>
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
     <script>
         $(function () {
             $(".update").click(function () {
                 var lid = $(this).attr("lid");
                 $.get("/leave/updateLeave",{lid:lid},function (data) {
                     alert("审批成功！！");
-                    location.reload();
+                    $("#tr" + lid).remove();
                 },"json")
             });
         })
 
     </script>
 </head>
-<body>
-    <table>
+<body class="text-center">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">请假审批</a>|
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-primary" href="/AllWeekly?method=All">返回</a>
+            </div>
+        </div>
+    </nav>
+
+    <table class="table table-hover">
         <tr>
             <th>请假人</th>
             <th>开始时间</th>

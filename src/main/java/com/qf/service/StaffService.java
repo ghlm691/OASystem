@@ -1,17 +1,19 @@
 package com.qf.service;
 
+import com.qf.pojo.Classes;
 import com.qf.pojo.Leave;
 import com.qf.pojo.Weekly;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface StaffService {
 
     //查看所有周报
-    List<Weekly> queryAll();
+    List<Weekly> queryAll(Integer cid);
 
     //查看已打分的周报
-    List<Weekly> queryAlreadyMark();
+    List<Weekly> queryAlreadyMark(Integer cid);
 
     //查看周报明细
     Weekly queryDetail(Integer wid);
@@ -24,6 +26,12 @@ public interface StaffService {
 
     //删除周报
     int deleteWeekly(Integer wid);
+
+    //查询老师所属班级
+    Classes queryClassById(Integer uid);
+
+    //修改密码
+    int updatePassword(@Param("uid") Integer uid, @Param("password") String password);
 
 
 }
