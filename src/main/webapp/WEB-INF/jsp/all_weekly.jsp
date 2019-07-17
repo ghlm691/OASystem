@@ -33,8 +33,8 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary" >周报查看</a>|
-        <a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&method=mark">查看已打分周报</a>|
+        <a class="navbar-brand" >${classes.cname}周报查看</a>|
+        |<a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&method=mark">查看已打分周报</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/Staff">返回</a>
@@ -48,6 +48,7 @@
             <th>周报题目</th>
             <th>周报内容</th>
             <th>周报分数</th>
+            <th>周报阶段</th>
             <th>发布人</th>
             <th>发布时间</th>
             <th>操作</th>
@@ -58,6 +59,7 @@
                 <td>${list.wtitle}</td>
                 <td>${list.wcontent}</td>
                 <td>${list.wscore}</td>
+                <td>${list.stageName}</td>
                 <td>${list.uname}</td>
                 <td>${list.wtime}</td>
                 <td>

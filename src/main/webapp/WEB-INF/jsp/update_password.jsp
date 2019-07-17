@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.qf.utils.MD5Utils" %>
 <html>
 <head>
     <title>修改密码</title>
@@ -40,6 +41,20 @@
             }
         }
 
+        function checkOp() {
+            var oldPassword1 = document.getElementById("oldPassword1").value;
+            var oldPassword2 = document.getElementById("oldPassword2").value;
+            if(oldPassword2 != oldPassword1){
+                document.getElementById("oldPasswordError").innerHTML="原密码输入错误";
+                document.getElementById("oldPassword2").focus();
+                flag=false;
+            }else{
+                flag=true;
+                document.getElementById("oldPasswordError").innerHTML="";
+            }
+
+        }
+
         function subForm(){
             if(flag){
                 document.getElementById("form1").submit();
@@ -49,19 +64,20 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary" >修改密码</a>|
+        <a class="navbar-brand" >修改密码</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/Staff">返回</a>
             </div>
         </div>
     </nav>
-    <form action="" method="post" id="form1">
+    <form action="/UpdatePassword" method="post" id="form1">
         <table cellpadding="30" align="center">
-            <tr><td>请输入原密码：</td><td><input type="password" name="oldPassword"></td><td></td></tr>
-            <tr><td>请输入新密码：</td><td><input type="password" name="newPassword1" id="password1" onblur="checkP1()"></td><td><span id="pwdError1"></span></td></tr>
-            <tr><td>请再次输入新密码：</td><td><input type="password" name="newPassword2" id="password2" onblur="checkP2()"></td><td><span id="pwdError2"></span></td></tr>
-            <tr><td colspan="2" align="center"><input type="submit" value="提交" class="btn btn-primary"></td></tr>
+            <tr><td><input type="hidden" id="oldPassword1" value="${oldPassword}"></td></tr>
+            <tr><td>请输入原密码：</td><td><input type="password" name="oldPassword2" id="oldPassword2" onblur="checkOp()"></td><td width="220px"><span id="oldPasswordError" style="color:red;"></span></td></tr>
+            <tr><td>请输入新密码：</td><td><input type="password" name="newPassword1" id="password1" onblur="checkP1()"></td><td><span id="pwdError1" style="color:red;"></span></td></tr>
+            <tr><td>请再次输入新密码：</td><td><input type="password" name="newPassword2" id="password2" onblur="checkP2()"></td><td><span id="pwdError2" style="color:red;"></span></td></tr>
+            <tr><td colspan="2" align="center"><input type="button" value="提交" class="btn btn-primary" onclick="subForm()"></td></tr>
         </table>
     </form>
 </body>
