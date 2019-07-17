@@ -1,6 +1,7 @@
 package com.qf.service.Impl;
 
 import com.qf.mapper.StaffMapper;
+import com.qf.pojo.Classes;
 import com.qf.pojo.Leave;
 import com.qf.pojo.Weekly;
 import com.qf.service.StaffService;
@@ -21,12 +22,12 @@ public class StaffServiceImpl implements StaffService {
     private StaffMapper staffMapper;
 
     //展示所有周报
-    public List<Weekly> queryAll() {
-        return staffMapper.queryAll();
+    public List<Weekly> queryAll(Integer cid) {
+        return staffMapper.queryAll(cid);
     }
 
-    public List<Weekly> queryAlreadyMark() {
-        return staffMapper.queryAlreadyMark();
+    public List<Weekly> queryAlreadyMark(Integer cid) {
+        return staffMapper.queryAlreadyMark(cid);
     }
 
     public Weekly queryDetail(Integer wid) {
@@ -45,6 +46,16 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public int deleteWeekly(Integer wid) {
         return staffMapper.deleteWeekly(wid);
+    }
+
+    @Override
+    public Classes queryClassById(Integer uid) {
+        return staffMapper.queryClassById(uid);
+    }
+
+    @Override
+    public int updatePassword(Integer uid, String password) {
+        return staffMapper.updatePassword(uid,password);
     }
 
 }
