@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -70,10 +71,15 @@ public class LeaveController {
      * 审批假条
      * @return
      */
-    @RequestMapping("updateLeave")
-    public String update(){
+    @RequestMapping(value = "updateLeave",produces = "application/json;charset=utf8")
+    @ResponseBody
+    public String update(Integer lid, HttpSession session){
 
-        return null;
+        User user = (User) session.getAttribute("user");
+
+        int i = leaveService.updateLeave(lid, user.getName());
+
+        return "success";
 
     }
 

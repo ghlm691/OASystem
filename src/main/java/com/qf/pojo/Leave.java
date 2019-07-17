@@ -16,6 +16,7 @@ public class Leave {
     private Integer state;
     private User user;
 
+
     public Integer getLid() {
         return lid;
     }

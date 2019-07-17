@@ -10,6 +10,19 @@
 <html>
 <head>
     <title>请假审批</title>
+    <script src="/js/jquery-3.4.1.js"></script>
+    <script>
+        $(function () {
+            $(".update").click(function () {
+                var lid = $(this).attr("lid");
+                $.get("/leave/updateLeave",{lid:lid},function (data) {
+                    alert("审批成功！！");
+                    location.reload();
+                },"json")
+            });
+        })
+
+    </script>
 </head>
 <body>
     <table>
@@ -18,12 +31,17 @@
             <th>开始时间</th>
             <th>结束时间</th>
             <th>原因</th>
+            <th>操作</th>
         </tr>
         <c:forEach items="${leaves}" var="leave" varStatus="i">
-            <td>${leave.user.name}</td>
-            <td>${leave.startdate}</td>
-            <td>${leave.enddate}</td>
-            <td>${leave.reason}</td>
+            <tr id="tr${leave.lid}">
+                <td>${leave.user.name}</td>
+                <td>${leave.startdate}</td>
+                <td>${leave.enddate}</td>
+                <td>${leave.reason}</td>
+                <td><a href="javascript:void(0)" class="update" lid="${leave.lid}">审批</a> </td>
+            </tr>
+
         </c:forEach>
     </table>
 </body>

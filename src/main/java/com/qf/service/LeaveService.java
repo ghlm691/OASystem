@@ -14,7 +14,7 @@ public interface LeaveService {
     List<Leave> queryLeaveList(String name);
 
     //教师班主任审批假条
-    int updateLeave(Integer lid);
+    int updateLeave(Integer lid, String name);
 
     //realm相关
     String getPasswordByUname(String uname);

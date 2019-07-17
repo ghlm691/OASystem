@@ -78,13 +78,17 @@ public class LeaveServiceImpl implements LeaveService {
     }
 
     @Override
-    public int updateLeave(Integer lid) {
+    public int updateLeave(Integer lid, String name) {
 
         int i = leaveMapper.updateLeave(lid);
 
         ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceBusinessKey(lid + "").singleResult();
 
-        String id = taskService.createTaskQuery().processInstanceId(processInstance.getId()).singleResult().getId();
+        System.out.println(processInstance.getId());
+
+        System.out.println(name);
+
+        String id = taskService.createTaskQuery().processInstanceId(processInstance.getId()).taskAssignee(name).singleResult().getId();
 
         taskService.complete(id);
 
