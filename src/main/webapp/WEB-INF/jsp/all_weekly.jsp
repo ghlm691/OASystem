@@ -33,7 +33,7 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary" >${classes.cname}周报查看</a>|
+        <a class="navbar-brand" >${classes.cname}周报查看</a>|
         |<a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&method=mark">查看已打分周报</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">

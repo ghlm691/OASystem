@@ -64,7 +64,7 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary" >修改密码</a>|
+        <a class="navbar-brand" >修改密码</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/Staff">返回</a>

@@ -44,7 +44,7 @@
 <body class="text-center">
 
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary">成绩管理页面</a>|
+        <a class="navbar-brand">成绩管理页面</a>|
         <a class="btn btn-primary" href="">添加学生成绩</a>|
         <a class="btn btn-primary" >
             <select name="classes" class="firstSelect" id="firstSelect">

@@ -17,7 +17,7 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="btn btn-primary">学生成绩分析</a>|
+        <a class="navbar-brand">学生成绩分析</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="">返回</a>
