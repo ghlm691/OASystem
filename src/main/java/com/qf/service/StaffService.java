@@ -22,5 +22,8 @@ public interface StaffService {
     //获取需要审批的假条
     List<Leave> queryLeaveList(String name);
 
+    //删除周报
+    int deleteWeekly(Integer wid);
+
 
 }

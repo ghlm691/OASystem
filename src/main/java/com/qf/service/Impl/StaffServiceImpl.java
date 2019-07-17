@@ -39,10 +39,12 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<Leave> queryLeaveList(String name) {
-
-
-
         return null;
+    }
+
+    @Override
+    public int deleteWeekly(Integer wid) {
+        return staffMapper.deleteWeekly(wid);
     }
 
 }
