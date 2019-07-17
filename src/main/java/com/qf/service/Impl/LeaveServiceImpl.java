@@ -44,13 +44,13 @@ public class LeaveServiceImpl implements LeaveService {
         int i = leaveMapper.addLeave(leave);
 
         Map<String, Object> map = new HashMap<>();
-        map.put("role", "employee");
-        map.put("teacher", leave.getUser().getUsername());
+        map.put("role", 1);
+        map.put("employee", leave.getUser().getName());
         map.put("boss", leaveMapper.queryBoss());
 
         runtimeService.startProcessInstanceByKey("leave", leave.getLid()+"", map);
 
-        Task task = taskService.createTaskQuery().taskAssignee(leave.getUser().getUsername()).singleResult();
+        Task task = taskService.createTaskQuery().taskAssignee(leave.getUser().getName()).singleResult();
 
         taskService.complete(task.getId());
 
@@ -63,7 +63,7 @@ public class LeaveServiceImpl implements LeaveService {
         List<Task> tasks = taskService.createTaskQuery().taskAssignee(name).list();
 
         List<String> ids = new ArrayList<>();
-
+        List<Leave> leaves = null;
         for (Task task : tasks) {
 
             ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(task.getProcessInstanceId()).singleResult();
@@ -72,7 +72,13 @@ public class LeaveServiceImpl implements LeaveService {
 
         }
 
-        List<Leave> leaves = leaveMapper.queryLeaveList(ids);
+        if (ids.size() > 0){
+            leaves = leaveMapper.queryLeaveList(ids);
+        }else {
+            leaves = new ArrayList<>();
+        }
+
+
 
         return leaves;
     }
@@ -87,7 +93,6 @@ public class LeaveServiceImpl implements LeaveService {
         System.out.println(processInstance.getId());
 
         System.out.println(name);
-
         String id = taskService.createTaskQuery().processInstanceId(processInstance.getId()).taskAssignee(name).singleResult().getId();
 
         taskService.complete(id);

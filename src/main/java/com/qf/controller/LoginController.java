@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpSession;
-@SessionAttributes("user")
+
 @Controller
 @RequestMapping("login")
 public class LoginController {
@@ -47,7 +47,7 @@ public class LoginController {
 
             subject.login(token);
             if (subject.isAuthenticated()){
-                if (subject.hasRole("teacher") || subject.hasRole("leader") || subject.hasRole("boss")){
+                if (subject.hasRole("teacher") || subject.hasRole("leader") || subject.hasRole("boss") || subject.hasRole("admin")){
 
                     User user = userService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
 

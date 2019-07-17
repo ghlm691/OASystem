@@ -73,13 +73,27 @@ public class LeaveController {
      */
     @RequestMapping(value = "updateLeave",produces = "application/json;charset=utf8")
     @ResponseBody
-    public String update(Integer lid, HttpSession session){
+    public Integer update(Integer lid, HttpSession session){
 
         User user = (User) session.getAttribute("user");
 
         int i = leaveService.updateLeave(lid, user.getName());
 
-        return "success";
+        return i;
+
+    }
+
+    /**
+     * 员工请假
+     */
+    @RequestMapping("empLeave")
+    public String empLeave(Leave leave, HttpSession session){
+
+        User user = (User) session.getAttribute("user");
+        leave.setUser(user);
+
+        int i = leaveService.addLeave(leave);
+        return "redirect:../Staff";
 
     }
 

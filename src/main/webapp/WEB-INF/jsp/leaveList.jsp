@@ -17,7 +17,7 @@
                 var lid = $(this).attr("lid");
                 $.get("/leave/updateLeave",{lid:lid},function (data) {
                     alert("审批成功！！");
-                    location.reload();
+                    $("#tr" + lid).remove();
                 },"json")
             });
         })

@@ -28,12 +28,12 @@
         update uleave set state=1 where lid=#{lid}
     </update>
 
-    <insert id="addLeave" parameterType="leave">
-        insert into uleave (uid,startdate,enddate,reason,state) values (#{user.uid},#{startdate},#{enddate},#{reason},#{reason},0);
+    <insert id="addLeave" parameterType="leave" useGeneratedKeys="true" keyProperty="lid">
+        insert into uleave (uid,startdate,enddate,reason,state) values (#{user.id},#{startdate},#{enddate},#{reason},0);
     </insert>
 
     <select id="queryBoss" resultType="string">
-        select u.name from users u,role r,user_role ur where rname='校长' and r.rid=ur.rid and ur.uid=u.uid
+        select u.name from users u,role r,user_role ur where rname='boss' and r.rid=ur.rid and ur.uid=u.uid
     </select>
 
 

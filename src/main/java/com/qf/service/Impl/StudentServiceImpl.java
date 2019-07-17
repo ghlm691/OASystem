@@ -122,7 +122,7 @@ public class StudentServiceImpl implements StudentService {
         long starttime = leave.getStartdate().getTime();
         long endtime = leave.getEnddate().getTime();
 
-        long l = starttime - endtime;
+        long l = endtime - starttime;
 
         Integer day = Math.toIntExact(Math.round((l * 0.001) / 3600 / 24));
 

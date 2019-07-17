@@ -18,11 +18,13 @@
     <exclusiveGateway gatewayDirection="Unspecified" id="_19" name="ExclusiveGateway"/>
     <sequenceFlow id="_20" sourceRef="_16" targetRef="_19"/>
     <userTask activiti:assignee="#{boss}" activiti:exclusive="true" id="boss" name="校长审批"/>
-    <sequenceFlow id="_22" sourceRef="_19" targetRef="boss">
+    <sequenceFlow id="_22" name="大于三天校长审批" sourceRef="_19" targetRef="boss">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${day>=3}]]></conditionExpression>
     </sequenceFlow>
     <endEvent id="_23" name="EndEvent"/>
-    <sequenceFlow id="_24" sourceRef="_19" targetRef="_23"/>
+    <sequenceFlow id="_24" name="小于三天讲师和班主任" sourceRef="_19" targetRef="_23">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${day<3}]]></conditionExpression>
+    </sequenceFlow>
     <sequenceFlow id="_25" sourceRef="employee" targetRef="boss"/>
     <sequenceFlow id="_26" sourceRef="boss" targetRef="_23"/>
     <sequenceFlow id="_5" name="学生请假" sourceRef="_3" targetRef="student">
@@ -146,7 +148,7 @@
         <omgdi:waypoint x="146.0" y="452.0"/>
         <omgdi:waypoint x="146.0" y="555.0"/>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="0.0" width="0.0" x="0.0" y="0.0"/>
+          <omgdc:Bounds height="12.0" width="0.0" x="0.0" y="-1.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="_26" id="BPMNEdge__26" sourceElement="boss" targetElement="_23">
