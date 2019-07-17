@@ -48,7 +48,7 @@
 
     <!--请假相关-->
     <insert id="addLeave" parameterType="leave" useGeneratedKeys="true" keyProperty="lid">
-        insert into uleave (uid,startdate,enddate,reason,state) values (#{user.uid},#{startdate},#{enddate},#{reason},#{reason},0);
+        insert into uleave (uid,startdate,enddate,reason,state) values (#{user.id},#{startdate},#{enddate},#{reason},0);
     </insert>
 
     <select id="queryClass" resultType="int" parameterType="int">
@@ -60,7 +60,7 @@
     </select>
 
     <select id="queryLeader" parameterType="int" resultType="string">
-        select u.name from users u,role r,user_class uc,user_role ur where r.rname='leader' and r.rid=ur.rid and ur.uid=uc.uid and cid=#{cid}
+        select u.name from users u,role r,user_class uc,user_role ur where u.uid=uc.uid and r.rname='leader' and r.rid=ur.rid and ur.uid=uc.uid and cid=#{cid}
     </select>
 
     <select id="queryBoss" resultType="string">

@@ -36,13 +36,17 @@ public class UserRealm extends AuthorizingRealm {
         for (String s : roleList) {
             roles.add(s);
             List<String> permissionList = leaveService.getPermissionList(s);
-
+            System.out.println();
             for (String s1 : permissionList) {
                 permissions.add(s1);
             }
         }
 
-        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo(roles);
+        System.out.println(permissions);
+        System.out.println(roles);
+
+        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+        simpleAuthorizationInfo.addRoles(roles);
         simpleAuthorizationInfo.addStringPermissions(permissions);
 
         return simpleAuthorizationInfo;

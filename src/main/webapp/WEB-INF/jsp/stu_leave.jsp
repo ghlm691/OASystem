@@ -25,12 +25,12 @@
         </div>
     </nav>
 
-    <form action="" method="post">
+    <form action="/leave/addLeave" method="post">
         <table cellpadding="30" align="center">
-            <tr><td><input type="hidden" name="uid" value="${sid}"></td></tr>
+            <tr><td><input type="hidden" name="name" value="${student.sname}"></td></tr>
             <tr><td>请假原因：</td><td><input type="text" name="reason"></td></tr>
-            <tr><td>开始时间：</td><td><input type="date" name="startDate"></td></tr>
-            <tr><td>结束时间：</td><td><input type="date" name="endDate"></td></tr>
+            <tr><td>开始时间：</td><td><input type="date" name="startdate"></td></tr>
+            <tr><td>结束时间：</td><td><input type="date" name="enddate"></td></tr>
             <tr><td colspan="2" align="center"><input type="submit" value="提交" class="btn btn-primary"></td></tr>
         </table>
     </form>

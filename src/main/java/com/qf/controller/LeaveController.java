@@ -2,6 +2,7 @@ package com.qf.controller;
 
 import com.qf.pojo.Leave;
 import com.qf.pojo.Student;
+import com.qf.pojo.User;
 import com.qf.service.LeaveService;
 import com.qf.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * author: liu
@@ -35,11 +37,15 @@ public class LeaveController {
     @RequestMapping("addLeave")
     public String addLeave(Leave leave, Model model, HttpSession session){
 
-        Student user = (Student) session.getAttribute("user");
+        Student student = (Student) session.getAttribute("student");
 
+        User user = new User();
+        user.setId(student.getSid());
+        user.setName(student.getSname());
+        leave.setUser(user);
         int i = studentService.addStudentLeave(leave);
 
-        return "stu_index";
+        return "student";
 
     }
 
@@ -47,13 +53,15 @@ public class LeaveController {
      * 查看待办假条
      */
     @RequestMapping("getLeaves")
-    public String getLeaves(HttpSession session){
+    public String getLeaves(HttpSession session, Model model){
 
-        Object user = session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
 
-        //leaveService.queryLeaveList()
+        List<Leave> leaves = leaveService.queryLeaveList(user.getName());
 
-        return null;
+        model.addAttribute("leaves", leaves);
+
+        return "leaveList";
 
     }
 

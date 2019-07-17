@@ -98,10 +98,10 @@ public class StaffController {
 
     }
 
-    @RequestMapping(value = "/{wid}",method = RequestMethod.DELETE,produces = "application/json;charset=utf8")
+    /*@RequestMapping(value = "/{wid}",method = RequestMethod.DELETE,produces = "application/json;charset=utf8")
     @ResponseBody
     public int delete (@PathVariable("wid") Integer wid){
         int i = staffService.deleteWeekly(wid);
         return i;
-    }
+    }*/
 }

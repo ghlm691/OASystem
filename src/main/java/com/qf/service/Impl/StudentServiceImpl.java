@@ -124,11 +124,12 @@ public class StudentServiceImpl implements StudentService {
 
         long l = starttime - endtime;
 
-        Date day = new Date(l);
+        Integer day = Math.toIntExact(Math.round((l * 0.001) / 3600 / 24));
 
         Map<String, Object> map = new HashMap<>();
-        map.put("role", "student");
-        map.put("student", leave.getUser().getUsername());
+        map.put("role", 0);
+        //map.put("employee", "nobody");
+        map.put("student", leave.getUser().getName());
         map.put("teacher", studentMapper.queryTeacher(studentMapper.queryClass(leave.getUser().getId())));
         map.put("leader", studentMapper.queryLeader(studentMapper.queryClass(leave.getUser().getId())));
         map.put("boss", studentMapper.queryBoss());
@@ -136,7 +137,7 @@ public class StudentServiceImpl implements StudentService {
 
         ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave", leave.getLid() + "", map);
 
-        Task task = taskService.createTaskQuery().taskAssignee(leave.getUser().getUsername()).singleResult();
+        Task task = taskService.createTaskQuery().taskAssignee(leave.getUser().getName()).singleResult();
 
         taskService.complete(task.getId());
 

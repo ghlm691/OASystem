@@ -4,11 +4,24 @@
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qf.mapper.LeaveMapper">
 
-    <select id="queryLeaveList" parameterType="string" resultType="leave">
-        select * from uleave where lid in
+    <resultMap id="leaveMap" type="leave">
+        <id property="lid" column="lid"></id>
+        <result column="startdate" property="startdate"></result>
+        <result property="enddate" column="enddate"></result>
+        <result column="reason" property="reason"></result>
+        <result property="state" column="state"></result>
+        <association property="user" javaType="user">
+            <id column="uid" property="users.uid"></id>
+            <result property="name" column="name"></result>
+        </association>
+    </resultMap>
+
+    <select id="queryLeaveList" parameterType="string" resultMap="leaveMap">
+        select uleave.*,users.* from uleave,users where lid in
         <foreach collection="list" item="value" open="(" separator="," close=")">
             #{value}
         </foreach>
+
     </select>
 
     <update id="updateLeave" parameterType="int">

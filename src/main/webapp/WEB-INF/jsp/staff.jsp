@@ -17,7 +17,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="btn btn-primary" href="/UpdatePassword">修改密码</a>|
         <a class="btn btn-primary" href="/AllWeekly?method=All">周报查看</a>|
-        <a class="btn btn-primary" href="">请假审批</a>|
+        <a class="btn btn-primary" href="/leave/getLeaves">请假审批</a>|
         <a class="btn btn-primary" href="/StudentScore">学生成绩管理</a>|
         <a class="btn btn-primary" href="">学生信息查看</a>|
         <a class="btn btn-primary" href="/LeaveRequest">个人请假</a>|

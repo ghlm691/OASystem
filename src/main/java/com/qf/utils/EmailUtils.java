@@ -1,3 +1,4 @@
+/*
 package com.qf.utils;
 
 import java.util.Date;
@@ -10,10 +11,12 @@ import javax.mail.internet.MimeMessage;
 
 import com.feri.common.vo.EmailMsg;
 
+*/
 /*
  * 基于JDK实现邮件发送
  * 主要是实现激活码的发送
- * */
+ * *//*
+
 public class EmailUtils {
 	public static void sendEmail(EmailMsg msg){
 		//邮箱
@@ -62,11 +65,13 @@ public class EmailUtils {
 			//3.1发送方
 			message.setFrom(new InternetAddress(myAccount, "千锋OA系统", "utf-8"));
 			//3.2设置接收方
-			/*
+			*/
+/*
 			 * MimeMessage.RecipientType.TO 
 			 * MimeMessage.RecipientType.CC 
 			 * MimeMessage.RecipientType.BCC 
-			 * */
+			 * *//*
+
 			message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(msg.getEmail(), "会员", "utf-8"));
 			//3.3 设置主题
 			message.setSubject(msg.getTitle(),"utf-8");
@@ -86,3 +91,4 @@ public class EmailUtils {
 		return message;
 	}
 }
+*/
