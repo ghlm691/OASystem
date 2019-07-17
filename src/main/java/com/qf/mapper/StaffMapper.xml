@@ -20,4 +20,8 @@
     <update id="updateWscore">
         update weekly set wscore=#{wscore} where wid=#{wid}
     </update>
+
+    <delete id="deleteWeekly" parameterType="int">
+        delete from weekly where wid=#{wid}
+    </delete>
 </mapper>

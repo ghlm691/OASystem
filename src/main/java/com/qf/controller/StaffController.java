@@ -6,8 +6,7 @@ import com.qf.pojo.Weekly;
 import com.qf.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -48,6 +47,11 @@ public class StaffController {
         return "error";
     }
 
+    @RequestMapping("StudentScore")
+    public  String goStudentScore(){
+        return "student_score";
+    }
+
     @RequestMapping("AllWeekly")
     public ModelAndView getAll(@RequestParam(value = "pageNum",defaultValue = "1")int pageNum,String method){
         ModelAndView modelAndView = new ModelAndView();
@@ -77,15 +81,27 @@ public class StaffController {
         return modelAndView;
     }
 
+
     @RequestMapping("UpdateWscore")
-    public String updateWscore(Integer wid,Integer wscore) {
-        System.out.println(wid);
-        System.out.println(wscore);
+    public ModelAndView updateWscore(Integer wid,Integer wscore ) {
+        ModelAndView modelAndView = new ModelAndView();
         int i = staffService.updateWscore(wid, wscore);
         if (i != -1) {
-            return "redirect:/detail";
+            Weekly weekly = staffService.queryDetail(wid);
+            modelAndView.addObject("weekly", weekly);
+            modelAndView.setViewName("detail");
+            return modelAndView;
         }else{
-            return "redirect:/UpdateWscore";
+            modelAndView.setViewName("fail");
+            return modelAndView;
         }
+
+    }
+
+    @RequestMapping(value = "/{wid}",method = RequestMethod.DELETE,produces = "application/json;charset=utf8")
+    @ResponseBody
+    public int delete (@PathVariable("wid") Integer wid){
+        int i = staffService.deleteWeekly(wid);
+        return i;
     }
 }

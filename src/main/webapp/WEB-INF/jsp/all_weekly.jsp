@@ -13,6 +13,23 @@
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $(".delete").click(function () {
+                var wid=$(this).attr("id");
+                $.ajax({
+                    url:'/' + wid,
+                    type:'DELETE',
+                    success:function (){
+                        alert("删除成功！！！");
+                        $("#tr" + wid).remove();
+                    }
+                })
+            })
+        })
+
+    </script>
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -45,7 +62,7 @@
                 <td>${list.wtime}</td>
                 <td>
                     <a href="/detail?wid=${list.wid}&pageNum=${pageInfo.pageNum}" class="btn btn-primary">明细</a>
-                    <a href="javascript:void(0)" class="delete btn btn-primary" wid="${list.wid}">删除</a>
+                    <a href="javascript:void(0)" class="delete btn btn-primary" id="${list.wid}">删除</a>
                 </td>
             </tr>
         </c:forEach>
@@ -57,18 +74,18 @@
             首页|上一页
         </c:if>
         <c:if test="${pageInfo.hasPreviousPage eq true}">
-            <a href="/AllWeekly">首页</a>|<a href="/AllWeekly?pageNum=${pageInfo.prePage}">上一页</a>|
+            <a href="/AllWeekly?method=All">首页</a>|<a href="/AllWeekly?pageNum=${pageInfo.prePage}&method=All">上一页</a>|
         </c:if>
         <c:forEach begin="1" end="${pageInfo.pages}" var="i">
             <c:if test="${i == pageInfo.pageNum }">
                 ${i }
             </c:if>
             <c:if test="${i != pageInfo.pageNum }">
-                <a href="/AllWeekly?pageNum=${i }">${i }</a>
+                <a href="/AllWeekly?pageNum=${i }&method=All">${i }</a>
             </c:if>
         </c:forEach>
         <c:if test="${pageInfo.hasNextPage eq true}">
-            |<a href="AllWeekly?pageNum=${pageInfo.nextPage}">下一页</a>|<a href="AllWeekly?pageNum=${pageInfo.lastPage}">尾页</a>
+            |<a href="AllWeekly?pageNum=${pageInfo.nextPage}&method=All">下一页</a>|<a href="AllWeekly?pageNum=${pageInfo.lastPage}&method=All">尾页</a>
         </c:if>
         <c:if test="${pageInfo.hasNextPage eq false}">
             |下一页|尾页

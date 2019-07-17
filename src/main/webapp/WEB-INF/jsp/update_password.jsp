@@ -58,7 +58,6 @@
     </nav>
     <form action="" method="post" id="form1">
         <table cellpadding="30" align="center">
-
             <tr><td>请输入原密码：</td><td><input type="password" name="oldPassword"></td><td></td></tr>
             <tr><td>请输入新密码：</td><td><input type="password" name="newPassword1" id="password1" onblur="checkP1()"></td><td><span id="pwdError1"></span></td></tr>
             <tr><td>请再次输入新密码：</td><td><input type="password" name="newPassword2" id="password2" onblur="checkP2()"></td><td><span id="pwdError2"></span></td></tr>

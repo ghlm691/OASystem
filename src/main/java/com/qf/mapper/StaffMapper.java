@@ -26,5 +26,8 @@ public interface StaffMapper {
     //打分
     int updateWscore(@Param(value = "wid") Integer wid,@Param("wscore") Integer wscore);
 
+    //删除周报
+    int deleteWeekly(Integer wid);
+
 
 }
