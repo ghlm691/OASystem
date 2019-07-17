@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.mapper.ScoreMapper">
+
+    <select id="getClassByTid" parameterType="int" resultType="int">
+
+        select cc.cid from users as u ,course as c ,class_course as cc where
+        u.uid = c.uid and c.courseid = cc.courseid and u.uid = #{uid}
+
+    </select>
+
+    <select id="getSidByCid" parameterType="int" resultType="int">
+
+        select u.uid from users as u ,classes as c ,user_class as uc where u.uid = uc.uid and uc.cid = c.cid and c.cid = #{cid}
+
+    </select>
+
+    <select id="getScoreBySid" resultType="scoreVO">
+
+        select * from score where uid = #{uid} and stage = #{stage}
+
+    </select>
+
+    <select id="getClasses" parameterType="int" resultType="classes">
+
+        select * from classes where cid = #{cid}
+
+    </select>
+
+</mapper>
