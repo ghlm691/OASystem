@@ -17,7 +17,7 @@
     </resultMap>
 
     <select id="queryLeaveList" parameterType="string" resultMap="leaveMap">
-        select uleave.*,users.* from uleave,users where lid in
+        select uleave.*,users.* from uleave,users where uleave.uid=users.uid and lid in
         <foreach collection="list" item="value" open="(" separator="," close=")">
             #{value}
         </foreach>
