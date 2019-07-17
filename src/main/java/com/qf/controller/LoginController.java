@@ -52,6 +52,7 @@ public class LoginController {
                     User user = userService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
 
                     session.setAttribute("user", user);
+                    session.setAttribute("oldPassword",userVO.getPassword());
 
                     return "redirect:../Staff";
                 } else {
