@@ -1,9 +1,11 @@
 package com.qf.service;
 
+import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * author: liu
@@ -17,5 +19,10 @@ public interface FileService {
 
     //信息导出
     void exportFile(User user, OutputStream outputStream);
+
+    //查询user对应的班级
+    List<Student> getStudentsById(User user);
+
+
 
 }

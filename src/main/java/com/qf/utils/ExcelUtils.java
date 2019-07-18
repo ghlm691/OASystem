@@ -78,27 +78,27 @@ public class ExcelUtils {
 		HSSFSheet sheet = hssfWorkbook.createSheet("学生信息");
 		//创建标题行
 		HSSFRow titleRow = sheet.createRow(0);
-		titleRow.createCell(0).setCellValue("sid");
-		titleRow.createCell(1).setCellValue("sname");
-		titleRow.createCell(2).setCellValue("age");
-		titleRow.createCell(3).setCellValue("sex");
-		titleRow.createCell(4).setCellValue("cname");
+		//titleRow.createCell(0).setCellValue("sid");
+		titleRow.createCell(0).setCellValue("sname");
+		titleRow.createCell(1).setCellValue("age");
+		titleRow.createCell(2).setCellValue("sex");
+		titleRow.createCell(3).setCellValue("cname");
 
 
 		for (Student student : students) {
 
 			int lastRowNum = sheet.getLastRowNum();
 			HSSFRow row = sheet.createRow(lastRowNum + 1);
-			row.createCell(0).setCellValue(student.getSid());
-			row.createCell(1).setCellValue(student.getSname());
-			row.createCell(2).setCellValue(student.getAge());
-			row.createCell(3).setCellValue(student.getSex());
-			row.createCell(4).setCellValue(student.getCname());
+			//row.createCell(0).setCellValue(student.getSid());
+			row.createCell(0).setCellValue(student.getSname());
+			row.createCell(1).setCellValue(student.getAge());
+			row.createCell(2).setCellValue(student.getSex());
+			row.createCell(3).setCellValue(student.getCname());
 
 		}
 
 		//创建文件名
-		String fileName = "学生导出.xls";
+		String fileName = "student.xls";
 		//获取mimeType
 		WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
 		ServletContext servletContext = webApplicationContext.getServletContext();

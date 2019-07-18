@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qf.mapper.FileMapper">
+    <select id="getAllClassesId" resultType="int">
+        select cid from classes;
+    </select>
+
+    <resultMap id="studentMap" type="student">
+        <id property="sid" column="u.uid"></id>
+        <result property="sname" column="name"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+        <result property="cname" column="cname"></result>
+    </resultMap>
+    
+    <select id="getAllStudent" resultMap="studentMap">
+        select u.*,c.cname from users u,user_class uc,user_role ur,role r,classes c where u.uid=uc.uid and c.cid=uc.cid
+        and r.rid=ur.rid and u.uid=ur.uid and r.rname='student'
+    </select>
+</mapper>
