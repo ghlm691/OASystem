@@ -76,11 +76,12 @@ public class FileServiceImpl implements FileService {
                 List<Integer> classes = scoreMapper.getClassByTid(user.getId());
                 for (Integer aClass : classes) {
                     sids = scoreMapper.getSidByCid(aClass);
+                    for (Integer sid : sids) {
+                        Student student = studentService.getStudentBySid(sid);
+                        students.add(student);
+                    }
                 }
-                for (Integer sid : sids) {
-                    Student student = studentService.getStudentBySid(sid);
-                    students.add(student);
-                }
+
             }else if(s.equals("leader")) {
                 students = fileMapper.getAllStudent();
             }
