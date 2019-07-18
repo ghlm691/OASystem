@@ -11,6 +11,8 @@ import com.qf.service.FileService;
 import com.qf.service.ScoreService;
 import com.qf.service.StudentService;
 import com.qf.utils.ExcelUtils;
+import com.qf.utils.HanyuPinyinHelp;
+import com.qf.utils.MD5Utils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.subject.Subject;
@@ -89,5 +91,28 @@ public class FileServiceImpl implements FileService {
 
 
         return students;
+    }
+
+    @Override
+    public int addStudents(List<Student> students) {
+
+        for (Student student : students) {
+
+            String username = HanyuPinyinHelp.toHanyuPinyin(student.getSname());
+            String password = null;
+            try {
+                password = MD5Utils.getMD5Str("123");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            student.setUsername(username);
+            student.setPassword(password);
+
+            fileMapper.addStudent(student);
+
+        }
+
+        return 0;
     }
 }

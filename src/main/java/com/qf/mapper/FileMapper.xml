@@ -20,4 +20,8 @@
         select u.*,c.cname from users u,user_class uc,user_role ur,role r,classes c where u.uid=uc.uid and c.cid=uc.cid
         and r.rid=ur.rid and u.uid=ur.uid and r.rname='student'
     </select>
+
+    <insert id="addStudent" parameterType="student">
+        insert into users set (uname,password,name,age,sex) values (#{username},#{password},#{sname},#{age},#{sex})
+    </insert>
 </mapper>

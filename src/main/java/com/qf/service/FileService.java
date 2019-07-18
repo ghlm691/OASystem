@@ -23,6 +23,9 @@ public interface FileService {
     //查询user对应的班级
     List<Student> getStudentsById(User user);
 
+    //批量添加学生
+    int addStudents(List<Student> students);
+
 
 
 }

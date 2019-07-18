@@ -61,9 +61,9 @@ public class FileController {
             InputStream inputStream = file.getInputStream();
             List<Student> students = ExcelUtils.parseExcel(inputStream);
 
-
             modelAndView.setViewName("inoutput");
             modelAndView.addObject("students", students);
+            fileService.addStudents(students);
             inputStream.close();
             return modelAndView;
         } catch (IOException e) {

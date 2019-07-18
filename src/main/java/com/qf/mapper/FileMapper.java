@@ -12,5 +12,8 @@ public interface FileMapper {
     //查询所有学生
     List<Student> getAllStudent();
 
+    //批量添加学生
+    int addStudent(Student student);
+
 
 }
