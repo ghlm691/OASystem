@@ -22,11 +22,34 @@
                     alert(d.message);
                     var tables = $("#table tr");
                     tables.remove();
-                    var top = "<tr><td>课程名</td><td>讲师</td><td>操作</td></tr>";
+                    var top = "<tr><td>姓名</td><td>角色</td><td>操作</td></tr>";
                     $("#table").append(top);
-                    for (var i = 0;i < d.cList.length;i++){
-                        var list = "<tr><td>" + d.cList[i].courseName + "</td><td>" + d.cList[i].tname + "</td><td><button class='delBtn' id='${d.cList[i].id}'>删除</button></td></tr>";
+                    for (var i = 0;i < d.users.length;i++){
+                        var list = "<tr id='tr${d.users[i].id}'><td>" + d.users[i].name + "</td><td>" + d.users[i].rname + "</td><td><button class='updateBtn' id='${d.users[i].id}'>重置密码</button><button class='delBtn' id='${d.users[i].id}'>删除</button></td></tr>";
+                        $("#table").append(list);
                     }
+                },"json");
+            });
+            //删除用户
+            $(".delBtn").click(function () {
+                var uid = $(this).attr("id");
+                $.get("/delUser",{uid:uid},function (d) {
+                    alert(d.message);
+                    var tables = $("#table tr");
+                    tables.remove();
+                    var top = "<tr><td>姓名</td><td>角色</td><td>操作</td></tr>";
+                    $("#table").append(top);
+                    for (var i = 0;i < d.users.length;i++){
+                        var list = "<tr id='tr${d.users[i].id}'><td>" + d.users[i].name + "</td><td>" + d.users[i].rname + "</td><td><button class='updateBtn' id='${d.users[i].id}'>重置密码</button><button class='delBtn' id='${d.users[i].id}'>删除</button></td></tr>";
+                        $("#table").append(list);
+                    }
+                },"json");
+            });
+            //重置密码
+            $(".updateBtn").click(function () {
+                var uid = $(this).attr("id");
+                $.post("/updatePwd",{uid:uid},function (d) {
+                    alert(d.message);
                 },"json");
             });
         });
@@ -50,12 +73,12 @@
             <td>操作</td>
         </tr>
         <c:forEach items="${users}" var="u">
-            <tr id="tr${u.name}">
-                <td></td>
-                <td></td>
+            <tr id="tr${u.id}">
+                <td>${u.name}</td>
+                <td>${u.rname}</td>
                 <td>
-                    <button class="updateBtn" id="${}">重置密码</button>
-                    <button class="delBtn" id="${}">重置密码</button>
+                    <button class="updateBtn" id="${u.id}">重置密码</button>
+                    <button class="delBtn" id="${u.id}">删除</button>
                 </td>
             </tr>
         </c:forEach>

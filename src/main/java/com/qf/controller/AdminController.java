@@ -1,6 +1,7 @@
 package com.qf.controller;
 
 import com.qf.pojo.Course;
+import com.qf.pojo.Student;
 import com.qf.pojo.UserAndRole;
 import com.qf.pojo.vo.CourseVO;
 import com.qf.pojo.vo.UserVO;
@@ -42,7 +43,9 @@ public class AdminController {
     @RequestMapping("admin_user")
     public ModelAndView toUser(){
         ModelAndView modelAndView = new ModelAndView();
-        List<UserAndRole> user = adminService.getUser();
+        List<UserAndRole> users = adminService.getUser();
+        modelAndView.addObject("users",users);
+        modelAndView.setViewName("ad_user");
         return modelAndView;
     }
 
@@ -92,6 +95,17 @@ public class AdminController {
 
 
     /*-----------------------------以下是Ajax方法-------------------------------*/
+
+    //模板自取
+    @RequestMapping(value = "",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String doWhat(){
+        JSONObject json = new JSONObject();
+        return json.toString();
+    }
+
+
+
     //添加课程
     @RequestMapping(value = "addCourse",produces = "application/json;charset=utf-8")
     @ResponseBody
@@ -107,7 +121,7 @@ public class AdminController {
             json.element("message","添加成功");
         }else{
             //已存在
-            json.element("message","添加失败");
+            json.element("message","已存在该用户");
         }
         //查询课程列表
         List<Course> cList = adminService.queryCourse();
@@ -120,9 +134,42 @@ public class AdminController {
     @ResponseBody
     public String addUser(int role,String name){
         JSONObject json = new JSONObject();
+        //添加用户
+        if(adminService.addUser(name)){
+            //添加成功
+            json.element("message","添加成功");
+        }else{
+            //添加失败
+            json.element("message","已存在该用户");
+        }
+        List<UserAndRole> users = adminService.getUser();//重新获取用户列表
+        json.element("users",users);
+        return json.toString();
+    }
 
+    //删除用户
+    @RequestMapping(value = "delUser",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String delUser(int uid){
+        JSONObject json = new JSONObject();
+        if(adminService.delUser(uid)){
+            //删除成功
+            json.element("message","删除成功");
+        }else{
+            json.element("message","删除失败");
+        }
+        List<UserAndRole> users = adminService.getUser();
+        json.element("users",users);
+        return json.toString();
+    }
 
-
+    //重置密码
+    @RequestMapping(value = "updatePwd",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String updatePwd(int uid){
+        JSONObject json = new JSONObject();
+        adminService.setPassword(uid);
+        json.element("message","密码为123456");
         return json.toString();
     }
 

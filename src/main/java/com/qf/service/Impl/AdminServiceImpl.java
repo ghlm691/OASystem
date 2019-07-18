@@ -1,6 +1,7 @@
 package com.qf.service.Impl;
 
 import com.qf.mapper.AdminMapper;
+import com.qf.mapper.ScoreMapper;
 import com.qf.pojo.Course;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
@@ -27,6 +28,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private ScoreMapper scoreMapper;
 
 
     public int addCourse(CourseVO courseVO) {
@@ -104,10 +107,65 @@ public class AdminServiceImpl implements AdminService {
             user.setUsername(u.getUname());
             user.setPassword(u.getPassword());
             user.setName(u.getName());
-            user.setRname(adminMapper.getRoleName(u.getUid()));
+            String roleName = adminMapper.getRoleName(u.getUid());
+            if (roleName == null){
+                user.setRname("student");
+            }else{
+                user.setRname(roleName);
+            }
             users.add(user);
         }
         return users;
+    }
+
+    @Override
+    public boolean delUser(int uid) {
+        //查询角色(超级管理员不可删除、有课程的讲师不可删除)
+        String roleName = adminMapper.getRoleName(uid);
+        //删除用户表
+        if("admin".equals(roleName)){
+            //管理员无法删除
+            return false;
+        }else if("boss".equals(roleName)){
+            //校长不用想直接删
+            adminMapper.delUser(uid);
+        }else if("leader".equals(roleName)){
+            //班主任不用想直接删
+            adminMapper.delUser(uid);
+        }else if("teacher".equals(roleName)){
+            //判断是否还在上课
+            List<Integer> classes = scoreMapper.getClassByTid(uid);
+            if(classes.size() != 0){
+                //该老师还有课程
+                return false;
+            }else{
+                //直接删
+                adminMapper.delUser(uid);
+                //删除course表
+                adminMapper.delCourseByUid(uid);
+            }
+        }else{
+            //删除学生
+            adminMapper.delUser(uid);
+            //删除成绩
+            adminMapper.delScore(uid);
+            //删除周报
+            adminMapper.delWeekly(uid);
+            //删除学生班级表
+            adminMapper.delUserClass(uid);
+        }
+        return true;
+    }
+
+    @Override
+    public int setPassword(int uid) {
+        int i = 0;
+        try {
+            i = adminMapper.setPassword(uid,MD5Utils.getMD5Str("123456"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return i;
     }
 
 

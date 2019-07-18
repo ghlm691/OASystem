@@ -38,4 +38,10 @@ public interface AdminService {
     //用户列表
     List<UserAndRole> getUser();
 
+    //删除用户
+    boolean delUser(int uid);
+
+    //重置密码
+    int setPassword(int uid);
+
 }

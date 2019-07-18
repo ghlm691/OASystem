@@ -50,7 +50,7 @@ public class LoginController {
 
             subject.login(token);
             if (subject.isAuthenticated()){
-                if (subject.hasRole("teacher") || subject.hasRole("leader") || subject.hasRole("boss") || subject.hasRole("admin")){
+                if (subject.hasRole("teacher") || subject.hasRole("leader") || subject.hasRole("boss")){
 
                     User user = userService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
                     Classes classes = staffService.queryClassById(user.getId());

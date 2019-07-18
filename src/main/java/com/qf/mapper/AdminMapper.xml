@@ -84,5 +84,41 @@
 
     </select>
 
+    <delete id="delUser" parameterType="int">
+
+        delete from users where uid = #{uid}
+
+    </delete>
+
+    <delete id="delCourseByUid" parameterType="int">
+
+        delete from course where uid = #{uid}
+
+    </delete>
+
+    <delete id="delScore" parameterType="int">
+
+        delete from score where uid = #{uid}
+
+    </delete>
+
+    <delete id="delWeekly" parameterType="int">
+
+        delete from weekly where uid = #{uid}
+
+    </delete>
+
+    <delete id="delUserClass" parameterType="int">
+
+        delete from user_class where uid = #{uid}
+
+    </delete>
+
+    <update id="setPassword">
+
+        update users set password = #{password} where uid = #{uid}
+
+    </update>
+
 
 </mapper>

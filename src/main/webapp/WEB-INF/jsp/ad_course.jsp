@@ -25,7 +25,7 @@
                     var top = "<tr><td>课程名</td><td>讲师</td><td>操作</td></tr>";
                     $("#table").append(top);
                     for (var i = 0;i < d.cList.length;i++){
-                        var list = "<tr><td>" + d.cList[i].courseName + "</td><td>" + d.cList[i].tname + "</td><td><button class='delBtn' id='${d.cList[i].id}'>删除</button></td></tr>";
+                        var list = "<tr id='tr${d.cList[i].id}'><td>" + d.cList[i].courseName + "</td><td>" + d.cList[i].tname + "</td><td><button class='delBtn' id='${d.cList[i].id}'>删除</button></td></tr>";
                     }
                 },"json");
             });

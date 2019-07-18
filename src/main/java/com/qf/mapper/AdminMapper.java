@@ -4,6 +4,7 @@ import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import com.qf.pojo.vo.CourseVO;
 import com.qf.pojo.vo.UserVO;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ public interface AdminMapper {
     //增加课程
     int addCourse(CourseVO courseVO);
 
+    //判断是否有课程
     CourseVO isNullCourse(String courseName);
 
     //删除课程
@@ -39,7 +41,7 @@ public interface AdminMapper {
     String getCname(int uid);
 
     //删除账号
-    int delUser(String name);
+    int delUser(int uid);
 
     //删除账号相关周报
     int delWeekly(int uid);
@@ -52,5 +54,17 @@ public interface AdminMapper {
 
     //查询角色
     String getRoleName(int uid);
+
+    //删除老师课程表
+    int delCourseByUid(int uid);
+
+    //删除成绩
+    int delScore(int uid);
+
+    //删除学生班级表
+    int delUserClass(int uid);
+
+    //重置密码
+    int setPassword(@Param(value = "uid") int uid,@Param(value = "password") String password);
 
 }
