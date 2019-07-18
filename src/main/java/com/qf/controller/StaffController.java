@@ -3,11 +3,10 @@ package com.qf.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.mapper.ScoreMapper;
-import com.qf.pojo.Classes;
-import com.qf.pojo.Score;
-import com.qf.pojo.User;
-import com.qf.pojo.Weekly;
+import com.qf.mapper.StudentMapper;
+import com.qf.pojo.*;
 import com.qf.pojo.vo.ScoreVO;
+import com.qf.service.FileService;
 import com.qf.service.ScoreService;
 import com.qf.service.StaffService;
 import com.qf.utils.MD5Utils;
@@ -36,6 +35,10 @@ public class StaffController {
     private ScoreService scoreService;
     @Autowired
     private ScoreMapper scoreMapper;
+    @Autowired
+    private FileService fileService;
+    @Autowired
+    private StudentMapper studentMapper;
 
     @RequestMapping("Staff")
     public String goStaff() {
@@ -62,10 +65,7 @@ public class StaffController {
         return "error";
     }
 
-    @RequestMapping("AddScore")
-    public String goAddScore(){
-        return "add_score";
-    }
+
 
     @RequestMapping("Out")
     public String  out(HttpServletRequest request){
@@ -221,5 +221,49 @@ public class StaffController {
         return modelAndView;
     }
 
+
+    @RequestMapping("goAddScore")
+    public ModelAndView goAddScore(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        HttpSession session = request.getSession();
+        User user = (User)session.getAttribute("user");
+        List<Student> studentList = fileService.getStudentsById(user);
+        System.out.println("student" + studentList.toString());
+        modelAndView.addObject("studentList",studentList);
+        modelAndView.setViewName("add_score");
+        return modelAndView;
+    }
+
+    @RequestMapping("AddScore")
+    public ModelAndView AddScore(Integer uid,Integer score1,Integer score2,Integer score3,Integer score4){
+        ModelAndView modelAndView = new ModelAndView();
+        Integer cid = studentMapper.queryClass(uid);
+        ScoreVO scoreVO1 = new ScoreVO();
+        ScoreVO scoreVO2 = new ScoreVO();
+        ScoreVO scoreVO3 = new ScoreVO();
+        ScoreVO scoreVO4 = new ScoreVO();
+        scoreVO1.setUid(uid);
+        scoreVO1.setCid(cid);
+        scoreVO1.setStage(1);
+        scoreVO1.setScore(score1);
+        scoreVO2.setUid(uid);
+        scoreVO2.setCid(cid);
+        scoreVO2.setStage(2);
+        scoreVO2.setScore(score2);
+        scoreVO3.setUid(uid);
+        scoreVO3.setCid(cid);
+        scoreVO3.setStage(3);
+        scoreVO3.setScore(score3);
+        scoreVO4.setUid(uid);
+        scoreVO4.setCid(cid);
+        scoreVO4.setStage(4);
+        scoreVO4.setScore(score4);
+        staffService.addStuScore(scoreVO1);
+        staffService.addStuScore(scoreVO2);
+        staffService.addStuScore(scoreVO3);
+        staffService.addStuScore(scoreVO4);
+        modelAndView.setViewName("staff");
+        return modelAndView;
+    }
 }
 

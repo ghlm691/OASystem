@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>添加学生成绩</title>
@@ -84,9 +85,18 @@
         </div>
     </nav>
 
-    <form action="" method="post" id="form1">
+    <form action="/AddScore" method="post" id="form1">
         <table cellpadding="30" align="center">
-            <tr><td>学生姓名：</td><td><input type="text" name="name"></td></tr>
+            <tr>
+                <td>学生姓名：</td>
+                <td>
+                    <select name="uid">
+                        <c:forEach items="${studentList}" var="s">
+                            <option value="${s.sid}">${s.sname}</option>
+                        </c:forEach>
+                    </select>
+                </td>
+            </tr>
             <tr><td>第一阶段成绩：</td><td><input type="text" name="score1" id="score1" onblur="checkScoure1()"></td><td width="40%"><span id="wscoureError1" style="color:red;"></span></td></tr>
             <tr><td>第二阶段成绩：</td><td><input type="text" name="score2" id="score2" onblur="checkScoure2()"></td><td><span id="wscoureError2" style="color:red;"></span></td></tr>
             <tr><td>第三阶段成绩：</td><td><input type="text" name="score3" id="score3" onblur="checkScoure3()"></td><td><span id="wscoureError3" style="color:red;"></span></td></tr>

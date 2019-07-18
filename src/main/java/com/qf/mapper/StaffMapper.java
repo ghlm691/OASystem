@@ -2,6 +2,7 @@ package com.qf.mapper;
 
 import com.qf.pojo.Classes;
 import com.qf.pojo.Weekly;
+import com.qf.pojo.vo.ScoreVO;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 
@@ -35,6 +36,9 @@ public interface StaffMapper {
 
     //查询老师所属班级
     Classes queryClassById(Integer uid);
+
+    //添加学生成绩
+    int addStuScore(ScoreVO scoreVO);
 
 
 }

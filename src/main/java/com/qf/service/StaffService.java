@@ -3,6 +3,7 @@ package com.qf.service;
 import com.qf.pojo.Classes;
 import com.qf.pojo.Leave;
 import com.qf.pojo.Weekly;
+import com.qf.pojo.vo.ScoreVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -33,5 +34,7 @@ public interface StaffService {
     //修改密码
     int updatePassword(@Param("uid") Integer uid, @Param("password") String password);
 
+    //添加学生成绩
+    int addStuScore(ScoreVO scoreVO);
 
 }
