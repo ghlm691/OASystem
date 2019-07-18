@@ -7,6 +7,7 @@ import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import com.qf.pojo.UserAndRole;
 import com.qf.pojo.vo.CourseVO;
+import com.qf.pojo.vo.RoleVO;
 import com.qf.pojo.vo.UserVO;
 import com.qf.service.AdminService;
 import com.qf.utils.HanyuPinyinHelp;
@@ -192,6 +193,36 @@ public class AdminServiceImpl implements AdminService {
 
     public UserVO getTidByName(String name){
         return adminMapper.getTidByName(name);
+    }
+
+    @Override
+    public List<RoleVO> getRole() {
+        return adminMapper.getRole();
+    }
+
+    @Override
+    public boolean addRole(String roleName) {
+        RoleVO roleVO = adminMapper.checkRole(roleName);
+        if (roleVO != null){
+            return false;
+        }
+        adminMapper.addRole(roleName);
+        return true;
+    }
+
+    @Override
+    public int delRole(int rid) {
+        return adminMapper.delRole(rid);
+    }
+
+    @Override
+    public void getClasses() {
+
+    }
+
+    @Override
+    public int delClass(int cid) {
+        return 0;
     }
 
 

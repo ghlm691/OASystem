@@ -1,10 +1,8 @@
 package com.qf.service;
 
-import com.qf.pojo.Course;
-import com.qf.pojo.Student;
-import com.qf.pojo.User;
-import com.qf.pojo.UserAndRole;
+import com.qf.pojo.*;
 import com.qf.pojo.vo.CourseVO;
+import com.qf.pojo.vo.RoleVO;
 import com.qf.pojo.vo.UserVO;
 
 import java.util.List;
@@ -50,4 +48,15 @@ public interface AdminService {
     void addTeacher(int tid);
 
     UserVO getTidByName(String name);
+
+    //查询角色
+    List<RoleVO> getRole();
+
+    boolean addRole(String roleName);
+
+    int delRole(int rid);
+
+    void getClasses();
+
+    int delClass(int cid);
 }

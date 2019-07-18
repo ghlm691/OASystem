@@ -4,6 +4,7 @@ import com.qf.pojo.Course;
 import com.qf.pojo.Student;
 import com.qf.pojo.UserAndRole;
 import com.qf.pojo.vo.CourseVO;
+import com.qf.pojo.vo.RoleVO;
 import com.qf.pojo.vo.UserVO;
 import com.qf.service.AdminService;
 import net.sf.json.JSONObject;
@@ -53,6 +54,9 @@ public class AdminController {
     @RequestMapping("admin_role")
     public ModelAndView toRole(){
         ModelAndView modelAndView = new ModelAndView();
+        List<RoleVO> rList = adminService.getRole();
+        modelAndView.addObject("rList",rList);
+        modelAndView.setViewName("ad_role");
         return modelAndView;
     }
 
@@ -60,6 +64,7 @@ public class AdminController {
     @RequestMapping("admin_show")
     public ModelAndView toShow(){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("ad_show");
         return modelAndView;
     }
 
@@ -67,6 +72,8 @@ public class AdminController {
     @RequestMapping("admin_Class")
     public ModelAndView toClass(){
         ModelAndView modelAndView = new ModelAndView();
+        adminService.getClasses();
+        modelAndView.setViewName("ad_class");
         return modelAndView;
     }
 
@@ -77,6 +84,27 @@ public class AdminController {
         return modelAndView;
     }
 
+    //删除角色
+    @RequestMapping("delRole")
+    public ModelAndView delRole(int rid){
+        ModelAndView modelAndView = new ModelAndView();
+        adminService.delRole(rid);
+        List<RoleVO> rList = adminService.getRole();
+        modelAndView.addObject("rList",rList);
+        modelAndView.setViewName("ad_role");
+        return modelAndView;
+    }
+
+    //添加角色
+    @RequestMapping("addRole")
+    public ModelAndView addRole(String roleName){
+        ModelAndView modelAndView = new ModelAndView();
+        adminService.addRole(roleName);
+        List<RoleVO> rList = adminService.getRole();
+        modelAndView.addObject("rList",rList);
+        modelAndView.setViewName("ad_role");
+        return modelAndView;
+    }
 
 
 
@@ -207,9 +235,31 @@ public class AdminController {
         return json.toString();
     }
 
+    //查询员工
+    @RequestMapping(value = "getUser",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String getUser(String name){
+        JSONObject json = new JSONObject();
+        List<UserAndRole> user = adminService.getUser();
+        UserAndRole userAndRole = new UserAndRole();
+        for (UserAndRole u:user){
+            if(u.getName().equals(name)){
+                userAndRole.setId(u.getId());
+                userAndRole.setUsername(u.getUsername());
+                userAndRole.setName(name);
+                userAndRole.setRname(u.getRname());
+            }
+        }
+        json.element("user",userAndRole);
+        return json.toString();
+    }
 
-
-
-
+    @RequestMapping(value = "delClass",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String delClass(int cid){
+        JSONObject json = new JSONObject();
+        adminService.delClass(cid);
+        return json.toString();
+    }
 
 }

@@ -35,7 +35,7 @@
                 var id = $(this).attr("id");
                 $.post("/delCourse",{id:id},function (d) {
                     alert(d.message);
-                    $("#tr"+id).remove();
+                    $("#tr"+d.del).remove();
                 },"json");
             });
         });

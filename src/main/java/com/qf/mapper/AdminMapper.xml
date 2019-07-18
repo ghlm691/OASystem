@@ -143,4 +143,29 @@
 
     </select>
 
+    <select id="getRole" resultType="roleVO">
+
+        select * from role
+
+    </select>
+
+    <insert id="addRole" parameterType="string">
+
+        insert into role (rname) values (#{rname});
+
+    </insert>
+
+    <select id="checkRole" parameterType="string" resultType="roleVO">
+
+        select * from role where rname = #{rname}
+
+    </select>
+
+    <delete id="delRole" parameterType="int">
+
+        delete from role where rid = #{rid}
+
+    </delete>
+
+
 </mapper>
