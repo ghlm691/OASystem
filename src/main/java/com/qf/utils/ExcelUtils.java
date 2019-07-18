@@ -1,6 +1,8 @@
 package com.qf.utils;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +11,19 @@ import com.qf.pojo.Student;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ExcelUtils {
+
+
 
 	//解析员工
 	public static List<Student> parseExcel(InputStream is) {
@@ -28,10 +41,10 @@ public class ExcelUtils {
                 Student student=new Student();
 
                 student.setSid((int) hr.getCell(0).getNumericCellValue());
-                student.setSname(hr.getCell(3).getStringCellValue());
-                student.setAge(hr.getCell(4).getNumericCellValue()+"");
-                student.setSex(hr.getCell(5).getStringCellValue());
-                student.setCname(hr.getCell(6).getStringCellValue());
+                student.setSname(hr.getCell(1).getStringCellValue());
+                student.setAge(hr.getCell(2).getNumericCellValue()+"");
+                student.setSex(hr.getCell(3).getStringCellValue());
+                student.setCname(hr.getCell(4).getStringCellValue());
 
                 /*staff.setNo(hr.getCell(0).getStringCellValue());
 				staff.setName(hr.getCell(1).getStringCellValue());
@@ -52,6 +65,54 @@ public class ExcelUtils {
 		} 
 		return list;
 	}
+
+	/**
+	 * 信息导出
+	 */
+	public static void export(OutputStream outputStream, List<Student> students) throws IOException {
+
+
+		//在内存中建立一个excel
+		HSSFWorkbook hssfWorkbook = new HSSFWorkbook();
+		//创建工作簿
+		HSSFSheet sheet = hssfWorkbook.createSheet("学生信息");
+		//创建标题行
+		HSSFRow titleRow = sheet.createRow(0);
+		titleRow.createCell(0).setCellValue("sid");
+		titleRow.createCell(1).setCellValue("sname");
+		titleRow.createCell(2).setCellValue("age");
+		titleRow.createCell(3).setCellValue("sex");
+		titleRow.createCell(4).setCellValue("cname");
+
+
+		for (Student student : students) {
+
+			int lastRowNum = sheet.getLastRowNum();
+			HSSFRow row = sheet.createRow(lastRowNum + 1);
+			row.createCell(0).setCellValue(student.getSid());
+			row.createCell(1).setCellValue(student.getSname());
+			row.createCell(2).setCellValue(student.getAge());
+			row.createCell(3).setCellValue(student.getSex());
+			row.createCell(4).setCellValue(student.getCname());
+
+		}
+
+		//创建文件名
+		String fileName = "学生导出.xls";
+		//获取mimeType
+		WebApplicationContext webApplicationContext = ContextLoader.getCurrentWebApplicationContext();
+		ServletContext servletContext = webApplicationContext.getServletContext();
+		String mimeType = servletContext.getMimeType(fileName);
+
+		HttpServletResponse resp = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
+		resp.setContentType(mimeType);
+		resp.setHeader("Content-Disposition","attachment;filename="+fileName);
+		hssfWorkbook.write(outputStream);
+		hssfWorkbook.close();
+
+
+	}
+
 	
 	//解析学员
 	/*public static List<Student> parseExcelS(InputStream is) {

@@ -1,6 +1,9 @@
 package com.qf.service;
 
+import com.qf.pojo.User;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.OutputStream;
 
 /**
  * author: liu
@@ -11,5 +14,8 @@ public interface FileService {
 
    //文件上传
     int uploadFile(MultipartFile file, String path);
+
+    //信息导出
+    void exportFile(User user, OutputStream outputStream);
 
 }
