@@ -2,6 +2,7 @@ package com.qf.service;
 
 import com.qf.pojo.*;
 import com.qf.pojo.vo.CourseVO;
+import com.qf.pojo.vo.PermissionVO;
 import com.qf.pojo.vo.RoleVO;
 import com.qf.pojo.vo.UserVO;
 
@@ -56,7 +57,11 @@ public interface AdminService {
 
     int delRole(int rid);
 
-    void getClasses();
+    List<Classes> getClasses();
 
-    int delClass(int cid);
+    boolean delClass(int cid);
+
+    List<PermissionVO> getPermission(int uid);
+
+    void delPermission(int pid);
 }

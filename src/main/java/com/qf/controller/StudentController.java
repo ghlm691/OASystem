@@ -127,6 +127,16 @@ public class StudentController {
         return modelAndView;
     }
 
+    //删除周报
+    @RequestMapping("delWeekly")
+    public ModelAndView delWeekly(int wid,int sid){
+        ModelAndView modelAndView = new ModelAndView();
+        studentService.delWeekly(wid);
+        List<Weekly> weeklyList = studentService.queryWeeklyForStudent(sid);
+        modelAndView.addObject("weeklyList",weeklyList);
+        modelAndView.addObject("sid",sid);
+        return modelAndView;
+    }
 
 
 }

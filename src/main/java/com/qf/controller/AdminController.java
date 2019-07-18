@@ -1,9 +1,11 @@
 package com.qf.controller;
 
+import com.qf.pojo.Classes;
 import com.qf.pojo.Course;
-import com.qf.pojo.Student;
+import com.qf.pojo.User;
 import com.qf.pojo.UserAndRole;
 import com.qf.pojo.vo.CourseVO;
+import com.qf.pojo.vo.PermissionVO;
 import com.qf.pojo.vo.RoleVO;
 import com.qf.pojo.vo.UserVO;
 import com.qf.service.AdminService;
@@ -72,7 +74,8 @@ public class AdminController {
     @RequestMapping("admin_Class")
     public ModelAndView toClass(){
         ModelAndView modelAndView = new ModelAndView();
-        adminService.getClasses();
+        List<Classes> list = adminService.getClasses();
+        modelAndView.addObject("cList",list);
         modelAndView.setViewName("ad_class");
         return modelAndView;
     }
@@ -81,6 +84,7 @@ public class AdminController {
     @RequestMapping("admin_permission")
     public ModelAndView toPermission(){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("ad_permission");
         return modelAndView;
     }
 
@@ -103,6 +107,19 @@ public class AdminController {
         List<RoleVO> rList = adminService.getRole();
         modelAndView.addObject("rList",rList);
         modelAndView.setViewName("ad_role");
+        return modelAndView;
+    }
+
+    //查询账户对应权限
+    @RequestMapping("getRole")
+    public ModelAndView getRole(String name){
+        ModelAndView modelAndView = new ModelAndView();
+        User user = adminService.getUserByName(name);
+        int id = user.getId();
+        List<PermissionVO> pList = adminService.getPermission(id);
+        modelAndView.addObject("pList",pList);
+        modelAndView.addObject("user",user);
+        modelAndView.setViewName("ad_permission");
         return modelAndView;
     }
 
@@ -258,7 +275,21 @@ public class AdminController {
     @ResponseBody
     public String delClass(int cid){
         JSONObject json = new JSONObject();
-        adminService.delClass(cid);
+        if(adminService.delClass(cid)){
+            json.element("message","删除成功");
+            json.element("cid",cid);
+        }else{
+            json.element("message","删除失败");
+        }
+        return json.toString();
+    }
+
+    @RequestMapping(value = "delPermission",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String delPermission(int pid){
+        JSONObject json = new JSONObject();
+        adminService.delPermission(pid);
+        json.element("message","删除成功");
         return json.toString();
     }
 

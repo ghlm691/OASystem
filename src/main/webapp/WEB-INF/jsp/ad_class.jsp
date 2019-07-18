@@ -19,7 +19,7 @@
                 var cid = $(this).attr("id");
                 $.get("/delClass",{cid:cid},function (d) {
                     alert(d.message);
-                    $("tr"+cid).remove();
+                    $("tr"+d.cid).remove();
                 },"json");
             });
         });

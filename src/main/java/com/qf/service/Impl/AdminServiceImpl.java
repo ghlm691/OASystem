@@ -2,13 +2,8 @@ package com.qf.service.Impl;
 
 import com.qf.mapper.AdminMapper;
 import com.qf.mapper.ScoreMapper;
-import com.qf.pojo.Course;
-import com.qf.pojo.Student;
-import com.qf.pojo.User;
-import com.qf.pojo.UserAndRole;
-import com.qf.pojo.vo.CourseVO;
-import com.qf.pojo.vo.RoleVO;
-import com.qf.pojo.vo.UserVO;
+import com.qf.pojo.*;
+import com.qf.pojo.vo.*;
 import com.qf.service.AdminService;
 import com.qf.utils.HanyuPinyinHelp;
 import com.qf.utils.MD5Utils;
@@ -216,13 +211,41 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void getClasses() {
-
+    public List<Classes> getClasses() {
+        List<Classes> list = new ArrayList<>();
+        List<ClassesVO> classes = adminMapper.getClasses();
+        for(ClassesVO cVO : classes){
+            Classes c = new Classes();
+            c.setCid(cVO.getCid());
+            c.setCname(cVO.getCname());
+            c.setCourse(adminMapper.getCourseByCid(cVO.getCid()));
+            c.setTname(adminMapper.getTnameByCid(cVO.getCid()));
+            list.add(c);
+        }
+        return list;
     }
 
     @Override
-    public int delClass(int cid) {
-        return 0;
+    public boolean delClass(int cid) {
+        List<Integer> sid = scoreMapper.getSidByCid(cid);
+        if (sid.size() != 0){
+            //有学生
+            return false;
+        }
+        adminMapper.delClass(cid);
+        adminMapper.delClassCourse(cid);
+        return true;
+    }
+
+    public List<PermissionVO> getPermission(int uid){
+        List<PermissionVO> pList = adminMapper.getPermission(uid);
+        return pList;
+    }
+
+    @Override
+    public void delPermission(int pid) {
+        adminMapper.delPermission(pid);
+        adminMapper.delPermissionRole(pid);
     }
 
 

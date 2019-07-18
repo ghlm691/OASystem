@@ -167,5 +167,52 @@
 
     </delete>
 
+    <select id="getClasses" resultType="classesVO">
+
+        select * from classes
+
+    </select>
+
+    <select id="getTnameByCid" parameterType="int" resultType="string">
+
+        select u.name from class_course as cc , course as c , users as u where cc.courseid = c.courseid and c.uid = u.uid and cc.cid = #{cid}
+
+    </select>
+
+    <select id="getCourseByCid" parameterType="int" resultType="string">
+
+        select c.coursename from class_course as cc , course as c where cc.courseid = c.courseid and cid = #{cid}
+
+    </select>
+
+    <delete id="delClass" parameterType="int">
+
+        delete from classes where cid = #{cid}
+
+    </delete>
+
+    <delete id="delClassCourse" parameterType="int">
+
+        delete from class_course wher cid = #{cid}
+
+    </delete>
+
+    <select id="getPermission" parameterType="int" resultType="permissionVO">
+
+        select p.* from permission as p , role_permission as rp , user_role as ur where p.pid = rp.pid and rp.rid = ur.rid and ur.uid = #{uid}
+
+    </select>
+
+    <delete id="delPermission" parameterType="int">
+
+        delete from permission where pid = #{pid}
+
+    </delete>
+
+    <delete id="delPermissionRole" parameterType="int">
+
+        delete from role_permission where pid = #{pid}
+
+    </delete>
 
 </mapper>

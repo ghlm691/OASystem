@@ -44,6 +44,9 @@
                 <td>暂未打分</td>
             </c:if>
             <td>${w.stageName}</td>
+            <c:if test="${w.wscore eq 0}">
+                <td><a href="/delWeekly?wid=${w.wid}&sid=${sid}">删除</a></td>
+            </c:if>
         </tr>
         </c:forEach>
 

@@ -1,11 +1,10 @@
 package com.qf.mapper;
 
+import com.qf.pojo.Classes;
 import com.qf.pojo.Role;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
-import com.qf.pojo.vo.CourseVO;
-import com.qf.pojo.vo.RoleVO;
-import com.qf.pojo.vo.UserVO;
+import com.qf.pojo.vo.*;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -86,6 +85,20 @@ public interface AdminMapper {
 
     RoleVO checkRole(String rname);
 
-
     int delRole(int rid);
+
+    List<ClassesVO> getClasses();
+
+    String getTnameByCid(int cid);
+
+    String getCourseByCid(int cid);
+
+    int delClass(int cid);
+    int delClassCourse(int cid);
+
+    List<PermissionVO> getPermission(int uid);
+
+    int delPermission(int pid);
+
+    int delPermissionRole(int pid);
 }
