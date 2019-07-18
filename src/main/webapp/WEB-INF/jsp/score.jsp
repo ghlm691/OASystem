@@ -18,7 +18,6 @@
         $(function(){
             $(".firstSelect").change(function(){
                 var cid =$('#firstSelect option:selected').val();
-                //var please = "--请选择--";
                 $.post("/changeScore",{cid:cid},function(d){
                     var tables = $("#table tr");
                     tables.remove();
@@ -28,14 +27,6 @@
                         var list = "<tr><td>" + d.sList[i].id + "</td><td>" + d.sList[i].name + "</td><td>" + d.sList[i].scoreList[0] + "</td><td>" + d.sList[i].scoreList[1] + "</td><td>" + d.sList[i].scoreList[2] + "</td><td>" + d.sList[i].scoreList[3] + "</td><td><a href=''>查看走势图</a></td></tr>";
                         $("#table").append(list);
                     }
-                    // var options= $("#secondSelect option");
-                    // options.remove();
-                    // var o ="<option value='0'>" + please + "</option>";
-                    // $("#secondSelect").append(o);
-                    // for(var i = 0;i<d.second.length;i++){
-                    //     var option = "<option value=" + d.second[i].id + ">" + d.second[i].name + "</option>";
-                    //     $("#secondSelect").append(option);
-                    //}
                 },"json");
             });
         });

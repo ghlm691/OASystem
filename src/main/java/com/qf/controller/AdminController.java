@@ -138,12 +138,14 @@ public class AdminController {
         if(adminService.addUser(name)){
             //添加成功
             json.element("message","添加成功");
+            adminService.addUser(name);
         }else{
             //添加失败
             json.element("message","已存在该用户");
         }
         List<UserAndRole> users = adminService.getUser();//重新获取用户列表
-        json.element("users",users);
+        System.out.println("users = " + users.toString());
+        json.element("user",users);
         return json.toString();
     }
 
@@ -152,6 +154,7 @@ public class AdminController {
     @ResponseBody
     public String delUser(int uid){
         JSONObject json = new JSONObject();
+        System.out.println(uid);
         if(adminService.delUser(uid)){
             //删除成功
             json.element("message","删除成功");

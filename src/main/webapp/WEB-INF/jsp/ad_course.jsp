@@ -46,7 +46,7 @@
             </select>
             <button id="addBtn">添加</button>
     </div>
-    <table>
+    <table id="table">
         <tr>
             <td>课程名</td>
             <td>讲师</td>

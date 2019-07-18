@@ -18,35 +18,30 @@
             $("#addBtn").click(function(){
                 var name = $("#addUser").val();//需要添加的姓名
                 var role = $("#role option:selected").val();
-                $.post("/addCourse",{role:role,name:name},function(d){
+                $.post("/addUser",{role:role,name:name},function(d){
                     alert(d.message);
                     var tables = $("#table tr");
                     tables.remove();
                     var top = "<tr><td>姓名</td><td>角色</td><td>操作</td></tr>";
                     $("#table").append(top);
-                    for (var i = 0;i < d.users.length;i++){
-                        var list = "<tr id='tr${d.users[i].id}'><td>" + d.users[i].name + "</td><td>" + d.users[i].rname + "</td><td><button class='updateBtn' id='${d.users[i].id}'>重置密码</button><button class='delBtn' id='${d.users[i].id}'>删除</button></td></tr>";
+                    for (var i = 0;i < d.user.length;i++){
+                        alert(d.user[i].id);
+                        var list = "<tr id='tr" + d.user[i].id + "'><td>" + d.user[i].name + "</td><td>" + d.user[i].rname + "</td><td><button class='updateBtn' id='" + d.user[i].id + "'>重置密码</button> <button class='delBtn' id='" + d.user[i].id + "'>删除</button></td></tr>";
                         $("#table").append(list);
                     }
                 },"json");
             });
             //删除用户
-            $(".delBtn").click(function () {
+            $("body").on("click",".delBtn",function () {
                 var uid = $(this).attr("id");
+                alert(uid);
                 $.get("/delUser",{uid:uid},function (d) {
                     alert(d.message);
-                    var tables = $("#table tr");
-                    tables.remove();
-                    var top = "<tr><td>姓名</td><td>角色</td><td>操作</td></tr>";
-                    $("#table").append(top);
-                    for (var i = 0;i < d.users.length;i++){
-                        var list = "<tr id='tr${d.users[i].id}'><td>" + d.users[i].name + "</td><td>" + d.users[i].rname + "</td><td><button class='updateBtn' id='${d.users[i].id}'>重置密码</button><button class='delBtn' id='${d.users[i].id}'>删除</button></td></tr>";
-                        $("#table").append(list);
-                    }
+                    $("#tr"+uid).remove();
                 },"json");
             });
             //重置密码
-            $(".updateBtn").click(function () {
+            $("body").on("click",".updateBtn",function () {
                 var uid = $(this).attr("id");
                 $.post("/updatePwd",{uid:uid},function (d) {
                     alert(d.message);
@@ -66,7 +61,7 @@
             </select>
             <button id="addBtn">添加</button>
     </div>
-    <table>
+    <table id="table">
         <tr>
             <td>姓名</td>
             <td>角色</td>
