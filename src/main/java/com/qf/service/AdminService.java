@@ -18,7 +18,7 @@ public interface AdminService {
     boolean isNullCourse(String courseName);
 
     //删除课程
-    int delCourse(int cid);
+    boolean delCourse(int cid);
 
     //查询课程列表
     List<Course> queryCourse();
@@ -44,4 +44,10 @@ public interface AdminService {
     //重置密码
     int setPassword(int uid);
 
+    //查看讲师是否有课程
+    boolean checkTeacher(int tid);
+
+    void addTeacher(int tid);
+
+    UserVO getTidByName(String name);
 }

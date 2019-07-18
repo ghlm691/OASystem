@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -26,12 +27,16 @@
                     $("#table").append(top);
                     for (var i = 0;i < d.cList.length;i++){
                         var list = "<tr id='tr${d.cList[i].id}'><td>" + d.cList[i].courseName + "</td><td>" + d.cList[i].tname + "</td><td><button class='delBtn' id='${d.cList[i].id}'>删除</button></td></tr>";
+                        $("#table").append(list);
                     }
                 },"json");
             });
-            $(".delBtn").click(function () {
+            $("body").on("click",".delBtn",function () {
                 var id = $(this).attr("id");
-                alert("该班还有学生,请勿瞎点！");
+                $.post("/delCourse",{id:id},function (d) {
+                    alert(d.message);
+                    $("tr"+d.del).remove();
+                },"json");
             });
         });
     </script>

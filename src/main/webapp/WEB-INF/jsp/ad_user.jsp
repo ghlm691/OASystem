@@ -25,7 +25,6 @@
                     var top = "<tr><td>姓名</td><td>角色</td><td>操作</td></tr>";
                     $("#table").append(top);
                     for (var i = 0;i < d.user.length;i++){
-                        alert(d.user[i].id);
                         var list = "<tr id='tr" + d.user[i].id + "'><td>" + d.user[i].name + "</td><td>" + d.user[i].rname + "</td><td><button class='updateBtn' id='" + d.user[i].id + "'>重置密码</button> <button class='delBtn' id='" + d.user[i].id + "'>删除</button></td></tr>";
                         $("#table").append(list);
                     }
@@ -34,7 +33,6 @@
             //删除用户
             $("body").on("click",".delBtn",function () {
                 var uid = $(this).attr("id");
-                alert(uid);
                 $.get("/delUser",{uid:uid},function (d) {
                     alert(d.message);
                     $("#tr"+uid).remove();

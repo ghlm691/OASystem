@@ -46,8 +46,15 @@ public class AdminServiceImpl implements AdminService {
         return true;//不存在
     }
 
-    public int delCourse(int cid) {
-        return adminMapper.delCourse(cid);
+    public boolean delCourse(int cid) {
+        //查询是否还有班级学习本课程
+        List<Integer> list = adminMapper.isNullClass(cid);
+        if(list.size() != 0){
+            //无法删除
+            return false;
+        }
+        adminMapper.delCourse(cid);
+        return true;
     }
 
     public List<Course> queryCourse() {
@@ -166,6 +173,25 @@ public class AdminServiceImpl implements AdminService {
             e.printStackTrace();
         }
         return i;
+    }
+
+    @Override
+    public boolean checkTeacher(int tid) {
+        CourseVO courseVO = adminMapper.checkTeacher(tid);
+        if (courseVO != null){
+            //已有课程
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void addTeacher(int tid) {
+        adminMapper.addTeacher(tid);
+    }
+
+    public UserVO getTidByName(String name){
+        return adminMapper.getTidByName(name);
     }
 
 

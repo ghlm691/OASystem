@@ -67,4 +67,14 @@ public interface AdminMapper {
     //重置密码
     int setPassword(@Param(value = "uid") int uid,@Param(value = "password") String password);
 
+    //查看讲师是否有课程
+    CourseVO checkTeacher(int uid);
+
+    //判断是否有学生学该课程
+    List<Integer> isNullClass(int cid);
+
+    //给用户配置讲师角色
+    int addTeacher(int uid);
+
+    UserVO getTidByName(String name);
 }

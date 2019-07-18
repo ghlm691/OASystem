@@ -111,6 +111,13 @@ public class AdminController {
     @ResponseBody
     public String addCourse(int tid,String cname){
         JSONObject json = new JSONObject();
+        if(adminService.checkTeacher(tid)){
+            //讲师已有课程
+            json.element("message","该讲师已有课程");
+            List<Course> cList = adminService.queryCourse();
+            json.element("cList",cList);
+            return json.toString();
+        }
         //添加课程
         if(adminService.isNullCourse(cname)){
             //不存在
@@ -138,7 +145,14 @@ public class AdminController {
         if(adminService.addUser(name)){
             //添加成功
             json.element("message","添加成功");
-            adminService.addUser(name);
+            if (role == 4){
+                //讲师
+                //查询ID
+                int tid = adminService.getTidByName(name).getUid();
+                System.out.println("-------------------------------------------------------------------");
+                //加入角色表
+                adminService.addTeacher(tid);
+            }
         }else{
             //添加失败
             json.element("message","已存在该用户");
@@ -173,6 +187,23 @@ public class AdminController {
         JSONObject json = new JSONObject();
         adminService.setPassword(uid);
         json.element("message","密码为123456");
+        return json.toString();
+    }
+
+    //删除课程
+    @RequestMapping(value = "delCourse",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String delCourse(int id){
+        JSONObject json = new JSONObject();
+        System.out.println("12312312313212132132");
+        //是否有班级学本课程
+        if(adminService.delCourse(id)){
+            //可以删除
+            json.element("message","删除成功");
+            json.element("del",id);
+        }else{
+            json.element("message","删除失败");
+        }
         return json.toString();
     }
 
