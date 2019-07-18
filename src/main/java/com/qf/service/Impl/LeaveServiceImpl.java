@@ -48,9 +48,9 @@ public class LeaveServiceImpl implements LeaveService {
         map.put("employee", leave.getUser().getName());
         map.put("boss", leaveMapper.queryBoss());
 
-        runtimeService.startProcessInstanceByKey("leave", leave.getLid()+"", map);
+        ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("leave", leave.getLid() + "", map);
 
-        Task task = taskService.createTaskQuery().taskAssignee(leave.getUser().getName()).singleResult();
+        Task task = taskService.createTaskQuery().taskAssignee(leave.getUser().getName()).processInstanceId(processInstance.getId()).singleResult();
 
         taskService.complete(task.getId());
 
