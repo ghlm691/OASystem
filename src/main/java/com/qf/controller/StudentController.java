@@ -3,13 +3,14 @@ package com.qf.controller;
 import com.qf.pojo.Student;
 import com.qf.pojo.Weekly;
 import com.qf.pojo.vo.WeeklyVO;
-import com.qf.service.AdminService;
 import com.qf.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +38,10 @@ public class StudentController {
 
     //退出
     @RequestMapping("stu_logout")
-    public String logout(){
+    public String logout(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        session.removeAttribute("oldPassword");
         return "login";
     }
 

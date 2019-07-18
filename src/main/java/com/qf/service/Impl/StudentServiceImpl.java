@@ -17,7 +17,6 @@ import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -50,7 +49,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void studentLeave(int sid) {
+    public void studentLeave(Integer sid) {
 
     }
 
@@ -61,12 +60,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     //删除周报
-    public int delWeekly(int wid) {
+    public int delWeekly(Integer wid) {
         return studentMapper.delWeekly(wid);
     }
 
     //查询周报
-    public List<Weekly> queryWeeklyForStudent(int sid) {
+    public List<Weekly> queryWeeklyForStudent(Integer sid) {
         List<WeeklyVO> weeklyVOList = studentMapper.queryWeeklyForStudent(sid);
         List<Weekly> weeklyList = new ArrayList<Weekly>();
         for (WeeklyVO w : weeklyVOList){
@@ -103,7 +102,7 @@ public class StudentServiceImpl implements StudentService {
         return student;
     }
 
-    public Student getStudentBySid(int sid) {
+    public Student getStudentBySid(Integer sid) {
         Student student = new Student();
         UserVO userVO = studentMapper.getStudent(sid);
         String cname = adminMapper.getCname(sid);
@@ -144,7 +143,7 @@ public class StudentServiceImpl implements StudentService {
         return i;
     }
 
-    public int updatePassword(int sid, String password) {
+    public int updatePassword(Integer sid, String password) {
         int i = 0;
         try {
             i = studentMapper.updatePassword(sid, MD5Utils.getMD5Str(password));

@@ -17,12 +17,18 @@
     <script type="text/javascript">
         var flag=true;
         function checkP1(){
+            var oldPassword1 = document.getElementById("oldPassword1").value;
             var password1 = document.getElementById("password1").value;
             if(password1.length < 6){
                 document.getElementById("pwdError1").innerHTML="密码必须6位以上";
                 document.getElementById("password1").focus();
                 flag=false;
-            }else{
+            }else if(password1 == oldPassword1){
+                document.getElementById("pwdError1").innerHTML="不能与原密码相同";
+                document.getElementById("password1").focus();
+                flag=false;
+            }
+            else{
                 flag=true;
                 document.getElementById("pwdError1").innerHTML="";
             }

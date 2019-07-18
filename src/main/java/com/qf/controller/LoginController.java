@@ -1,6 +1,5 @@
 package com.qf.controller;
 
-import com.qf.pojo.Classes;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import com.qf.pojo.vo.UserVO;
@@ -53,8 +52,8 @@ public class LoginController {
                 if (subject.hasRole("teacher") || subject.hasRole("leader") || subject.hasRole("boss")){
 
                     User user = userService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
-                    Classes classes = staffService.queryClassById(user.getId());
-                    session.setAttribute("classes",classes);
+                    /*Classes classes = staffService.queryClassById(user.getId());
+                    session.setAttribute("classes",classes);*/
                     session.setAttribute("user", user);
                     session.setAttribute("oldPassword",userVO.getPassword());
 

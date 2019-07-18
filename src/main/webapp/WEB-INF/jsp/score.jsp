@@ -24,7 +24,16 @@
                     var top ="<tr><td>编号</td><td>学生姓名</td><td>第一阶段</td><td>第二阶段</td><td>第三阶段</td><td>第四阶段</td><td>操作</td></tr>";
                     $("#table").append(top);
                     for (var i = 0;i < d.sList.length;i++){
-                        var list = "<tr><td>" + d.sList[i].id + "</td><td>" + d.sList[i].name + "</td><td>" + d.sList[i].scoreList[0] + "</td><td>" + d.sList[i].scoreList[1] + "</td><td>" + d.sList[i].scoreList[2] + "</td><td>" + d.sList[i].scoreList[3] + "</td><td><a href=''>查看走势图</a></td></tr>";
+                        var list = "<tr>" +
+                            "<td>" + d.sList[i].id + "</td>" +
+                            "<td>" + d.sList[i].name + "</td>" +
+                            "<td>" + d.sList[i].scoreList[0] + "</td>" +
+                            "<td>" + d.sList[i].scoreList[1] + "</td>" +
+                            "<td>" + d.sList[i].scoreList[2] + "</td>" +
+                            "<td>" + d.sList[i].scoreList[3] + "</td>" +
+                            "<td><a href='StudentScore?sid=" + d.sList[i].id + "' class=\"btn btn-primary\">查看走势图</a>" +
+                            "</td>" +
+                            "</tr>";
                         $("#table").append(list);
                     }
                 },"json");
@@ -36,7 +45,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="navbar-brand">成绩管理页面</a>|
-        <a class="btn btn-primary" href="">添加学生成绩</a>|
+        <a class="btn btn-primary" href="/AddScore">添加学生成绩</a>|
         <a class="btn btn-primary" >
             <select name="classes" class="firstSelect" id="firstSelect">
             <c:forEach items="${classList}" var="c">
@@ -76,7 +85,7 @@
                             <td>${slist}</td>
                         </c:forEach>
                         <td>
-                            <a href="">查看走势图</a>
+                            <a href="StudentScore?sid=${s.id}" class="btn btn-primary">查看走势图</a>
                         </td>
                     </tr>
                 </c:forEach>

@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>查看周报详情</title>
@@ -19,7 +20,7 @@
         <a class="navbar-brand">查看周报详情</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="btn btn-primary" href="/AllWeekly?method=All">返回</a>
+                <a class="btn btn-primary" href="/AllWeekly?method=All&uid=${sessionScope.user.id}">返回</a>
             </div>
         </div>
     </nav>
@@ -27,15 +28,17 @@
         <table class="table table-hover">
             <tr><td>周报题目：</td><td>${weekly.wtitle}</td></tr>
             <tr><td>周报内容：</td><td><span>${weekly.wcontent}</span></td></tr>
-            <tr><td>周报分数：</td><td>${weekly.wscore}</td></tr>
+            <tr>
+                <td>周报分数：</td><td>${weekly.wscore}</td></tr>
             <tr><td>周报阶段：</td><td>${weekly.stageName}</td></tr>
             <tr><td>发布人：${weekly.uname}</td><td>发布时间：${weekly.wtime}</td></tr>
+            <shiro:lacksRole name="leader">
             <tr><td width="50%"><input type="text" name="wscore" id="wscoure" onblur="checkScoure()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="wscoureError" style="color:red;"></span></td><td></td></tr>
             <tr><td><input type="button" value="打分" class="btn btn-primary" onclick="subForm()"></td><td></td></tr>
-            <shiro:lacksRole name="leader">
-                <tr><td><input type="text" name="wscore" id="wscoure"></td><td><span id="wscoureError"></span></td></tr>
-                <tr><td><input type="submit" value="打分" class="btn btn-primary" onblur="checkScoure()"></td><td></td></tr>
             </shiro:lacksRole>
+               <%-- <tr><td><input type="text" name="wscore" id="wscoure"></td><td><span id="wscoureError"></span></td></tr>--%>
+                <%--<tr><td><input type="submit" value="打分" class="btn btn-primary" onblur="checkScoure()"></td><td></td></tr>--%>
+
 
         </table>
     </form>

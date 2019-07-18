@@ -19,7 +19,7 @@ public interface StudentMapper {
     int addWeekly(WeeklyVO weeklyVO);
 
     //删除周报(已打分无法删除)
-    int delWeekly(int wid);
+    int delWeekly(Integer wid);
 
     //展示周报
     List<WeeklyVO> queryWeeklyForStudent(int sid);
@@ -27,7 +27,7 @@ public interface StudentMapper {
     UserVO getStudentByUnamePwd(@Param(value = "uname") String username,@Param(value = "password") String password);
 
     //查询阶段
-    String getStage(int stage);
+    String getStage(Integer stage);
 
     /*请假相关*/
     //添加请假信息
@@ -46,6 +46,6 @@ public interface StudentMapper {
     String queryBoss();
 
     //修改密码
-    int updatePassword(@Param(value = "uid") int uid,@Param(value = "password") String password);
+    int updatePassword(@Param(value = "uid") Integer uid,@Param(value = "password") String password);
 
 }

@@ -31,7 +31,7 @@ public class ScoreServiceImpl implements ScoreService {
 
     //根据教师id查询班级
     @Override
-    public List<Classes> getClassByTid(int uid) {
+    public List<Classes> getClassByTid(Integer uid) {
         List<Integer> cid = scoreMapper.getClassByTid(uid);
         List<Classes> classList = new ArrayList<>();
         for (Integer c:cid){
@@ -43,7 +43,7 @@ public class ScoreServiceImpl implements ScoreService {
 
     //根据班级id查询学生成绩
     @Override
-    public List<Score> getScoreByCid(int cid) {
+    public List<Score> getScoreByCid(Integer cid) {
         List<Score> scores = new ArrayList<>();
         List<Integer> sid = scoreMapper.getSidByCid(cid);
         for (Integer s:sid){
@@ -54,7 +54,7 @@ public class ScoreServiceImpl implements ScoreService {
             List<Integer> scoreList = new ArrayList<>();
             for (int i = 1; i < 5; i++) {
                 ScoreVO scoreVO = scoreMapper.getScoreBySid(s, i);//学生，i阶段成绩
-                int stuScore = 0;
+                Integer stuScore = null;
                 if(scoreVO != null){
                     stuScore = scoreVO.getScore();
                 }

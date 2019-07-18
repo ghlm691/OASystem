@@ -31,7 +31,7 @@
         <a class="navbar-brand">请假审批</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="btn btn-primary" href="/AllWeekly?method=All">返回</a>
+                <a class="btn btn-primary" href="/Staff">返回</a>
             </div>
         </div>
     </nav>

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>学生成绩分析</title>
@@ -20,7 +21,7 @@
         <a class="navbar-brand">学生成绩分析</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="btn btn-primary" href="">返回</a>
+                <a class="btn btn-primary" href="/toScore?uid=${sessionScope.user.id}">返回</a>
             </div>
         </div>
     </nav>
@@ -33,20 +34,24 @@
         // 指定图表的配置项和数据
         var option = {
             title: {
-                text: 'ECharts 入门示例'
+                text: '学生各阶段成绩分析'
             },
             tooltip: {},
             legend: {
-                data:['销量']
+                data:['成绩']
             },
             xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+                data: ["第一阶段","第二阶段","第三阶段","第四阶段"]
             },
             yAxis: {},
             series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
+                name: '成绩',
+                type: 'line',
+                data: [
+                    <c:forEach items="${scoreList}" var="score">
+                        ${score},
+                    </c:forEach>
+                ]
             }]
         };
 

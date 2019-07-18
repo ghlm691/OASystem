@@ -17,7 +17,7 @@
 </head>
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="navbar-brand" href="/student_addWeekly?sid=${sid}">添加周报</a>|
+        <a class="btn btn-primary" href="/student_addWeekly?sid=${sid}">添加周报</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/student?sid=${sid}">返回</a>
