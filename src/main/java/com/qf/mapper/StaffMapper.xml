@@ -36,4 +36,8 @@
     <update id="updatePassword">
         update users set password = #{password} where uid = #{uid}
     </update>
+
+    <insert id="addStuScore" parameterType="ScoreVO">
+        insert into score (uid,cid,stage,score) value (#{uid},#{cid},#{stage},#{score})
+    </insert>
 </mapper>

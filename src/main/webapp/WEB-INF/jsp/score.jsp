@@ -45,7 +45,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="navbar-brand">成绩管理页面</a>|
-        <a class="btn btn-primary" href="/AddScore">添加学生成绩</a>|
+        <a class="btn btn-primary" href="/goAddScore">添加学生成绩</a>|
         <a class="btn btn-primary" >
             <select name="classes" class="firstSelect" id="firstSelect">
             <c:forEach items="${classList}" var="c">

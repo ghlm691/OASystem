@@ -4,6 +4,7 @@ import com.qf.mapper.StaffMapper;
 import com.qf.pojo.Classes;
 import com.qf.pojo.Leave;
 import com.qf.pojo.Weekly;
+import com.qf.pojo.vo.ScoreVO;
 import com.qf.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,11 @@ public class StaffServiceImpl implements StaffService {
     @Override
     public int updatePassword(Integer uid, String password) {
         return staffMapper.updatePassword(uid,password);
+    }
+
+    @Override
+    public int addStuScore(ScoreVO scoreVO) {
+        return staffMapper.addStuScore(scoreVO);
     }
 
 }
