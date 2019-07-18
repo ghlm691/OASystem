@@ -105,6 +105,7 @@ public class ExcelUtils {
 		String mimeType = servletContext.getMimeType(fileName);
 
 		HttpServletResponse resp = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getResponse();
+
 		resp.setContentType(mimeType);
 		resp.setHeader("Content-Disposition","attachment;filename="+fileName);
 		hssfWorkbook.write(outputStream);

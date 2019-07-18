@@ -12,8 +12,16 @@
     <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="/css/drag.css">
+    <script type="text/javascript" src="/js/drag.js"></script>
+    <script>
+        $(function () {
+            $('#drag').drag();
+        })
+    </script>
 </head>
-<body class="text-center">
+<body id="all" class="text-center">
+
 <form action="/login/login" method="post" class="form-signin">
 
     <h1 class="h3 mb-3 font-weight-normal">滴答教学OA办公平台</h1>
@@ -29,6 +37,7 @@
             <td colspan="2"><input type="submit" value="登录" id="login" class="btn btn-lg btn-primary btn-block"></td>
         </tr>
     </table>
+    <div id="drag" ></div>
     <p class="mt-3 mb-3 text-muted">&copy; 王正涛&nbsp;&nbsp;&nbsp;&nbsp;刘铭&nbsp;&nbsp;&nbsp;&nbsp;赖文熙</p>
 </form>
 
