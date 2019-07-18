@@ -49,4 +49,17 @@
     <select id="getPermissionList" parameterType="string" resultType="string">
         select pname from role r,role_permission rp,permission p where r.rid=rp.rid and p.pid=rp.pid and r.rname=#{rname}
     </select>
+
+    <select id="queryLeader" resultType="string">
+        select name from users u,role r,user_role ur where u.uid=ur.uid and r.rid=ur.rid and r.rname='leader'
+    </select>
+
+    <select id="queryStuClass" parameterType="int" resultType="int">
+        select cid from user_class uc,users u where u.uid=uc.uid and u.uid=#{uid}
+    </select>
+
+    <select id="queryTeacher" parameterType="int" resultType="string">
+        select name from users u,classes c,course,class_course cc where c.cid=cc.cid and course.courseid=cc.courseid
+        and course.uid=u.uid and c.cid=#{cid}
+    </select>
 </mapper>

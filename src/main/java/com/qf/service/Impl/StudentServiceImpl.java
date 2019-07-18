@@ -1,6 +1,7 @@
 package com.qf.service.Impl;
 
 import com.qf.mapper.AdminMapper;
+import com.qf.mapper.LeaveMapper;
 import com.qf.mapper.StudentMapper;
 import com.qf.pojo.Leave;
 import com.qf.pojo.Student;
@@ -26,7 +27,8 @@ import java.util.Map;
 @Service
 public class StudentServiceImpl implements StudentService {
 
-
+    @Autowired
+    private LeaveMapper leaveMapper;
     @Autowired
     private StudentMapper studentMapper;
     @Autowired
@@ -129,8 +131,10 @@ public class StudentServiceImpl implements StudentService {
         map.put("role", 0);
         //map.put("employee", "nobody");
         map.put("student", leave.getUser().getName());
-        map.put("teacher", studentMapper.queryTeacher(studentMapper.queryClass(leave.getUser().getId())));
-        map.put("leader", studentMapper.queryLeader(studentMapper.queryClass(leave.getUser().getId())));
+        Integer cid = leaveMapper.queryStuClass(leave.getUser().getId());
+        map.put("teacher", leaveMapper.queryTeacher(cid));
+        //map.put("leader", studentMapper.queryLeader(studentMapper.queryClass(leave.getUser().getId())));
+        map.put("leader", leaveMapper.queryLeader());
         map.put("boss", studentMapper.queryBoss());
         map.put("day", day);
 

@@ -27,4 +27,11 @@ public interface LeaveMapper {
     //根据角色列表查询数据库中对应的权限名
     List<String> getPermissionList(String rname);
 
+    //查询班主任，只有一个
+    String queryLeader();
+
+    //查询老师
+    Integer queryStuClass(Integer uid);
+    String queryTeacher(Integer cid);
+
 }
