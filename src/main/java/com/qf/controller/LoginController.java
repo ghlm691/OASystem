@@ -68,6 +68,7 @@ public class LoginController {
                     Student student = studentService.getStudentByUnamePwd(userVO.getUname(), userVO.getPassword());
                     model.addAttribute("student", student);
                     session.setAttribute("student", student);
+                    session.setAttribute("oldPassword",userVO.getPassword());
                     return "student";
                 }
             }else {

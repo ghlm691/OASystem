@@ -1,6 +1,5 @@
 package com.qf.controller;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qf.mapper.ScoreMapper;
 import com.qf.mapper.StudentMapper;
@@ -50,6 +49,8 @@ public class StaffController {
         return "update_password";
     }
 
+
+
     @RequestMapping("WscoreManager")
     public String wscoreManager(){
         return "wscore_manager";
@@ -78,13 +79,12 @@ public class StaffController {
 
     //跳转周报管理页面
     @RequestMapping("AllWeekly")
-    public ModelAndView weeklyPage(Integer uid, @RequestParam(value = "pageNum",defaultValue = "1")int pageNum, String method){
+    public ModelAndView weeklyPage(Integer uid,String method){
         System.out.println(uid);
         ModelAndView modelAndView = new ModelAndView();
         //根据老师查询所教班级
         List<Classes> classList = scoreService.getClassByTid(uid);//班级列表
         modelAndView.addObject("classList",classList);
-        PageHelper.startPage(pageNum,5);
         if(method.equals("All")){
             //展示第一个班级学生周报
             List<Weekly> weeklyList = staffService.queryAll(classList.get(0).getCid());
