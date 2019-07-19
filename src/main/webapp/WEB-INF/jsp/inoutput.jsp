@@ -16,9 +16,9 @@
         选择文件：<input type="file" name="infile">
         <input type="submit" value="导入">
     </form>
-    <input type="button" value="导出"><br>
+
     <span>
-        <c:forEach items="${students}" varStatus="i" var="student">
+        <c:forEach items="${studentss}" varStatus="i" var="student">
             <tr>
                 <td>${student.sname}</td>
                 <td>${student.age}</td>

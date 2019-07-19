@@ -1,8 +1,9 @@
 package com.qf.service;
 
 import com.qf.pojo.Leave;
+import com.qf.pojo.Student;
+import com.qf.pojo.User;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 public interface LeaveService {
@@ -24,5 +25,8 @@ public interface LeaveService {
 
     //获取角色名对应的权限列表
     List<String> getPermissionList(String rname);
+
+    //获取请假情况
+    List isApproved(User user);
 
 }

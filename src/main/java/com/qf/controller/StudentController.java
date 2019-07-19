@@ -26,6 +26,12 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+
+    @RequestMapping("UpdateStuPwd")
+    public String goStuUpdatePassword() {
+        return "stu_updatepassword";
+    }
+
     //跳转学生页面
     @RequestMapping("student")
     public ModelAndView toStudent(int sid){

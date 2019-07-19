@@ -62,4 +62,8 @@
         select name from users u,classes c,course,class_course cc where c.cid=cc.cid and course.courseid=cc.courseid
         and course.uid=u.uid and c.cid=#{cid}
     </select>
+
+    <select id="getLidByUid" parameterType="int" resultType="int">
+        select lid from uleave where uid=#{uid}
+    </select>
 </mapper>

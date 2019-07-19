@@ -73,7 +73,7 @@
     </a>|
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&uid=${sessionScope.user.id}&method=All">返回</a>
+            <a class="btn btn-primary" href="/AllWeekly?uid=${sessionScope.user.id}&method=All">返回</a>
         </div>
     </div>
 </nav>
@@ -99,14 +99,14 @@
             <td>${list.uname}</td>
             <td>${list.wtime}</td>
             <td>
-                <a href="/detail?wid=${list.wid}&pageNum=${pageInfo.pageNum}" class="btn btn-primary">明细</a>
+                <a href="/detail?wid=${list.wid}" class="btn btn-primary">明细</a>
                 <a href="javascript:void(0)" class="delete btn btn-primary" id="${list.wid}">删除</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 
-<div align="center">
+<%--<div align="center">
     共${pageInfo.pages}页|
     <c:if test="${pageInfo.hasPreviousPage eq false}">
         首页|上一页
@@ -128,6 +128,6 @@
     <c:if test="${pageInfo.hasNextPage eq false}">
         |下一页|尾页
     </c:if>
-</div>
+</div>--%>
 </body>
 </html>
