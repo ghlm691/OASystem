@@ -83,6 +83,7 @@
         <tr><td>请输入新密码：</td><td><input type="password" name="newPassword1" id="password1" onblur="checkP1()"></td><td><span id="pwdError1" style="color:red;"></span></td></tr>
         <tr><td>请再次输入新密码：</td><td><input type="password" name="newPassword2" id="password2" onblur="checkP2()"></td><td><span id="pwdError2" style="color:red;"></span></td></tr>
         <tr><td colspan="2" align="center"><input type="button" value="提交" class="btn btn-primary" onclick="subForm()"></td></tr>
+        <tr><td><input type="hidden" value="${student.sid}" name="sid"></td></tr>
     </table>
 </form>
 </body>

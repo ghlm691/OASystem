@@ -16,7 +16,7 @@
 <body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="navbar-brand">学生个人信息管理</a>|
-        <a class="btn btn-primary" href="/UpdateStuPwd" class="btn btn-primary">修改密码</a>|
+        <a class="btn btn-primary" href="/UpdateStuPwd?sid=${student.sid}" class="btn btn-primary">修改密码</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/student?sid=${student.sid}">返回</a>

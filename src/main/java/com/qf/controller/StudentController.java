@@ -28,8 +28,12 @@ public class StudentController {
 
 
     @RequestMapping("UpdateStuPwd")
-    public String goStuUpdatePassword() {
-        return "stu_updatepassword";
+    public ModelAndView goStuUpdatePassword(int sid) {
+        ModelAndView modelAndView = new ModelAndView();
+        Student student = studentService.getStudentBySid(sid);
+        modelAndView.addObject("student",student);
+        modelAndView.setViewName("stu_updatepassword");
+        return modelAndView;
     }
 
     //跳转学生页面
@@ -63,12 +67,13 @@ public class StudentController {
 
     //修改密码
     @RequestMapping("stu_password")
-    public ModelAndView updatePassword(Student student){
+    public ModelAndView updatePassword(int sid,String newPassword1){
         ModelAndView modelAndView = new ModelAndView();
-        studentService.updatePassword(student.getSid(),student.getPassword());
-        modelAndView.setViewName("stu_success");
+        studentService.updatePassword(sid,newPassword1);
+        Student student = studentService.getStudentBySid(sid);
         modelAndView.addObject("student",student);
         modelAndView.addObject("message","个人信息修改成功");
+        modelAndView.setViewName("stu_updatepassword");
         return modelAndView;
     }
 
