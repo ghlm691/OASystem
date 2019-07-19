@@ -123,12 +123,12 @@ public class FileServiceImpl implements FileService {
             userVo.setSex(Integer.parseInt(sex));
 
             int i = fileMapper.queryCidByCname(student.getCname());
-
-            fileMapper.addStuClass(student.getSid(),i);
+            fileMapper.addStudent(userVo);
+            fileMapper.addStuClass(userVo.getUid(),i);
             int rid = fileMapper.queryRid("student");
             fileMapper.addUserRole(student.getSid(), rid);
 
-            fileMapper.addStudent(userVo);
+
 
         }
 

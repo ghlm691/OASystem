@@ -21,7 +21,7 @@
         and r.rid=ur.rid and u.uid=ur.uid and r.rname='student'
     </select>
 
-    <insert id="addStudent" parameterType="userVVo">
+    <insert id="addStudent" parameterType="userVVo" useGeneratedKeys="true" keyProperty="uid" >
         insert into users (uname,password,name,age,sex) values (#{uname},#{password},#{name},#{age},#{sex})
     </insert>
 
