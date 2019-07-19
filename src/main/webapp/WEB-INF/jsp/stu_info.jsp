@@ -41,7 +41,7 @@
         </c:forEach>
     </table>
 
-    <a href="/file/goinout" type="button">批量导入</a>
+    <a href="/file/goinout" type="button" class="btn btn-primary">批量导入</a>
     <a href="/file/out" type="button" class="btn btn-primary">导出</a>
 </body>
 </html>
