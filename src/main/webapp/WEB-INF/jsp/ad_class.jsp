@@ -26,14 +26,22 @@
     </script>
 </head>
 <body class="text-center">
-    <a href="/toAddClass">添加班级</a>
-    <table>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand">班级管理</a>|
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="btn btn-primary" href="/toAddClass">添加班级</a>
+        </div>
+    </div>
+</nav>
+   <%-- <a href="/toAddClass">添加班级</a>--%>
+    <table class="table table-hover">
         <tr>
-            <td>班级</td>
-            <td>教师</td>
-            <td>班主任</td>
-            <td>课程</td>
-            <td>操作</td>
+            <th>班级</th>
+            <th>教师</th>
+            <th>班主任</th>
+            <th>课程</th>
+            <th>操作</th>
         </tr>
         <c:forEach items="${cList}" var="c">
             <tr id="tr${c.cid}">
@@ -41,7 +49,7 @@
                 <td>${c.tname}</td>
                 <td>矫</td>
                 <td>${c.course}</td>
-                <td><button id="${c.cid}" class="delBtn">删除</button><a href="#">查看走势图</a></td>
+                <td><button id="${c.cid}" class="delBtn btn btn-primary">删除</button></td>
             </tr>
         </c:forEach>
     </table>

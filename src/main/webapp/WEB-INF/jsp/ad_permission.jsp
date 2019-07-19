@@ -55,7 +55,7 @@
     </form>
 
     <table id="table" class="table table-hover">
-        ${user.name}
+       <%-- ${user.name}--%>
         <tr>
             <th>权限</th>
             <th>操作</th>
