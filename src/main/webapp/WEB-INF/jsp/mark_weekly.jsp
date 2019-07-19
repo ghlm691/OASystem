@@ -14,6 +14,36 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
 
+    <script>
+        $(function(){
+            $(".firstSelect").change(function(){
+                var cid =$('#firstSelect option:selected').val();
+                $.post("/changeMarkWeekly",{cid:cid},function(d){
+                    var tables = $("#table tr");
+                    tables.remove();
+                    var top ="<tr><td>序号</td><td>周报题目</td><td>周报内容</td><td>周报分数</td><td>周报阶段</td><td>发布人</td><td>发布时间</td><td>操作</td></tr>";
+                    $("#table").append(top);
+                    for (var i = 0;i < d.wList.length;i++){
+                        var list = "<tr>" +
+                            "<td>" + d.wList[i].wid + "</td>" +
+                            "<td>" + d.wList[i].wtitle + "</td>" +
+                            "<td>" + d.wList[i].wcontent + "</td>" +
+                            "<td>" + d.wList[i].wscore + "</td>" +
+                            "<td>" + d.wList[i].stageName + "</td>" +
+                            "<td>" + d.wList[i].uname + "</td>" +
+                            "<td>" + d.wList[i].wtime + "</td>" +
+                            "<td>" +
+                            "<a href='detail?wid=" + d.wList[i].wid + "' class=\"btn btn-primary\">详情</a>" +
+                            " <a href='javascript:void(0) id=" + d.wList[i].wid  + "'class=\"delete btn btn-primary\">删除</a>" +
+                            "</td>" +
+                            "</tr>";
+                        $("#table").append(list);
+                    }
+                },"json");
+            });
+        });
+    </script>
+
     <script type="text/javascript">
         $(function () {
             $(".delete").click(function () {
@@ -34,14 +64,21 @@
 <body class="text-center">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <a class="navbar-brand" >已打分的周报</a>|
+    <a class="btn btn-primary" >
+        <select name="classes" class="firstSelect" id="firstSelect">
+            <c:forEach items="${classList}" var="c">
+                <option value="${c.cid}">${c.cname}</option>
+            </c:forEach>
+        </select>
+    </a>|
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&method=All">返回</a>
+            <a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&uid=${sessionScope.user.id}&method=All">返回</a>
         </div>
     </div>
 </nav>
 
-<table class="table table-hover">
+<table id="table" class="table table-hover">
     <tr>
         <th>序号</th>
         <th>周报题目</th>
