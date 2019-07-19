@@ -34,4 +34,8 @@ public interface LeaveMapper {
     Integer queryStuClass(Integer uid);
     String queryTeacher(Integer cid);
 
+    //查询lid（businessKey）
+    List<Integer> getLidByUid(Integer uid);
+
+
 }

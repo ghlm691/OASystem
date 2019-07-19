@@ -2,17 +2,20 @@ package com.qf.service.Impl;
 
 import com.qf.mapper.LeaveMapper;
 import com.qf.pojo.Leave;
+import com.qf.pojo.Student;
+import com.qf.pojo.User;
 import com.qf.service.LeaveService;
-import com.qf.service.StudentService;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricProcessInstance;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -116,5 +119,23 @@ public class LeaveServiceImpl implements LeaveService {
     @Override
     public List<String> getPermissionList(String rname) {
         return leaveMapper.getPermissionList(rname);
+    }
+
+    @Override
+    public List isApproved(User user) {
+
+        List<Integer> businessKeys = leaveMapper.getLidByUid(user.getId());
+
+        List<HistoricProcessInstance> hiprocinses = new ArrayList<>();
+
+        for (Integer businessKey : businessKeys) {
+
+            HistoricProcessInstance historicProcessInstance = historyService.createHistoricProcessInstanceQuery().processInstanceBusinessKey(businessKey + "").singleResult();
+
+            hiprocinses.add(historicProcessInstance);
+
+        }
+
+        return hiprocinses;
     }
 }
