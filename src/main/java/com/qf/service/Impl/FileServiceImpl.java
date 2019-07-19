@@ -6,6 +6,8 @@ import com.qf.mapper.ScoreMapper;
 import com.qf.pojo.Classes;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
+import com.qf.pojo.UserVVo;
+import com.qf.pojo.vo.UserVO;
 import com.qf.service.AdminService;
 import com.qf.service.FileService;
 import com.qf.service.ScoreService;
@@ -98,6 +100,8 @@ public class FileServiceImpl implements FileService {
 
         for (Student student : students) {
 
+            //UserVO userVO = new UserVO();
+
             String username = HanyuPinyinHelp.toHanyuPinyin(student.getSname());
             String password = null;
             try {
@@ -109,7 +113,22 @@ public class FileServiceImpl implements FileService {
             student.setUsername(username);
             student.setPassword(password);
 
-            fileMapper.addStudent(student);
+            UserVVo userVo = new UserVVo();
+            userVo.setUname(student.getUsername());
+            userVo.setPassword(student.getPassword());
+            userVo.setName(student.getSname());
+            String age = student.getAge().substring(0, 1);
+            userVo.setAge(age);
+            String sex = student.getSex().substring(0, 1);
+            userVo.setSex(Integer.parseInt(sex));
+
+            int i = fileMapper.queryCidByCname(student.getCname());
+
+            fileMapper.addStuClass(student.getSid(),i);
+            int rid = fileMapper.queryRid("student");
+            fileMapper.addUserRole(student.getSid(), rid);
+
+            fileMapper.addStudent(userVo);
 
         }
 

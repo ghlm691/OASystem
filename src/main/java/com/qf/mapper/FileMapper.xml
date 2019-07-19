@@ -21,7 +21,23 @@
         and r.rid=ur.rid and u.uid=ur.uid and r.rname='student'
     </select>
 
-    <insert id="addStudent" parameterType="student">
-        insert into users set (uname,password,name,age,sex) values (#{username},#{password},#{sname},#{age},#{sex})
+    <insert id="addStudent" parameterType="userVVo">
+        insert into users (uname,password,name,age,sex) values (#{uname},#{password},#{name},#{age},#{sex})
     </insert>
+
+    <select id="queryCidByCname" parameterType="string" resultType="int">
+        select cid from classes c where cname=#{cname}
+    </select>
+
+    <insert id="addStuClass" >
+        insert into user_class (uid,cid) values (#{uid},#{cid})
+    </insert>
+
+    <insert id="addUserRole" >
+        insert into user_role (uid,rid) values (#{uid},#{rid})
+    </insert>
+
+    <select id="queryRid" parameterType="string" resultType="int">
+        select rid from role where rname=#{rname}
+    </select>
 </mapper>

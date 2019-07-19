@@ -43,7 +43,7 @@ public class ExcelUtils {
                 student.setSid((int) hr.getCell(0).getNumericCellValue());
                 student.setSname(hr.getCell(1).getStringCellValue());
                 student.setAge(hr.getCell(2).getNumericCellValue()+"");
-                student.setSex(hr.getCell(3).getStringCellValue());
+                student.setSex(hr.getCell(3).getNumericCellValue()+"");
                 student.setCname(hr.getCell(4).getStringCellValue());
 
                 /*staff.setNo(hr.getCell(0).getStringCellValue());
