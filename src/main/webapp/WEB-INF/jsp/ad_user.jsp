@@ -48,8 +48,51 @@
         });
     </script>
 </head>
-<body>
-    <div>
+<body class="text-center">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">用户管理</a>|
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-primary" href="/backAdmin">返回</a>
+            </div>
+        </div>
+    </nav>
+
+    <table class="table table-hover">
+        <tr><td>要添加的用户姓名:</td><td><input id="addUser" type="text"></td></tr>
+        <tr>
+            <td>所属角色:</td>
+            <td>
+                <select id="role">
+                    <option value="2">校长</option>
+                    <option value="3">班主任</option>
+                    <option value="4">讲师</option>
+                    <option value="5">学生</option>
+                </select>
+            </td>
+        </tr>
+        <tr><td><button id="addBtn" class="btn btn-primary">添加</button></td><td></td></tr>
+    </table>
+
+    <table id="table" class="table table-hover">
+        <tr>
+            <th>姓名</th>
+            <th>角色</th>
+            <th>操作</th>
+        </tr>
+        <c:forEach items="${users}" var="u">
+            <tr id="tr${u.id}">
+                <td>${u.name}</td>
+                <td>${u.rname}</td>
+                <td>
+                    <button class="updateBtn btn btn-primary" id="${u.id}">重置密码</button>
+                    <button class="delBtn btn btn-primary" id="${u.id}">删除</button>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
+   <%-- <div>
         要添加的用户姓名:<input id="addUser" type="text">
         所属角色:<select id="role">
                 <option value="2">校长</option>
@@ -75,7 +118,7 @@
                 </td>
             </tr>
         </c:forEach>
-    </table>
-<a href="/backAdmin">点此返回</a>
+    </table>--%>
+<%--<a href="/backAdmin">点此返回</a>--%>
 </body>
 </html>

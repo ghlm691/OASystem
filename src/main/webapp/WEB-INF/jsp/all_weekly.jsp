@@ -72,7 +72,7 @@
                 </c:forEach>
             </select>
         </a>
-        |<a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}?uid=${sessionScope.user.id}&method=mark">查看已打分周报</a>|
+        |<a class="btn btn-primary" href="/AllWeekly?pageNum=${pageInfo.pageNum}&uid=${sessionScope.user.id}&method=mark">查看已打分周报</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="btn btn-primary" href="/Staff">返回</a>

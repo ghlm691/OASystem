@@ -34,17 +34,32 @@
         });
     </script>
 </head>
-<body>
+<body class="text-center">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">权限管理</a>|
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-primary" href="/backAdmin">返回</a>
+            </div>
+        </div>
+    </nav>
+
     <form action="/getRole">
-        用户姓名:<input type="text" name="name">
-        <input type="submit" value="提交">
+        <table class="table table-hover">
+            <tr><td>用户姓名:<input type="text" name="name"></td></tr>
+            <tr><td><input type="submit" value="提交" class="btn btn-primary"></td></tr>
+        </table>
+       <%-- 用户姓名:<input type="text" name="name">
+        <input type="submit" value="提交">--%>
     </form>
 
-    <table id="table">
+    <table id="table" class="table table-hover">
         ${user.name}
         <tr>
-            <td>权限</td>
-            <td>操作</td>
+            <th>权限</th>
+            <th>操作</th>
+            <th width="600px"></th>
         </tr>
             <c:forEach items="${pList}" var="p">
                 <tr id="${p.pid}">
@@ -54,7 +69,7 @@
             </c:forEach>
         <tr>
             <td><input type="text" id="permission"></td>
-            <td><button id="addBtn">添加</button></td>
+            <td><button id="addBtn" class="btn btn-primary">添加</button></td>
         </tr>
     </table>
 </body>

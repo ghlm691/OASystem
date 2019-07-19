@@ -25,7 +25,7 @@
         });
     </script>
 </head>
-<body>
+<body class="text-center">
     <a href="/toAddClass">添加班级</a>
     <table>
         <tr>

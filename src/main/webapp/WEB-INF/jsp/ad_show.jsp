@@ -29,14 +29,21 @@
         });
     </script>
 </head>
-<body>
-    员工姓名：<input type="text" id="name"> <button id="getBtn">查询</button>
-    <table id="table">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+<body class="text-center">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">员工管理</a>|
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-primary" href="/backAdmin">返回</a>
+            </div>
+        </div>
+    </nav>
+
+   <%-- 员工姓名：<input type="text" id="name"> <button id="getBtn">查询</button>--%>
+    <table id="table" class="table table-hover">
+        <tr><td>员工姓名：<input type="text" id="name"></td></tr>
+        <tr><td><button id="getBtn" class="btn btn-primary">查询</button></td></tr>
     </table>
 </body>
 </html>

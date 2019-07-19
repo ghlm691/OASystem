@@ -10,9 +10,20 @@
 <html>
 <head>
     <title>学生信息查看</title>
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
 </head>
-<body>
-    <table>
+<body class="text-center">
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">学生信息</a>|
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-primary" href="/Staff">返回</a>
+            </div>
+        </div>
+    </nav>
+    <table class="table table-hover">
         <tr>
             <th>学生姓名</th>
             <th>年龄</th>
@@ -30,6 +41,6 @@
         </c:forEach>
     </table>
 
-    <a href="/file/out" type="button">导出</a>
+    <a href="/file/out" type="button" class="btn btn-primary">导出</a>
 </body>
 </html>

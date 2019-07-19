@@ -78,7 +78,7 @@ public class StaffController {
 
     //跳转周报管理页面
     @RequestMapping("AllWeekly")
-    public ModelAndView weeklyPage(Integer uid, @RequestParam(value = "pageNum",defaultValue = "1")int pageNum, String method, HttpServletRequest request){
+    public ModelAndView weeklyPage(Integer uid, @RequestParam(value = "pageNum",defaultValue = "1")int pageNum, String method){
         System.out.println(uid);
         ModelAndView modelAndView = new ModelAndView();
         //根据老师查询所教班级
@@ -115,6 +115,19 @@ public class StaffController {
         JSONObject json = new JSONObject();
         //展示所选班级
         List<Weekly> wList = staffService.queryAll(cid);
+        System.out.println(wList.toString());
+        json.element("wList",wList);
+        return json.toString();
+    }
+
+    //更新已打分周报
+    @RequestMapping(value = "changeMarkWeekly",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String changeMarkWeekly(int cid){
+        System.out.println(cid);
+        JSONObject json = new JSONObject();
+        //展示所选班级
+        List<Weekly> wList = staffService.queryAlreadyMark(cid);
         System.out.println(wList.toString());
         json.element("wList",wList);
         return json.toString();
@@ -167,7 +180,7 @@ public class StaffController {
             modelAndView.setViewName("detail");
             return modelAndView;
         }else{
-            modelAndView.setViewName("fail");
+            modelAndView.setViewName("/WEB-INF/fail.jsp");
             return modelAndView;
         }
 

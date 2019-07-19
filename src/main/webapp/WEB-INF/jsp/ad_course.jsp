@@ -41,8 +41,47 @@
         });
     </script>
 </head>
-<body>
-    <div>
+<body class="table table-hover">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">添加课程</a>|
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="btn btn-primary" href="/backAdmin">返回</a>
+            </div>
+        </div>
+    </nav>
+
+    <table class="table table-hover">
+        <tr><td> 添加课程:</td><td><input id="addCourse" type="text"></td></tr>
+        <tr>
+            <td>讲师:</td>
+            <td>
+                <select id="teacher">
+                    <c:forEach items="${teachers}" var="t">
+                        <option value="${t.uid}">${t.name}</option>
+                    </c:forEach>
+                </select>
+            </td>
+        </tr>
+        <tr><td><button id="addBtn" class="btn btn-primary">添加</button></td><td></td></tr>
+    </table>
+
+    <table id="table" class="table table-hover">
+        <tr>
+            <th>课程名</th>
+            <th>讲师</th>
+            <th>操作</th>
+        </tr>
+        <c:forEach items="${courses}" var="c">
+            <tr id="tr${c.id}">
+                <td>${c.courseName}</td>
+                <td>${c.tname}</td>
+                <td><button class="delBtn btn btn-primary" id="${c.id}">删除</button></td>
+            </tr>
+        </c:forEach>
+    </table>
+    <%--<div>
         添加课程:<input id="addCourse" type="text">
         讲师:<select id="teacher">
                 <c:forEach items="${teachers}" var="t">
@@ -64,7 +103,7 @@
                 <td><button class="delBtn" id="${c.id}">删除</button></td>
             </tr>
         </c:forEach>
-    </table>
-<a href="/backAdmin">点此返回</a>
+    </table>--%>
+<%--<a href="/backAdmin">点此返回</a>--%>
 </body>
 </html>
