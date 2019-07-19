@@ -14,5 +14,5 @@ public interface ScoreService {
     List<Score> getScoreByCid(Integer cid);
 
 
-
+    List<Double> getAvgScore(int cid);
 }

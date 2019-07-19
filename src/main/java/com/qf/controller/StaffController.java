@@ -234,6 +234,16 @@ public class StaffController {
         return modelAndView;
     }
 
+    //班级成绩走势图
+    @RequestMapping("ClassScore")
+    public ModelAndView classScore(Integer cid){
+        ModelAndView modelAndView = new ModelAndView();
+        List<Double> avgScore = scoreService.getAvgScore(cid);
+        modelAndView.addObject("scoreList",avgScore);
+        modelAndView.setViewName("class_score");
+        return modelAndView;
+    }
+
 
     @RequestMapping("goAddScore")
     public ModelAndView goAddScore(HttpServletRequest request){

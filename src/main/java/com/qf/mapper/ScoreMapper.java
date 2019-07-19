@@ -20,6 +20,5 @@ public interface ScoreMapper {
     //根据id查询班级
     Classes getClasses(int cid);
 
-
-
+    List<Integer> getScoreList(@Param(value = "cid") int cid,@Param(value = "stage") int stage);
 }

@@ -33,7 +33,8 @@
                             "<td>" + d.sList[i].scoreList[3] + "</td>" +
                             "<td><a href='StudentScore?sid=" + d.sList[i].id + "' class=\"btn btn-primary\">查看走势图</a>" +
                             "</td>" +
-                            "</tr>";
+                            "</tr>" +
+                            "<tr><a href='ClassScore?cid=" + d.cid + "' class=\"btn-primary\">查看该班走势图</a>";
                         $("#table").append(list);
                     }
                 },"json");
@@ -89,6 +90,7 @@
                         </td>
                     </tr>
                 </c:forEach>
+                <tr><a href="ClassScore?cid=${classList[0].cid}" class="btn btn-primary">查看该班走势图</a></tr>
             </table>
     </form>
 </body>

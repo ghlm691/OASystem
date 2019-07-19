@@ -29,4 +29,10 @@
 
     </select>
 
+    <select id="getScoreList" resultType="int">
+
+        select score from score where cid = #{cid} and stage = #{stage}
+
+    </select>
+
 </mapper>

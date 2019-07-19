@@ -67,4 +67,24 @@ public class ScoreServiceImpl implements ScoreService {
         System.out.println("scores:" + scores.toString());
         return scores;
     }
+
+    @Override
+    public List<Double> getAvgScore(int cid) {
+        List<Double> list = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            //各阶段
+            List<Integer> scoreList = scoreMapper.getScoreList(cid, i);
+            double S = 0;
+            int u = 0;
+            for(Integer score:scoreList){
+                System.out.println("-----------------"+score);
+                S += score;
+                u += 1;
+                System.out.println("-------------"+u);
+            }
+            double avg = S / u ;
+            list.add(avg);
+        }
+        return list;
+    }
 }

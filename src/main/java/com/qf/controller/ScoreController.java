@@ -46,6 +46,7 @@ public class ScoreController {
         JSONObject json = new JSONObject();
         //展示所选班级
         List<Score> score = scoreService.getScoreByCid(cid);
+        json.element("cid",cid);
         json.element("sList",score);
         return json.toString();
     }
