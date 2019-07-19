@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Jerry
-  Date: 2019/7/15
-  Time: 19:32
+  Date: 2019/7/19
+  Time: 10:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -68,22 +68,22 @@
     </script>
 </head>
 <body class="text-center">
-    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-        <a class="navbar-brand" >修改密码</a>|
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="btn btn-primary" href="/Staff">返回</a>
-            </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <a class="navbar-brand" >修改密码</a>|
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="btn btn-primary" href="/student?sid=${student.sid}">返回</a>
         </div>
-    </nav>
-    <form action="/UpdatePassword" method="post" id="form1">
-        <table cellpadding="30" align="center">
-            <tr><td><input type="hidden" id="oldPassword1" value="${oldPassword}"></td></tr>
-            <tr><td>请输入原密码：</td><td><input type="password" name="oldPassword2" id="oldPassword2" onblur="checkOp()"></td><td width="220px"><span id="oldPasswordError" style="color:red;"></span></td></tr>
-            <tr><td>请输入新密码：</td><td><input type="password" name="newPassword1" id="password1" onblur="checkP1()"></td><td><span id="pwdError1" style="color:red;"></span></td></tr>
-            <tr><td>请再次输入新密码：</td><td><input type="password" name="newPassword2" id="password2" onblur="checkP2()"></td><td><span id="pwdError2" style="color:red;"></span></td></tr>
-            <tr><td colspan="2" align="center"><input type="button" value="提交" class="btn btn-primary" onclick="subForm()"></td></tr>
-        </table>
-    </form>
+    </div>
+</nav>
+<form action="/stu_password" method="post" id="form1">
+    <table cellpadding="30" align="center">
+        <tr><td><input type="hidden" id="oldPassword1" value="${oldPassword}"></td></tr>
+        <tr><td>请输入原密码：</td><td><input type="password" name="oldPassword2" id="oldPassword2" onblur="checkOp()"></td><td width="220px"><span id="oldPasswordError" style="color:red;"></span></td></tr>
+        <tr><td>请输入新密码：</td><td><input type="password" name="newPassword1" id="password1" onblur="checkP1()"></td><td><span id="pwdError1" style="color:red;"></span></td></tr>
+        <tr><td>请再次输入新密码：</td><td><input type="password" name="newPassword2" id="password2" onblur="checkP2()"></td><td><span id="pwdError2" style="color:red;"></span></td></tr>
+        <tr><td colspan="2" align="center"><input type="button" value="提交" class="btn btn-primary" onclick="subForm()"></td></tr>
+    </table>
+</form>
 </body>
 </html>

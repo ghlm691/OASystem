@@ -10,9 +10,19 @@
 <html>
 <head>
     <title>审批情况</title>
+    <link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
 </head>
-<body>
-    <table>
+<body class="text-center">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+        <a class="navbar-brand">请假详情</a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        </div>
+    </nav>
+
+    <table class="table table-hover">
         <tr>
             <th>请假开始时间</th>
             <th>是否审批</th>

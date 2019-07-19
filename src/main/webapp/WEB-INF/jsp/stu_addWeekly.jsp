@@ -20,7 +20,7 @@
         <a class="navbar-brand">添加周报</a>|
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="btn btn-primary" href="">返回</a>
+                <a class="btn btn-primary" href="/student?sid=${sid}">返回</a>
             </div>
         </div>
     </nav>
@@ -59,6 +59,6 @@
         <input type="submit" value="提交">
     </form>--%>
     </form>
-    <a href="/student?sid=${sid}">点此返回</a>
+   <%-- <a href="/student?sid=${sid}">点此返回</a>--%>
 </body>
 </html>
