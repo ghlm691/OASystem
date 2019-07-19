@@ -38,6 +38,13 @@ public class FileController {
 
     }
 
+    @RequestMapping("unauthenticated")
+    public String unau(){
+
+        return "error";
+
+    }
+
     @RequestMapping("stuInfo")
     public ModelAndView goStuInfo(HttpSession session){
         ModelAndView modelAndView = new ModelAndView();
@@ -92,5 +99,6 @@ public class FileController {
 
         return null;
     }
+
 
 }

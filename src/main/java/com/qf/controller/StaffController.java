@@ -61,7 +61,7 @@ public class StaffController {
         return "leave_request";
     }
 
-    @RequestMapping("Error")
+    @RequestMapping(value = "Error", method = RequestMethod.GET)
     public String goError() {
         return "error";
     }

@@ -22,7 +22,7 @@
                 /**=authc-->
                 /index=anon
                 /login/login=anon
-
+                /file/goinout=roles[leader]
             </value>
         </property>
 
