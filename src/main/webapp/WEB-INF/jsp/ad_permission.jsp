@@ -25,7 +25,11 @@
             });
             //添加
             $("body").on("click","#addBtn",function () {
-
+                var pname = $("#permission").val();
+                $.post("/addPermission",{pname:pname},function (d) {
+                    var t = "<tr id='" + p.permission.pid + "'><td>" + p.permission.pname + "</td><td><button id='" + d.permission.pid + "' class='delBtn'>删除</button></td></tr>";
+                    $("#table").prepend(t);
+                },"json");
             });
         });
     </script>
@@ -36,8 +40,8 @@
         <input type="submit" value="提交">
     </form>
 
-    <table>
-        ${user}
+    <table id="table">
+        ${user.name}
         <tr>
             <td>权限</td>
             <td>操作</td>

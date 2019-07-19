@@ -248,5 +248,38 @@ public class AdminServiceImpl implements AdminService {
         adminMapper.delPermissionRole(pid);
     }
 
+    @Override
+    public boolean addPermission(String pname) {
+        //是否同名
+        PermissionVO permissionVO = adminMapper.checkPermission(pname);
+        if (permissionVO != null){
+            //存在
+            return false;
+        }else{
+            adminMapper.addPermission(pname);
+        }
+        return true;
+    }
+
+    @Override
+    public PermissionVO getPermissionByPname(String pname) {
+        return adminMapper.getPermissionByPname(pname);
+    }
+
+    @Override
+    public List<CourseVO> getCourse() {
+        return adminMapper.getCourse();
+    }
+
+    @Override
+    public int addClass(String cName, int courseId) {
+        //增加班级
+        adminMapper.addClass(cName);
+        int cid = adminMapper.getClassByName(cName).getCid();
+        //增加课程班级
+        int i = adminMapper.addClassCourse(cid, courseId);
+        return i;
+    }
+
 
 }

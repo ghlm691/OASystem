@@ -215,4 +215,46 @@
 
     </delete>
 
+    <select id="checkPermission" parameterType="string" resultType="permissionVO">
+
+        select * from permission where pname = #{pname}
+
+    </select>
+
+    <insert id="addPermission" parameterType="string">
+
+        insert into permission (pname) values (#{pname});
+
+    </insert>
+
+    <select id="getPermissionByPname" parameterType="string" resultType="permissionVO">
+
+        select * from permission where pname = #{pname}
+
+    </select>
+
+    <select id="getCourse" resultType="courseVO">
+
+        select * from course
+
+    </select>
+    
+    <insert id="addClass" parameterType="string">
+        
+        insert into classes (cname) values (#{cName});
+        
+    </insert>
+
+    <select id="getClassByName" parameterType="string" resultType="classesVO">
+
+        select * from classes where cname = #{name}
+
+    </select>
+
+    <insert id="addClassCourse">
+
+        insert into class_course (cid,courseid) values (#{cid},#{courseid});
+
+    </insert>
+
 </mapper>

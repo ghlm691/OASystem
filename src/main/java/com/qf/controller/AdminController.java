@@ -71,7 +71,7 @@ public class AdminController {
     }
 
     //跳转班级管理
-    @RequestMapping("admin_Class")
+    @RequestMapping("admin_class")
     public ModelAndView toClass(){
         ModelAndView modelAndView = new ModelAndView();
         List<Classes> list = adminService.getClasses();
@@ -114,7 +114,9 @@ public class AdminController {
     @RequestMapping("getRole")
     public ModelAndView getRole(String name){
         ModelAndView modelAndView = new ModelAndView();
+        System.out.println(name);
         User user = adminService.getUserByName(name);
+        System.out.println(user.toString());
         int id = user.getId();
         List<PermissionVO> pList = adminService.getPermission(id);
         modelAndView.addObject("pList",pList);
@@ -123,7 +125,26 @@ public class AdminController {
         return modelAndView;
     }
 
+    //跳转添加班级
+    @RequestMapping("toAddClass")
+    public ModelAndView toAddClass(){
+        ModelAndView modelAndView = new ModelAndView();
+        List<CourseVO> course = adminService.getCourse();
+        modelAndView.addObject("course",course);
+        modelAndView.setViewName("add_class");
+        return modelAndView;
+    }
 
+    //添加班级
+    @RequestMapping("addClass")
+    public ModelAndView addClass(String cName,int courseId){
+        ModelAndView modelAndView = new ModelAndView();
+        adminService.addClass(cName,courseId);
+        List<Classes> list = adminService.getClasses();
+        modelAndView.addObject("cList",list);
+        modelAndView.setViewName("ad_class");
+        return modelAndView;
+    }
 
 
 
@@ -290,6 +311,18 @@ public class AdminController {
         JSONObject json = new JSONObject();
         adminService.delPermission(pid);
         json.element("message","删除成功");
+        return json.toString();
+    }
+
+    //添加权限
+    @RequestMapping(value = "/addPermission",produces = "application/json;charset=utf-8")
+    @ResponseBody
+    public String addPermission(String pname){
+        JSONObject json = new JSONObject();
+        if (adminService.addPermission(pname)){
+            PermissionVO permission = adminService.getPermissionByPname(pname);
+            json.element("permission",permission);
+        }
         return json.toString();
     }
 

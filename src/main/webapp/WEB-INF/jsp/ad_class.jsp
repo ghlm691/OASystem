@@ -17,7 +17,7 @@
         $(function () {
             $(".delBtn").click(function () {
                 var cid = $(this).attr("id");
-                $.get("/delClass",{cid:cid},function (d) {
+                $.post("/delClass",{cid:cid},function (d) {
                     alert(d.message);
                     $("tr"+d.cid).remove();
                 },"json");
@@ -26,7 +26,7 @@
     </script>
 </head>
 <body>
-    <a href="/addClass">添加班级</a>
+    <a href="/toAddClass">添加班级</a>
     <table>
         <tr>
             <td>班级</td>
@@ -40,7 +40,7 @@
                 <td>${c.cname}</td>
                 <td>${c.tname}</td>
                 <td>矫</td>
-                <td>${course}</td>
+                <td>${c.course}</td>
                 <td><button id="${c.cid}" class="delBtn">删除</button><a href="#">查看走势图</a></td>
             </tr>
         </c:forEach>

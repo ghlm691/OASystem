@@ -1,7 +1,5 @@
 package com.qf.mapper;
 
-import com.qf.pojo.Classes;
-import com.qf.pojo.Role;
 import com.qf.pojo.Student;
 import com.qf.pojo.User;
 import com.qf.pojo.vo.*;
@@ -101,4 +99,18 @@ public interface AdminMapper {
     int delPermission(int pid);
 
     int delPermissionRole(int pid);
+
+    PermissionVO checkPermission(String pname);
+
+    int addPermission(String pname);
+
+    PermissionVO getPermissionByPname(String pname);
+
+    List<CourseVO> getCourse();
+
+    int addClass(String cName);
+
+    ClassesVO getClassByName(String name);
+
+    int addClassCourse(@Param(value = "cid") int cid,@Param(value = "courseid") int courseid);
 }

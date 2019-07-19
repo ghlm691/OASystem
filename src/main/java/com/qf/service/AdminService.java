@@ -64,4 +64,12 @@ public interface AdminService {
     List<PermissionVO> getPermission(int uid);
 
     void delPermission(int pid);
+
+    boolean addPermission(String pname);
+
+    PermissionVO getPermissionByPname(String pname);
+
+    List<CourseVO> getCourse();
+
+    int addClass(String cName, int courseId);
 }
