@@ -77,10 +77,8 @@ public class ScoreServiceImpl implements ScoreService {
             double S = 0;
             int u = 0;
             for(Integer score:scoreList){
-                System.out.println("-----------------"+score);
                 S += score;
                 u += 1;
-                System.out.println("-------------"+u);
             }
             double avg = S / u ;
             list.add(avg);
